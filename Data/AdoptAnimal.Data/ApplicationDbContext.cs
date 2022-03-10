@@ -26,6 +26,20 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Pet> Pets { get; set; }
+
+        public DbSet<Add> Adds { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        public DbSet<Image> Images { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Statistic> Statistics { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -47,6 +61,11 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Add>()
+            .HasOne(a => a.Pet)
+            .WithOne(p => p.Add)
+            .HasForeignKey<Pet>(p => p.AddForeignKey);
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
