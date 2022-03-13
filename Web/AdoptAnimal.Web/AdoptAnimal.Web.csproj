@@ -36,4 +36,10 @@
     <ProjectReference Include="..\AdoptAnimal.Web.Infrastructure\AdoptAnimal.Web.Infrastructure.csproj" />
     <ProjectReference Include="..\AdoptAnimal.Web.ViewModels\AdoptAnimal.Web.ViewModels.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Ads\Create.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

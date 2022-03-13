@@ -14,7 +14,7 @@
         public string Description { get; set; }
 
         public string AuthorId { get; set; }
-         
+
         public int PetId { get; set; }
     }
 }
