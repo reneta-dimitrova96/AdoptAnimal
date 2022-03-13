@@ -6,9 +6,9 @@
 
     using AdoptAnimal.Data.Common.Models;
 
-    public class Add : BaseDeletableModel<int>
+    public class Ad : BaseDeletableModel<int>
     {
-        public Add()
+        public Ad()
         {
             this.Comments = new HashSet<Comment>();
         }
@@ -26,7 +26,7 @@
 
         public virtual ApplicationUser Author { get; set; }
 
-        public bool IsAdopted { get; set; }
+        public int PetId { get; set; }
 
         public Pet Pet { get; set; }
 

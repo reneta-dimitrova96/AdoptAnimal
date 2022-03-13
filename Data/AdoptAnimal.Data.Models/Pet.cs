@@ -25,9 +25,11 @@
 
         public IsDewormed IsDewormed { get; set; }
 
-        public int AddForeignKey { get; set; }
+        public bool IsAdopted { get; set; }
 
-        public Add Add { get; set; }
+        public int AdForeignKey { get; set; }
+
+        public Ad Ad { get; set; }
 
         public int CategoryId { get; set; }
 

@@ -10,9 +10,9 @@
         [MaxLength(150)]
         public string Content { get; set; }
 
-        public int AddId { get; set; }
+        public int AdId { get; set; }
 
-        public virtual Add Add { get; set; }
+        public virtual Ad Ad { get; set; }
 
         public int ArticleId { get; set; }
 

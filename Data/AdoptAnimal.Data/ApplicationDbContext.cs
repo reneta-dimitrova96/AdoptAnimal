@@ -28,7 +28,7 @@
 
         public DbSet<Pet> Pets { get; set; }
 
-        public DbSet<Add> Adds { get; set; }
+        public DbSet<Ad> Ads { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
 
@@ -37,6 +37,8 @@
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<SubCategory> SubCategories { get; set; }
 
         public DbSet<Statistic> Statistics { get; set; }
 
@@ -61,10 +63,10 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Add>()
+            builder.Entity<Ad>()
             .HasOne(a => a.Pet)
-            .WithOne(p => p.Add)
-            .HasForeignKey<Pet>(p => p.AddForeignKey);
+            .WithOne(p => p.Ad)
+            .HasForeignKey<Pet>(p => p.AdForeignKey);
 
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
