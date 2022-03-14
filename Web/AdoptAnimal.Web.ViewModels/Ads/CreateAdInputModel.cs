@@ -1,5 +1,6 @@
 ﻿namespace AdoptAnimal.Web.ViewModels.Ads
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CreateAdInputModel
@@ -16,5 +17,7 @@
         public string AuthorId { get; set; }
 
         public int PetId { get; set; }
+
+        public IEnumerable<KeyValuePair<string, string>> PetsItems { get; set; }
     }
 }

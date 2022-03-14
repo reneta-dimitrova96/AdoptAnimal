@@ -9,15 +9,18 @@
     public class AdsController : Controller
     {
         private readonly IAdService adsService;
+        private readonly IPetsService petsService;
 
-        public AdsController(IAdService adsService)
+        public AdsController(IAdService adsService, IPetsService petsService)
         {
             this.adsService = adsService;
+            this.petsService = petsService;
         }
 
         public IActionResult Create()
         {
             var viewModel = new CreateAdInputModel();
+            viewModel.PetsItems = this.petsService.GetAllPetsAsKeyValuePairs();
             return this.View(viewModel);
         }
 

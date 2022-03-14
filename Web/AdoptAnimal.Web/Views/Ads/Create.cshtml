@@ -1,6 +1,7 @@
 ﻿@model AdoptAnimal.Web.ViewModels.Ads.CreateAdInputModel
 @{
-    this.ViewData["Title"] = "Add new article";
+    this.ViewData["Title"] = "Add new advertisiment";
+    var petsItems = this.Model.PetsItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 <h1>@this.ViewData["Title"]</h1>
 
@@ -17,9 +18,9 @@
         <span asp-validation-for="Description"></span>
     </div>
     <div>
-        <label asp-for="AuthorId">Author:</label>
-        <input asp-for="AuthorId" />
-        <span asp-validation-for="AuthorId"></span>
+        <label asp-for="PetId">Category:</label>
+        <select asp-for="PetId" asp-items="petsItems"></select>
+        <span asp-validation-for="PetId"></span>
     </div>
     <input type="submit" />
 

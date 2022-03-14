@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Text;
     using System.Threading.Tasks;
+
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Web.ViewModels.Ads;
