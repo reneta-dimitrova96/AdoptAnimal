@@ -27,9 +27,9 @@
 
         public bool IsAdopted { get; set; }
 
-        public int AdForeignKey { get; set; }
+        public int AdvertisementForeignKey { get; set; }
 
-        public Ad Ad { get; set; }
+        public Advertisement Advertisement { get; set; }
 
         public int CategoryId { get; set; }
 

@@ -4,7 +4,7 @@
 
     using AdoptAnimal.Web.ViewModels.Ads;
 
-    public interface IAdService
+    public interface IAdvertisementService
     {
         Task CreateAsync(CreateAdInputModel input);
     }

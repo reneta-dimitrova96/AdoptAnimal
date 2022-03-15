@@ -9,13 +9,13 @@
     public class GetCountsService : IGetCountsService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
-        private readonly IDeletableEntityRepository<Ad> adsRepository;
+        private readonly IDeletableEntityRepository<Advertisement> adsRepository;
         private readonly IDeletableEntityRepository<Article> articlesRepository;
         private readonly IDeletableEntityRepository<Pet> petsRepository;
 
         public GetCountsService(
             IDeletableEntityRepository<Category> categoriesRepository,
-            IDeletableEntityRepository<Ad> adsRepository,
+            IDeletableEntityRepository<Advertisement> adsRepository,
             IDeletableEntityRepository<Article> articlesRepository,
             IDeletableEntityRepository<Pet> petsRepository)
         {

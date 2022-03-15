@@ -6,12 +6,12 @@
     using AdoptAnimal.Web.ViewModels.Ads;
     using Microsoft.AspNetCore.Mvc;
 
-    public class AdsController : Controller
+    public class AdvertisementsController : Controller
     {
-        private readonly IAdService adsService;
+        private readonly IAdvertisementService adsService;
         private readonly IPetsService petsService;
 
-        public AdsController(IAdService adsService, IPetsService petsService)
+        public AdvertisementsController(IAdvertisementService adsService, IPetsService petsService)
         {
             this.adsService = adsService;
             this.petsService = petsService;

@@ -4,14 +4,16 @@ using AdoptAnimal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdoptAnimal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220315193151_Changed model name from Ad to Advertisement")]
+    partial class ChangedmodelnamefromAdtoAdvertisement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +47,9 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -355,9 +360,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<int>("AdvertisementForeignKey")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AdvertisementId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
@@ -390,7 +392,8 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("AdvertisementForeignKey")
+                        .IsUnique();
 
                     b.HasIndex("CategoryId");
 
@@ -678,8 +681,10 @@ namespace AdoptAnimal.Data.Migrations
             modelBuilder.Entity("AdoptAnimal.Data.Models.Pet", b =>
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Advertisement", "Advertisement")
-                        .WithMany("Pets")
-                        .HasForeignKey("AdvertisementId");
+                        .WithOne("Pet")
+                        .HasForeignKey("AdoptAnimal.Data.Models.Pet", "AdvertisementForeignKey")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("AdoptAnimal.Data.Models.Category", "Category")
                         .WithMany("Pets")
@@ -769,7 +774,7 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Pets");
+                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.ApplicationUser", b =>

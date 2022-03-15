@@ -9,22 +9,21 @@
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Web.ViewModels.Ads;
 
-    public class AdService : IAdService
+    public class AdvertisementService : IAdvertisementService
     {
-        private readonly IDeletableEntityRepository<Ad> adsRepository;
+        private readonly IDeletableEntityRepository<Advertisement> adsRepository;
 
-        public AdService(IDeletableEntityRepository<Ad> adsRepository)
+        public AdvertisementService(IDeletableEntityRepository<Advertisement> adsRepository)
         {
             this.adsRepository = adsRepository;
         }
 
         public async Task CreateAsync(CreateAdInputModel input)
         {
-            var ad = new Ad
+            var ad = new Advertisement
             {
                 Title = input.Title,
                 Description = input.Description,
-                PetId = input.PetId,
             };
             await this.adsRepository.AddAsync(ad);
             await this.adsRepository.SaveChangesAsync();
