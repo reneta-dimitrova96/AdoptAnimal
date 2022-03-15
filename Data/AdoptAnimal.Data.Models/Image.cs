@@ -13,11 +13,11 @@
 
         public virtual ApplicationUser Author { get; set; }
 
-        public int PetId { get; set; }
+        public int? PetId { get; set; }
 
         public virtual Pet Pet { get; set; }
 
-        public int ArticleId { get; set; }
+        public int? ArticleId { get; set; }
 
         public virtual Article Article { get; set; }
     }

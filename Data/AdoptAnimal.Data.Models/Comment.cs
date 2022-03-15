@@ -10,13 +10,14 @@
         [MaxLength(150)]
         public string Content { get; set; }
 
-        public int AdvertisementId { get; set; }
+        public int? AdvertisementId { get; set; }
 
-        public virtual Advertisement Advertisement { get; set; }
+        public Advertisement Advertisement { get; set; }
 
-        public int ArticleId { get; set; }
+        public int? ArticleId { get; set; }
 
-        public virtual Article Article { get; set; }
+        public Article Article { get; set; }
+
 
         public string AuthorId { get; set; }
 
