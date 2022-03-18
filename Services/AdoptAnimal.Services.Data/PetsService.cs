@@ -79,7 +79,6 @@
                     IsAdopted = p.IsAdopted,
                     AdvertisementId = p.AdvertisementId,
                     CategoryId = p.CategoryId,
-
                 }),
             };
             return data;

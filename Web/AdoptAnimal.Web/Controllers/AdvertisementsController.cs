@@ -36,5 +36,11 @@
 
             return this.Redirect("/");
         }
+
+        public IActionResult GetAllAdvertisements()
+        {
+            var viewModel = this.adsService.GetAllAdvertisements();
+            return this.View(viewModel);
+        }
     }
 }
