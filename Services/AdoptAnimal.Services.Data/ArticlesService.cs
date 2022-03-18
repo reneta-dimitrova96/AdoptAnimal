@@ -1,5 +1,7 @@
 ﻿namespace AdoptAnimal.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using AdoptAnimal.Data.Common.Repositories;
@@ -24,6 +26,19 @@
             };
             await this.articlesRepository.AddAsync(article);
             await this.articlesRepository.SaveChangesAsync();
+        }
+
+        public GetAllArticlesInputModel GetAllArticles()
+        {
+            var data = new GetAllArticlesInputModel
+            {
+                Articles = this.articlesRepository.AllAsNoTracking().Select(a => new GetArticleInputModel
+                {
+                    Title = a.Title,
+                    Content = a.Content,
+                }),
+            };
+            return data;
         }
     }
 }

@@ -32,5 +32,11 @@
 
             return this.Redirect("/");
         }
+
+        public IActionResult GetAllArticles()
+        {
+            var viewModel = this.articlesService.GetAllArticles();
+            return this.View(viewModel);
+        }
     }
 }
