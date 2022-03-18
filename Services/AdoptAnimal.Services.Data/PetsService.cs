@@ -27,6 +27,7 @@
                 Age = input.Age,
                 Address = input.Address,
                 Breed = input.Breed,
+                AdvertisementId = input.AdvertisementId,
                 IsAdopted = input.IsAdopted,
                 CategoryId = input.CategoryId,
             };

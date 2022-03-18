@@ -6,6 +6,6 @@
 
     public interface IAdvertisementService
     {
-        Task CreateAsync(CreateAdInputModel input);
+        Task CreateAsync(CreateAdvertisementInputModel input);
     }
 }

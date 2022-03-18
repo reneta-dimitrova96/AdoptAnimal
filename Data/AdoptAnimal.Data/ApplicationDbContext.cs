@@ -28,7 +28,7 @@
 
         public DbSet<Pet> Pets { get; set; }
 
-        public DbSet<Advertisement> Ads { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
 

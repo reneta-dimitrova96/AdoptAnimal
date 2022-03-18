@@ -19,13 +19,13 @@
 
         public IActionResult Create()
         {
-            var viewModel = new CreateAdInputModel();
+            var viewModel = new CreateAdvertisementInputModel();
             viewModel.PetsItems = this.petsService.GetAllPetsAsKeyValuePairs();
             return this.View(viewModel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateAdInputModel input)
+        public async Task<IActionResult> Create(CreateAdvertisementInputModel input)
         {
             if (!this.ModelState.IsValid)
             {

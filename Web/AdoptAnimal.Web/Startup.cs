@@ -69,6 +69,7 @@
             services.AddTransient<IAdvertisementService, AdvertisementService>();
             services.AddTransient<IPetsService, PetsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IArticlesService, ArticlesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

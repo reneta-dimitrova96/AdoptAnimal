@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateAdInputModel
+    public class CreateAdvertisementInputModel
     {
         [Required]
         [MinLength(10)]
@@ -13,10 +13,6 @@
         [Required]
         [MaxLength(200)]
         public string Description { get; set; }
-
-        public string AuthorId { get; set; }
-
-        public int PetId { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> PetsItems { get; set; }
     }

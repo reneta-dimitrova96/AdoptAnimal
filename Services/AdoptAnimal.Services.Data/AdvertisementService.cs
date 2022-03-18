@@ -18,7 +18,7 @@
             this.adsRepository = adsRepository;
         }
 
-        public async Task CreateAsync(CreateAdInputModel input)
+        public async Task CreateAsync(CreateAdvertisementInputModel input)
         {
             var ad = new Advertisement
             {

@@ -4,14 +4,16 @@ using AdoptAnimal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdoptAnimal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220316171229_Changed fk name to AdvertisementId in Pet model")]
+    partial class ChangedfknametoAdvertisementIdinPetmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +59,7 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("Ads");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.ApplicationRole", b =>
@@ -352,7 +354,10 @@ namespace AdoptAnimal.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AdvertisementId")
+                    b.Property<int>("AdvertisementForeignKey")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AdvertisementId")
                         .HasColumnType("int");
 
                     b.Property<int>("Age")
@@ -668,9 +673,7 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Advertisement", "Advertisement")
                         .WithMany("Pets")
-                        .HasForeignKey("AdvertisementId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("AdvertisementId");
 
                     b.HasOne("AdoptAnimal.Data.Models.Category", "Category")
                         .WithMany("Pets")
