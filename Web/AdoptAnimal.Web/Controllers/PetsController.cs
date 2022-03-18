@@ -1,9 +1,10 @@
 ﻿namespace AdoptAnimal.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Pets;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class PetsController : Controller
     {

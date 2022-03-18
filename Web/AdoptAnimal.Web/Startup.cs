@@ -69,6 +69,7 @@
             services.AddTransient<IAdvertisementService, AdvertisementService>();
             services.AddTransient<IPetsService, PetsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ISubCategoriesService, SubCategoriesService>();
             services.AddTransient<IArticlesService, ArticlesService>();
         }
 
