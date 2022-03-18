@@ -36,5 +36,11 @@
 
             return this.Redirect("/");
         }
+
+        public IActionResult GetAllPets()
+        {
+            var viewModel = this.petsService.GetAllPets();
+            return this.View(viewModel);
+        }
     }
 }

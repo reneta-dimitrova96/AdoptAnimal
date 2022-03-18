@@ -12,5 +12,7 @@
         IEnumerable<KeyValuePair<int, string>> GetAllIsDewormedEnumNames();
 
         IEnumerable<KeyValuePair<string, string>> GetAllPetsAsKeyValuePairs();
+
+        GetAllPetsInputModel GetAllPets();
     }
 }

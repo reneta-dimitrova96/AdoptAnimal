@@ -66,6 +66,25 @@
             return enumElements;
         }
 
+        public GetAllPetsInputModel GetAllPets()
+        {
+            var data = new GetAllPetsInputModel
+            {
+                Pets = this.petsRepository.AllAsNoTracking().Select(p => new GetPetInputModel
+                {
+                    Name = p.Name,
+                    Age = p.Age,
+                    Address = p.Address,
+                    Breed = p.Breed,
+                    IsAdopted = p.IsAdopted,
+                    AdvertisementId = p.AdvertisementId,
+                    CategoryId = p.CategoryId,
+
+                }),
+            };
+            return data;
+        }
+
         public IEnumerable<KeyValuePair<string, string>> GetAllPetsAsKeyValuePairs()
         {
             return this.petsRepository.AllAsNoTracking().Select(p => new
