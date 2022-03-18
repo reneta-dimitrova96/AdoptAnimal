@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\Services\AdoptAnimal.Services.Mapping\AdoptAnimal.Services.Mapping.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SubCategories\" />
+  </ItemGroup>
+
 </Project>
