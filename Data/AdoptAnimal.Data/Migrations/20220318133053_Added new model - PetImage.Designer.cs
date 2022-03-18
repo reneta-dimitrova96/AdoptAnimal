@@ -4,14 +4,16 @@ using AdoptAnimal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdoptAnimal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318133053_Added new model - PetImage")]
+    partial class AddednewmodelPetImage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,7 +305,7 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ArticleId")
+                    b.Property<int?>("ArticleId")
                         .HasColumnType("int");
 
                     b.Property<string>("AuthorId")
@@ -399,13 +401,25 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedOn")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Extension")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Label")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PetId")
                         .HasColumnType("int");
@@ -414,9 +428,11 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.HasIndex("AuthorId");
 
+                    b.HasIndex("IsDeleted");
+
                     b.HasIndex("PetId");
 
-                    b.ToTable("PetImages");
+                    b.ToTable("PetImage");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.Setting", b =>
@@ -670,9 +686,7 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Article", "Article")
                         .WithMany("Images")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("ArticleId");
 
                     b.HasOne("AdoptAnimal.Data.Models.ApplicationUser", "Author")
                         .WithMany()

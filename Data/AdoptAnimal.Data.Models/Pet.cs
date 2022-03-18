@@ -10,7 +10,7 @@
     {
         public Pet()
         {
-            this.Images = new HashSet<Image>();
+            this.Images = new HashSet<PetImage>();
         }
 
         public string Name { get; set; }
@@ -35,6 +35,6 @@
 
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<PetImage> Images { get; set; }
     }
 }

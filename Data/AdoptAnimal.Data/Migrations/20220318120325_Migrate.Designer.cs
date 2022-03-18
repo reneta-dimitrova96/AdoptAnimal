@@ -4,14 +4,16 @@ using AdoptAnimal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdoptAnimal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220318120325_Migrate")]
+    partial class Migrate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,7 +305,7 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ArticleId")
+                    b.Property<int?>("ArticleId")
                         .HasColumnType("int");
 
                     b.Property<string>("AuthorId")
@@ -325,6 +327,9 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("PetId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ArticleId");
@@ -332,6 +337,8 @@ namespace AdoptAnimal.Data.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("PetId");
 
                     b.ToTable("Images");
                 });
@@ -389,34 +396,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Pets");
-                });
-
-            modelBuilder.Entity("AdoptAnimal.Data.Models.PetImage", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Extension")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Label")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("PetId");
-
-                    b.ToTable("PetImages");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.Setting", b =>
@@ -670,17 +649,21 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Article", "Article")
                         .WithMany("Images")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("ArticleId");
 
                     b.HasOne("AdoptAnimal.Data.Models.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
 
+                    b.HasOne("AdoptAnimal.Data.Models.Pet", "Pet")
+                        .WithMany("Images")
+                        .HasForeignKey("PetId");
+
                     b.Navigation("Article");
 
                     b.Navigation("Author");
+
+                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.Pet", b =>
@@ -700,23 +683,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.Navigation("Advertisement");
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("AdoptAnimal.Data.Models.PetImage", b =>
-                {
-                    b.HasOne("AdoptAnimal.Data.Models.ApplicationUser", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("AdoptAnimal.Data.Models.Pet", "Pet")
-                        .WithMany("Images")
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Pet");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.Statistic", b =>

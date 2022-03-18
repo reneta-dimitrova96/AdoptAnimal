@@ -13,10 +13,12 @@
     public class PetsService : IPetsService
     {
         private readonly IDeletableEntityRepository<Pet> petsRepository;
+        private readonly IDeletableEntityRepository<PetImage> petImagesRepository;
 
-        public PetsService(IDeletableEntityRepository<Pet> petsRepository)
+        public PetsService(IDeletableEntityRepository<Pet> petsRepository, IDeletableEntityRepository<PetImage> petImagesRepository)
         {
             this.petsRepository = petsRepository;
+            this.petImagesRepository = petImagesRepository;
         }
 
         public async Task CreateAsync(CreatePetInputModel input)
@@ -31,6 +33,22 @@
                 IsAdopted = input.IsAdopted,
                 CategoryId = input.CategoryId,
             };
+
+            foreach (var inputImage in input.Images)
+            {
+                var petImage = this.petImagesRepository.All().FirstOrDefault(i => i.Extension == inputImage.Extension);
+                if (petImage == null)
+                {
+                    petImage = new PetImage
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Extension = inputImage.Extension,
+                        Label = inputImage.Label,
+                        Pet = pet,
+                    };
+                    pet.Images.Add(petImage);
+                }
+            }
 
             await this.petsRepository.AddAsync(pet);
             await this.petsRepository.SaveChangesAsync();

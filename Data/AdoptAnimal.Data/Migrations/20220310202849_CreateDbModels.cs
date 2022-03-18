@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace AdoptAnimal.Data.Migrations
+﻿namespace AdoptAnimal.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class CreateDbModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

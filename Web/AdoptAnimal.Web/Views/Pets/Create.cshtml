@@ -48,6 +48,20 @@
         <select asp-for="CategoryId" asp-items="categoryItems"></select>
         <span asp-validation-for="CategoryId"></span>
     </div>
+    <div id="ImagesContainer">
+        <label asp-for="Images">Images:</label>
+        <button onclick="AddMoreImages()">+</button>
+        <span asp-validation-for="Images"></span>
+    </div>
     <input type="submit" />
 
 </form>
+
+@section Scripts{ 
+<script>
+    var imageIndex = 0;
+    function AddMoreImages() {
+        $("#ImagesContainer").append("<div class='form-control'> Extension: <input type='text' name='Images[" + imageIndex + "].Extension' id='' /> Label: <input type='text' name='Images[" + imageIndex + "].Label' id='' /></div>");
+        imageIndex++;
+    }
+</script>}
