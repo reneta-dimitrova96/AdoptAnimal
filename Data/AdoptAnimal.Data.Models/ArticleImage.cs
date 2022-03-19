@@ -10,7 +10,6 @@
         [MinLength(3)]
         public string Extension { get; set; }
 
-        [Required]
         public string Source { get; set; }
 
         public int ArticleId { get; set; }

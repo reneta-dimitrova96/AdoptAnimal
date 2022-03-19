@@ -24,8 +24,6 @@
         {
         }
 
-        public DbSet<Setting> Settings { get; set; }
-
         public DbSet<Pet> Pets { get; set; }
 
         public DbSet<PetImage> PetImages { get; set; }

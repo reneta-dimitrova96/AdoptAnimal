@@ -8,9 +8,7 @@
 
         public int? Age { get; set; }
 
-        [Required]
-        [MinLength(10)]
-        public string Address { get; set; }
+        public double? Weight { get; set; }
 
         public string Breed { get; set; }
 

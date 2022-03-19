@@ -85,6 +85,7 @@
                 {
                     Name = p.Name,
                     Age = p.Age,
+                    Weight = p.Weight,
                     Breed = p.Breed,
                     IsAdopted = p.IsAdopted,
                     AdvertisementId = p.AdvertisementId,
