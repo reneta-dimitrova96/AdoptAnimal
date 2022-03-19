@@ -8,14 +8,19 @@
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Web.ViewModels.Categories;
+    using AdoptAnimal.Web.ViewModels.SubCategories;
 
     public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<SubCategory> subCategoriesRepository;
 
-        public CategoriesService(IDeletableEntityRepository<Category> categoriesRepository)
+        public CategoriesService(
+            IDeletableEntityRepository<Category> categoriesRepository,
+            IDeletableEntityRepository<SubCategory> subCategoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
+            this.subCategoriesRepository = subCategoriesRepository;
         }
 
         public async Task CreateAsync(CreateCategoryInputModel input)
@@ -45,6 +50,10 @@
                 {
                     Name = c.Name,
                     CountOfPets = c.Pets.Count,
+                    SubCategories = this.subCategoriesRepository.AllAsNoTracking().Where(sc => sc.CategoryId == c.Id).Select(sc => new GetSubGategoryInputModel
+                    {
+                        Name = sc.Name,
+                    }).ToList(),
                 }).ToList(),
             };
             return data;

@@ -5,9 +5,9 @@
     var enumElements = this.Model.IsDewormed.Select(e => new SelectListItem(e.Value, e.Value));
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
-<h1>@this.ViewData["Title"]</h1>
+<h1 class="text-center">@this.ViewData["Title"]</h1>
 
-<form method="post">
+<form method="post" class="text-center">
     <div asp-validation-summary="All"></div>
     <div>
         <label asp-for="Name">Name:</label>
