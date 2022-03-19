@@ -8,7 +8,7 @@
 
     using AdoptAnimal.Data.Common.Models;
     using AdoptAnimal.Data.Models;
-
+ 
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -34,7 +34,7 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ArticleImage> ArticleImages { get; set; }
 
         public DbSet<Article> Articles { get; set; }
 
@@ -65,6 +65,11 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<Advertisement>()
+                .HasOne(a => a.Statistic)
+                .WithOne(s => s.Advertisement)
+                .HasForeignKey<Statistic>(s => s.AdvertisementId);
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

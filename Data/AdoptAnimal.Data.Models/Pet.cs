@@ -10,16 +10,16 @@
     {
         public Pet()
         {
-            this.Images = new HashSet<PetImage>();
+            this.PetImages = new HashSet<PetImage>();
         }
 
         public string Name { get; set; }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
-        [Required]
-        [MinLength(10)]
-        public string Address { get; set; }
+        public GenderType Gender { get; set; }
+
+        public double? Weight { get; set; }
 
         public string Breed { get; set; }
 
@@ -29,12 +29,12 @@
 
         public int AdvertisementId { get; set; }
 
-        public Advertisement Advertisement { get; set; }
+        public virtual Advertisement Advertisement { get; set; }
 
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
 
-        public virtual ICollection<PetImage> Images { get; set; }
+        public virtual ICollection<PetImage> PetImages { get; set; }
     }
 }

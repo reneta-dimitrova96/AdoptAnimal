@@ -7,16 +7,13 @@
     public class Comment : BaseDeletableModel<int>
     {
         [Required]
+        [MinLength(3)]
         [MaxLength(150)]
         public string Content { get; set; }
 
-        public int? AdvertisementId { get; set; }
+        public int AdvertisementId { get; set; }
 
         public Advertisement Advertisement { get; set; }
-
-        public int? ArticleId { get; set; }
-
-        public Article Article { get; set; }
 
         public string AuthorId { get; set; }
 

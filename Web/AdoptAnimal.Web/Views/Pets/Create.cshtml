@@ -1,6 +1,7 @@
 ﻿@model AdoptAnimal.Web.ViewModels.Pets.CreatePetInputModel
 @{
     this.ViewData["Title"] = "Add new pet";
+    var genderTypes = this.Model.GenderTypes.Select(g => new SelectListItem(g.Value, g.Value));
     var enumElements = this.Model.IsDewormed.Select(e => new SelectListItem(e.Value, e.Value));
     var categoryItems = this.Model.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
@@ -18,15 +19,20 @@
         <input asp-for="Age" />
         <span asp-validation-for="Age"></span>
     </div>
-    <div>
-        <label asp-for="Address">Address:</label>
-        <input asp-for="Address" />
-        <span asp-validation-for="Address"></span>
+      <div>
+        <label asp-for="Weight">Weight:</label>
+        <input asp-for="Weight" />
+        <span asp-validation-for="Weight"></span>
     </div>
     <div>
         <label asp-for="Breed">Breed:</label>
         <input asp-for="Breed" />
         <span asp-validation-for="Breed"></span>
+    </div>
+    <div>
+        <label asp-for="GenderTypes">Gender:</label>
+        <select asp-for="GenderTypes" asp-items="genderTypes"></select>
+        <span asp-validation-for="GenderTypes"></span>
     </div>
     <div>
         <label asp-for="IsDewormed">IsDewormed:</label>

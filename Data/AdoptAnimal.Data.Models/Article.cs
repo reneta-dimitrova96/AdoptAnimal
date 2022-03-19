@@ -9,8 +9,7 @@
     {
         public Article()
         {
-            this.Images = new HashSet<Image>();
-            this.Comments = new HashSet<Comment>();
+            this.ArticleImages = new HashSet<ArticleImage>();
         }
 
         [Required]
@@ -19,6 +18,7 @@
         public string Title { get; set; }
 
         [Required]
+        [MinLength(30)]
         [MaxLength(500)]
         public string Content { get; set; }
 
@@ -26,8 +26,6 @@
 
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual ICollection<Image> Images { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<ArticleImage> ArticleImages { get; set; }
     }
 }

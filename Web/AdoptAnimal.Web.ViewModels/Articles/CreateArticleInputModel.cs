@@ -10,6 +10,7 @@
         public string Title { get; set; }
 
         [Required]
+        [MinLength(30)]
         [MaxLength(500)]
         public string Content { get; set; }
     }

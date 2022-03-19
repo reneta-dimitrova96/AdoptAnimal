@@ -20,6 +20,7 @@
         public IActionResult Create()
         {
             var viewModel = new CreatePetInputModel();
+            viewModel.GenderTypes = this.petsService.GetAllGenderTypes();
             viewModel.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
             viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
             return this.View(viewModel);

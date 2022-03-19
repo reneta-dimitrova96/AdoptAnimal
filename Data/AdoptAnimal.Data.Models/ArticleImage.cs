@@ -4,14 +4,14 @@
 
     using AdoptAnimal.Data.Common.Models;
 
-    public class Image : BaseDeletableModel<string>
+    public class ArticleImage : BaseDeletableModel<string>
     {
         [Required]
+        [MinLength(3)]
         public string Extension { get; set; }
 
-        public string AuthorId { get; set; }
-
-        public virtual ApplicationUser Author { get; set; }
+        [Required]
+        public string Source { get; set; }
 
         public int ArticleId { get; set; }
 

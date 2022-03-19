@@ -9,11 +9,11 @@
     {
         public string Name { get; set; }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
-        [Required]
-        [MinLength(10)]
-        public string Address { get; set; }
+        public IEnumerable<KeyValuePair<int, string>> GenderTypes { get; set; }
+
+        public double? Weight { get; set; }
 
         public string Breed { get; set; }
 

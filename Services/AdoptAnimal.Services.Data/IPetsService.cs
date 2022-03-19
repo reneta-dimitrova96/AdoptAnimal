@@ -9,6 +9,8 @@
     {
         Task CreateAsync(CreatePetInputModel input);
 
+        IEnumerable<KeyValuePair<int, string>> GetAllGenderTypes();
+
         IEnumerable<KeyValuePair<int, string>> GetAllIsDewormedEnumNames();
 
         IEnumerable<KeyValuePair<string, string>> GetAllPetsAsKeyValuePairs();

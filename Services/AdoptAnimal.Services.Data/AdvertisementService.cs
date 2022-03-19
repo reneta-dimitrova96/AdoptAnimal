@@ -26,6 +26,8 @@
             {
                 Title = input.Title,
                 Description = input.Description,
+                PhoneNumber = input.PhoneNumber,
+                Address = input.Address,
             };
             await this.adsRepository.AddAsync(ad);
             await this.adsRepository.SaveChangesAsync();
@@ -39,6 +41,7 @@
                 {
                     Title = a.Title,
                     Description = a.Description,
+                    Address = a.Address,
                 }),
             };
             return data;

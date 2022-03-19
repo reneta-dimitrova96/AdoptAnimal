@@ -18,6 +18,17 @@
         <span asp-validation-for="Description"></span>
     </div>
     <div>
+        <label asp-for="PhoneNumber">PhoneNumber:</label>
+        <input asp-for="PhoneNumber" />
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div>
+        <label asp-for="Address">Address:</label>
+        <input asp-for="Address" />
+        <span asp-validation-for="Address"></span>
+    </div>
+    <div>
+        <label>Pets:</label>
         <select asp-items="petsItems"></select>
     </div>
     <input type="submit" />
