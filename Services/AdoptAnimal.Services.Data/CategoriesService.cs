@@ -36,5 +36,18 @@
                 x.Name,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
+
+        public GetAllCategoriesInputModel GetAllCategories()
+        {
+            var data = new GetAllCategoriesInputModel
+            {
+                Categories = this.categoriesRepository.AllAsNoTracking().Select(c => new GetGategoryInputModel
+                {
+                    Name = c.Name,
+                    CountOfPets = c.Pets.Count,
+                }).ToList(),
+            };
+            return data;
+        }
     }
 }

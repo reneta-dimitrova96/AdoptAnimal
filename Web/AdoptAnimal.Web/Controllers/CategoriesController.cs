@@ -32,5 +32,11 @@
 
             return this.Redirect("/");
         }
+
+        public IActionResult GetAllCategories()
+        {
+            var viewModel = categoriesService.GetAllCategories();
+            return this.View(viewModel);
+        }
     }
 }

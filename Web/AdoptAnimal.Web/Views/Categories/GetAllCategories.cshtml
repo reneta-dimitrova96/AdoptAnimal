@@ -1,0 +1,14 @@
+﻿@using AdoptAnimal.Common
+@model AdoptAnimal.Web.ViewModels.Categories.GetAllCategoriesInputModel
+@{
+    this.ViewData["Title"] = "Get all categories";
+}
+
+<div class="text-center">
+    @foreach (var category in Model.Categories)
+   {
+       <h3>@category.Name</h3>
+       <p>Count of pets: @category.CountOfPets</p>
+       <br />
+   }
+</div>
