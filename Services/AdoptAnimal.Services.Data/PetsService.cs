@@ -34,18 +34,21 @@
                 CategoryId = input.CategoryId,
             };
 
-            foreach (var inputImage in input.Images)
+            if (input.Images != null)
             {
-                var petImage = this.petImagesRepository.All().FirstOrDefault(i => i.Extension == inputImage.Extension);
-                if (petImage == null)
+                foreach (var inputImage in input.Images)
                 {
-                    petImage = new PetImage
+                    var petImage = this.petImagesRepository.All().FirstOrDefault(i => i.Extension == inputImage.Extension);
+                    if (petImage == null)
                     {
-                        Extension = inputImage.Extension,
-                        Label = inputImage.Label,
-                        Pet = pet,
-                    };
-                    pet.PetImages.Add(petImage);
+                        petImage = new PetImage
+                        {
+                            Extension = inputImage.Extension,
+                            Label = inputImage.Label,
+                            Pet = pet,
+                        };
+                        pet.PetImages.Add(petImage);
+                    }
                 }
             }
 

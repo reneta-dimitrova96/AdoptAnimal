@@ -31,6 +31,9 @@
         {
             if (!this.ModelState.IsValid)
             {
+                input.GenderTypes = this.petsService.GetAllGenderTypes();
+                input.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
+                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }
 
