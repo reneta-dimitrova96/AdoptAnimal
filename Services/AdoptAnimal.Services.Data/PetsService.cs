@@ -29,28 +29,9 @@
                 Age = input.Age,
                 Weight = input.Weight,
                 Breed = input.Breed,
-                AdvertisementId = input.AdvertisementId != null ? input.AdvertisementId : null,
                 IsAdopted = input.IsAdopted,
                 CategoryId = input.CategoryId,
             };
-
-            if (input.Images != null)
-            {
-                foreach (var inputImage in input.Images)
-                {
-                    var petImage = this.petImagesRepository.All().FirstOrDefault(i => i.Extension == inputImage.Extension);
-                    if (petImage == null)
-                    {
-                        petImage = new PetImage
-                        {
-                            Extension = inputImage.Extension,
-                            Label = inputImage.Label,
-                            Pet = pet,
-                        };
-                        pet.PetImages.Add(petImage);
-                    }
-                }
-            }
 
             await this.petsRepository.AddAsync(pet);
             await this.petsRepository.SaveChangesAsync();

@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using AdoptAnimal.Data.Models.Enums;
+    using Microsoft.AspNetCore.Http;
 
     public class CreatePetInputModel
     {
@@ -17,7 +18,7 @@
 
         public string Breed { get; set; }
 
-        public int? AdvertisementId { get; set; }
+        public int AdvertisementId { get; set; }
 
         public IEnumerable<KeyValuePair<int, string>> IsDewormed { get; set; }
 
@@ -25,8 +26,8 @@
 
         public int CategoryId { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
+        public IEnumerable<IFormFile> Images { get; set; }
 
-        public IEnumerable<PetImagesInputModel> Images { get; set; }
+        public IEnumerable<KeyValuePair<string, string>> CategoriesItems { get; set; }
     }
 }

@@ -29,6 +29,6 @@
         [MaxLength(50)]
         public string Address { get; set; }
 
-        public IEnumerable<PetIdInputModel> Pets { get; set; }
+        public CreatePetInputModel Pet { get; set; }
     }
 }

@@ -11,7 +11,6 @@
         public Advertisement()
         {
             this.Comments = new HashSet<Comment>();
-            this.Pets = new HashSet<Pet>();
         }
 
         [Required]
@@ -38,11 +37,13 @@
 
         public string AuthorId { get; set; }
 
+        public int PetId { get; set; }
+
+        public virtual Pet Pet { get; set; }
+
         public virtual ApplicationUser Author { get; set; }
 
         public virtual Statistic Statistic { get; set; }
-
-        public virtual ICollection<Pet> Pets { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

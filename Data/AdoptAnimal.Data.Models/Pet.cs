@@ -27,7 +27,7 @@
 
         public bool IsAdopted { get; set; }
 
-        public int? AdvertisementId { get; set; }
+        public int AdvertisementId { get; set; }
 
         public virtual Advertisement Advertisement { get; set; }
 

@@ -9,7 +9,5 @@
 
         [Required]
         public string Label { get; set; }
-
-        public int PetId { get; set; }
     }
 }

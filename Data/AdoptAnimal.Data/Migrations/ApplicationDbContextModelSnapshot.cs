@@ -51,6 +51,9 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -345,7 +348,7 @@ namespace AdoptAnimal.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdvertisementId")
+                    b.Property<int>("AdvertisementId")
                         .HasColumnType("int");
 
                     b.Property<int?>("Age")
@@ -386,7 +389,8 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("AdvertisementId")
+                        .IsUnique();
 
                     b.HasIndex("CategoryId");
 
@@ -665,8 +669,10 @@ namespace AdoptAnimal.Data.Migrations
             modelBuilder.Entity("AdoptAnimal.Data.Models.Pet", b =>
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Advertisement", "Advertisement")
-                        .WithMany("Pets")
-                        .HasForeignKey("AdvertisementId");
+                        .WithOne("Pet")
+                        .HasForeignKey("AdoptAnimal.Data.Models.Pet", "AdvertisementId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("AdoptAnimal.Data.Models.Category", "Category")
                         .WithMany("Pets")
@@ -773,7 +779,7 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("Pets");
+                    b.Navigation("Pet");
 
                     b.Navigation("Statistic");
                 });

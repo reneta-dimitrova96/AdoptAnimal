@@ -68,6 +68,11 @@
                 .WithOne(s => s.Advertisement)
                 .HasForeignKey<Statistic>(s => s.AdvertisementId);
 
+            builder.Entity<Advertisement>()
+                .HasOne(a => a.Pet)
+                .WithOne(p => p.Advertisement)
+                .HasForeignKey<Pet>(p => p.AdvertisementId);
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

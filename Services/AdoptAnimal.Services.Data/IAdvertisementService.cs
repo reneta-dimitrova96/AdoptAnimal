@@ -7,7 +7,7 @@
 
     public interface IAdvertisementService
     {
-        Task CreateAsync(CreateAdvertisementInputModel input);
+        Task CreateAsync(CreateAdvertisementInputModel input, string userId);
 
         GetAllAdvertisementsInputModel GetAllAdvertisements();
     }

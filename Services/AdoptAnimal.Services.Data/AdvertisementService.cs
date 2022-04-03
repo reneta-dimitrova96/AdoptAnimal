@@ -15,16 +15,19 @@
     {
         private readonly IDeletableEntityRepository<Advertisement> adsRepository;
         private readonly IDeletableEntityRepository<Pet> petsRepository;
+        private readonly IDeletableEntityRepository<PetImage> petImagesRepository;
 
         public AdvertisementService(
             IDeletableEntityRepository<Advertisement> adsRepository,
-            IDeletableEntityRepository<Pet> petsRepository)
+            IDeletableEntityRepository<Pet> petsRepository,
+            IDeletableEntityRepository<PetImage> petImagesRepository)
         {
             this.adsRepository = adsRepository;
             this.petsRepository = petsRepository;
+            this.petImagesRepository = petImagesRepository;
         }
 
-        public async Task CreateAsync(CreateAdvertisementInputModel input)
+        public async Task CreateAsync(CreateAdvertisementInputModel input, string userId)
         {
             var ad = new Advertisement
             {
@@ -32,17 +35,25 @@
                 Description = input.Description,
                 PhoneNumber = input.PhoneNumber,
                 Address = input.Address,
+                AuthorId = userId,
             };
 
-            if (input.Pets != null)
+            var pet = new Pet
             {
-                foreach (var pet in input.Pets)
-                {
-                    var existedPet = this.petsRepository.All().FirstOrDefault(p => p.Id == pet.PetId);
-                    ad.Pets.Add(existedPet);
-                }
+                Name = input.Pet.Name,
+                Age = input.Pet.Age,
+                Weight = input.Pet.Weight,
+                Breed = input.Pet.Breed,
+                IsAdopted = input.Pet.IsAdopted,
+                CategoryId = input.Pet.CategoryId,
+            };
+
+            foreach (var petImage in input.Pet.Images)
+            {
+                // TODO
             }
 
+            ad.Pet = pet;
             await this.adsRepository.AddAsync(ad);
             await this.adsRepository.SaveChangesAsync();
         }
