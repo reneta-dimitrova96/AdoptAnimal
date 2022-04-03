@@ -3,6 +3,8 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
+    using AdoptAnimal.Web.ViewModels.Pets;
+
     public class CreateAdvertisementInputModel
     {
         [Required]
@@ -27,6 +29,6 @@
         [MaxLength(50)]
         public string Address { get; set; }
 
-        public IEnumerable<KeyValuePair<string, string>> PetsItems { get; set; }
+        public IEnumerable<PetIdInputModel> Pets { get; set; }
     }
 }

@@ -21,7 +21,7 @@
             this.petImagesRepository = petImagesRepository;
         }
 
-        public async Task CreateAsync(CreatePetInputModel input)
+        public async Task<int> CreateAsync(CreatePetInputModel input)
         {
             var pet = new Pet
             {
@@ -29,7 +29,7 @@
                 Age = input.Age,
                 Weight = input.Weight,
                 Breed = input.Breed,
-                AdvertisementId = input.AdvertisementId,
+                AdvertisementId = input.AdvertisementId != null ? input.AdvertisementId : null,
                 IsAdopted = input.IsAdopted,
                 CategoryId = input.CategoryId,
             };
@@ -54,6 +54,7 @@
 
             await this.petsRepository.AddAsync(pet);
             await this.petsRepository.SaveChangesAsync();
+            return pet.Id;
         }
 
         public IEnumerable<KeyValuePair<int, string>> GetAllGenderTypes()
@@ -91,7 +92,7 @@
                     Weight = p.Weight,
                     Breed = p.Breed,
                     IsAdopted = p.IsAdopted,
-                    AdvertisementId = p.AdvertisementId,
+                    AdvertisementId = p.AdvertisementId != null ? p.AdvertisementId : null,
                     CategoryId = p.CategoryId,
                 }),
             };

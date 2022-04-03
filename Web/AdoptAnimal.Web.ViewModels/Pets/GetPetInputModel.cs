@@ -14,7 +14,7 @@
 
         public bool IsAdopted { get; set; }
 
-        public int AdvertisementId { get; set; }
+        public int? AdvertisementId { get; set; }
 
         public int CategoryId { get; set; }
     }

@@ -17,7 +17,7 @@
 
         public string Breed { get; set; }
 
-        public int AdvertisementId { get; set; }
+        public int? AdvertisementId { get; set; }
 
         public IEnumerable<KeyValuePair<int, string>> IsDewormed { get; set; }
 

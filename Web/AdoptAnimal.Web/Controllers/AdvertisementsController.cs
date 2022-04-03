@@ -17,10 +17,9 @@
             this.petsService = petsService;
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int petId)
         {
             var viewModel = new CreateAdvertisementInputModel();
-            viewModel.PetsItems = this.petsService.GetAllPetsAsKeyValuePairs();
             return this.View(viewModel);
         }
 

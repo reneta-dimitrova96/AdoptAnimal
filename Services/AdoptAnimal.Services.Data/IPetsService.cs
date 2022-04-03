@@ -7,7 +7,7 @@
 
     public interface IPetsService
     {
-        Task CreateAsync(CreatePetInputModel input);
+        Task<int> CreateAsync(CreatePetInputModel input);
 
         IEnumerable<KeyValuePair<int, string>> GetAllGenderTypes();
 

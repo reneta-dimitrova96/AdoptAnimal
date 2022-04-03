@@ -37,9 +37,9 @@
                 return this.View(input);
             }
 
-            await this.petsService.CreateAsync(input);
+            var petId = await this.petsService.CreateAsync(input);
 
-            return this.Redirect("/");
+            return this.Redirect($"/Advertisements/Create/{petId}");
         }
 
         public IActionResult GetAllPets()
