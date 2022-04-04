@@ -1,5 +1,6 @@
 ﻿namespace AdoptAnimal.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using AdoptAnimal.Web.ViewModels.Ads;
@@ -9,6 +10,6 @@
     {
         Task CreateAsync(CreateAdvertisementInputModel input, string userId);
 
-        GetAllAdvertisementsInputModel GetAllAdvertisements();
+        IEnumerable<AdvertisementInListViewModel> GetAll(int page, int itemsPerPage = 12);
     }
 }

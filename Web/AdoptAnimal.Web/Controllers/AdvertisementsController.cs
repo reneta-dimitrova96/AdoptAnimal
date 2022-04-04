@@ -4,6 +4,7 @@
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Ads;
+    using AdoptAnimal.Web.ViewModels.Advertisements;
     using AdoptAnimal.Web.ViewModels.Pets;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -20,8 +21,7 @@
             IAdvertisementService adsService,
             IPetsService petsService,
             ICategoriesService categoriesService,
-            UserManager<ApplicationUser> userManager
-            )
+            UserManager<ApplicationUser> userManager)
         {
             this.adsService = adsService;
             this.petsService = petsService;
@@ -59,9 +59,14 @@
             return this.Redirect("/");
         }
 
-        public IActionResult GetAllAdvertisements()
+        // add int id in All
+        public IActionResult All(int id)
         {
-            var viewModel = this.adsService.GetAllAdvertisements();
+            var viewModel = new AdvertisementsListViewModel
+            {
+                Advertisements = this.adsService.GetAll(id, 12),
+                PageNumber = id,
+            };
             return this.View(viewModel);
         }
     }

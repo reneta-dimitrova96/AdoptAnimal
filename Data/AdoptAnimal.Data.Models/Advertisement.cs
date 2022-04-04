@@ -37,8 +37,6 @@
 
         public string AuthorId { get; set; }
 
-        public int PetId { get; set; }
-
         public virtual Pet Pet { get; set; }
 
         public virtual ApplicationUser Author { get; set; }

@@ -72,24 +72,6 @@ namespace AdoptAnimal.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Settings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Settings", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -370,7 +352,7 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Source = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ArticleId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -395,6 +377,7 @@ namespace AdoptAnimal.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Label = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PetId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -536,7 +519,8 @@ namespace AdoptAnimal.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Pets_AdvertisementId",
                 table: "Pets",
-                column: "AdvertisementId");
+                column: "AdvertisementId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pets_CategoryId",
@@ -546,11 +530,6 @@ namespace AdoptAnimal.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Pets_IsDeleted",
                 table: "Pets",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Settings_IsDeleted",
-                table: "Settings",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
@@ -600,9 +579,6 @@ namespace AdoptAnimal.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "PetImages");
-
-            migrationBuilder.DropTable(
-                name: "Settings");
 
             migrationBuilder.DropTable(
                 name: "Statistics");

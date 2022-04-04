@@ -10,10 +10,13 @@
         [MinLength(3)]
         public string Extension { get; set; }
 
+
         [Required]
         [MinLength(5)]
         [MaxLength(20)]
         public string Label { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public string AuthorId { get; set; }
 

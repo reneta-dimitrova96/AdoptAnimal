@@ -10,6 +10,7 @@
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
+    using AdoptAnimal.Web.ViewModels.Pets;
 
     public class AdvertisementService : IAdvertisementService
     {
@@ -58,18 +59,54 @@
             await this.adsRepository.SaveChangesAsync();
         }
 
-        public GetAllAdvertisementsInputModel GetAllAdvertisements()
+        public IEnumerable<AdvertisementInListViewModel> GetAll(int page, int itemsPerPage = 12)
         {
-            var data = new GetAllAdvertisementsInputModel
-            {
-                Advertisements = this.adsRepository.AllAsNoTracking().Select(a => new GetAdvertisementInputModel
+            var ads = this.adsRepository.AllAsNoTracking()
+                .OrderByDescending(a => a.Id)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .Select(a => new AdvertisementInListViewModel
                 {
+                    Id = a.Id,
+                    Title = a.Title,
+                    Address = a.Address,
+                    Pet = new PetInListShortViewModel
+                    {
+                        PetId = a.Pet.Id,
+                        CategoryName = a.Pet.Category.Name,
+                        ImageUrl = a.Pet.PetImages.FirstOrDefault().ImageUrl != null ?
+                        a.Pet.PetImages.FirstOrDefault().ImageUrl :
+                        "images/advertisements" + a.Pet.PetImages.FirstOrDefault().Id + "." + a.Pet.PetImages.FirstOrDefault().Extension,
+                    },
+                });
+            return ads;
+        }
+
+        /*
+        public AdvertisementsListViewModel GetAllAdvertisements()
+        {
+            var data = new AdvertisementsListViewModel
+            {
+                Advertisements = this.adsRepository.AllAsNoTracking().Select(a => new AdvertisementInListViewModel
+                {
+                    Id = a.Id,
                     Title = a.Title,
                     Description = a.Description,
                     Address = a.Address,
+                    Pet = new PetInListShortViewModel
+                    {
+                        PetId = a.Pet.Id,
+                        CategoryName = a.Pet.Category.Name,
+                        PetImages = a.Pet.PetImages.Select(pi => new PetImageViewModel
+                        {
+                            Id = pi.Id,
+                            Extension = pi.Extension,
+                            Label = pi.Label,
+                        }).ToList(),
+                    },
                 }),
             };
             return data;
         }
+        */
     }
 }

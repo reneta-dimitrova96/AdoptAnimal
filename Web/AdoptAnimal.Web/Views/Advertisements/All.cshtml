@@ -1,0 +1,29 @@
+﻿@using AdoptAnimal.Common
+@model AdoptAnimal.Web.ViewModels.Advertisements.AdvertisementsListViewModel
+@{
+    this.ViewData["Title"] = "Get all advertisements";
+}
+
+<div class="row">
+    @foreach (var ad in this.Model.Advertisements)
+    {
+        <div class="card col-md-3" style="width: 18rem;">
+            <img src=@ad.Pet.ImageUrl class="card-img-top img-responsive" alt="..." width="100">
+            <div class="card-body">
+                <h5 class="card-title">@ad.Title</h5>
+                <p class="card-text">@ad.Description</p>
+                <a href="#" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
