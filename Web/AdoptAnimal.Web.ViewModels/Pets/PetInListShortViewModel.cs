@@ -1,15 +1,24 @@
 ﻿namespace AdoptAnimal.Web.ViewModels.Pets
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using System.Linq;
 
-    public class PetInListShortViewModel
+    using AdoptAnimal.Data.Models;
+    using AdoptAnimal.Services.Mapping;
+    using AutoMapper;
+
+    public class PetInListShortViewModel : IMapFrom<Pet>, IHaveCustomMappings
     {
         public int PetId { get; set; }
 
         public string CategoryName { get; set; }
 
         public string ImageUrl { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<Pet, PetInListShortViewModel>()
+                .ForMember(p => p.ImageUrl,
+                opt => opt.MapFrom(p => p.PetImages.FirstOrDefault().ImageUrl ?? "images/advertisements" + p.PetImages.FirstOrDefault().Id + "." + p.PetImages.FirstOrDefault().Extension));
+        }
     }
 }

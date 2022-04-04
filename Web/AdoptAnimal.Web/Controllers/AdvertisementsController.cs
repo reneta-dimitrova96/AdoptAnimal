@@ -59,13 +59,16 @@
             return this.Redirect("/");
         }
 
-        // add int id in All
         public IActionResult All(int id)
         {
+            const int ItemsPerPage = 12;
             var viewModel = new AdvertisementsListViewModel
             {
-                Advertisements = this.adsService.GetAll(id, 12),
+                Advertisements = this.adsService.GetAll<AdvertisementInListViewModel>(id, ItemsPerPage),
                 PageNumber = id,
+                AdvertisementsCount = this.adsService.GetCount(),
+                ItemsPerPage = ItemsPerPage,
+
             };
             return this.View(viewModel);
         }

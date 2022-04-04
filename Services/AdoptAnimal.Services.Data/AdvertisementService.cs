@@ -8,6 +8,7 @@
 
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
+    using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
     using AdoptAnimal.Web.ViewModels.Pets;
@@ -59,26 +60,19 @@
             await this.adsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<AdvertisementInListViewModel> GetAll(int page, int itemsPerPage = 12)
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
         {
             var ads = this.adsRepository.AllAsNoTracking()
                 .OrderByDescending(a => a.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
-                .Select(a => new AdvertisementInListViewModel
-                {
-                    Id = a.Id,
-                    Title = a.Title,
-                    Address = a.Address,
-                    Pet = new PetInListShortViewModel
-                    {
-                        PetId = a.Pet.Id,
-                        CategoryName = a.Pet.Category.Name,
-                        ImageUrl = a.Pet.PetImages.FirstOrDefault().ImageUrl != null ?
-                        a.Pet.PetImages.FirstOrDefault().ImageUrl :
-                        "images/advertisements" + a.Pet.PetImages.FirstOrDefault().Id + "." + a.Pet.PetImages.FirstOrDefault().Extension,
-                    },
-                });
+                .To<T>()
+                .ToList();
             return ads;
+        }
+
+        public int GetCount()
+        {
+            return this.adsRepository.AllAsNoTracking().Count();
         }
 
         /*
