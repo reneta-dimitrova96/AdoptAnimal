@@ -32,15 +32,6 @@
 
         public async Task CreateAsync(CreateAdvertisementInputModel input, string userId, string imagePath)
         {
-            var ad = new Advertisement
-            {
-                Title = input.Title,
-                Description = input.Description,
-                PhoneNumber = input.PhoneNumber,
-                Address = input.Address,
-                AuthorId = userId,
-            };
-
             var pet = new Pet
             {
                 Name = input.Pet.Name,
@@ -60,17 +51,28 @@
                     throw new Exception($"Invalid image extension {extension}!");
                 }
 
-                var petImage = new PetImage
+                pet.PetImages.Add(new PetImage
                 {
                     AuthorId = userId,
-                    Pet = pet,
                     Extension = extension,
-                };
-                pet.PetImages.Add(petImage);
-                var physicalPath = $"{imagePath}/pets/{petImage.Id}.{extension}";
+                    Label = input.Title,
+                });
+
+                Directory.CreateDirectory(Path.GetDirectoryName($"{imagePath}/pets/"));
+                var physicalPath = $"{imagePath}/pets/{pet.PetImages.FirstOrDefault().Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await image.CopyToAsync(fileStream);
             }
 
-            ad.Pet = pet;
+            var ad = new Advertisement
+            {
+                Title = input.Title,
+                Description = input.Description,
+                PhoneNumber = input.PhoneNumber,
+                Address = input.Address,
+                AuthorId = userId,
+                Pet = pet,
+            };
             await this.adsRepository.AddAsync(ad);
             await this.adsRepository.SaveChangesAsync();
         }

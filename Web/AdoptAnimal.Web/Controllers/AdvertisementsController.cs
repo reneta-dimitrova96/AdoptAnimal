@@ -38,10 +38,12 @@
         public IActionResult Create()
         {
             var viewModel = new CreateAdvertisementInputModel();
-            viewModel.Pet = new CreatePetInputModel();
-            viewModel.Pet.GenderTypes = this.petsService.GetAllGenderTypes();
-            viewModel.Pet.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
-            viewModel.Pet.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+            viewModel.Pet = new CreatePetInputModel
+            {
+                GenderTypes = this.petsService.GetAllGenderTypes(),
+                IsDewormed = this.petsService.GetAllIsDewormedEnumNames(),
+                CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs(),
+            };
             return this.View(viewModel);
         }
 
@@ -51,10 +53,12 @@
         {
             if (!this.ModelState.IsValid)
             {
-                input.Pet = new CreatePetInputModel();
-                input.Pet.GenderTypes = this.petsService.GetAllGenderTypes();
-                input.Pet.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
-                input.Pet.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
+                input.Pet = new CreatePetInputModel
+                {
+                    GenderTypes = this.petsService.GetAllGenderTypes(),
+                    IsDewormed = this.petsService.GetAllIsDewormedEnumNames(),
+                    CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs(),
+                };
                 return this.View(input);
             }
 
@@ -72,8 +76,6 @@
                 input.Pet.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }
-            
-
             return this.Redirect("/");
         }
 
