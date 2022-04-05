@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -29,7 +30,7 @@
             this.petImagesRepository = petImagesRepository;
         }
 
-        public async Task CreateAsync(CreateAdvertisementInputModel input, string userId)
+        public async Task CreateAsync(CreateAdvertisementInputModel input, string userId, string imagePath)
         {
             var ad = new Advertisement
             {
@@ -50,9 +51,23 @@
                 CategoryId = input.Pet.CategoryId,
             };
 
-            foreach (var petImage in input.Pet.Images)
+            var allowedExtension = new[] { "jpg", "png" };
+            foreach (var image in input.Pet.Images)
             {
-                // TODO
+                var extension = Path.GetExtension(image.FileName);
+                if (!allowedExtension.Any(x => extension.EndsWith(extension)))
+                {
+                    throw new Exception($"Invalid image extension {extension}!");
+                }
+
+                var petImage = new PetImage
+                {
+                    AuthorId = userId,
+                    Pet = pet,
+                    Extension = extension,
+                };
+                pet.PetImages.Add(petImage);
+                var physicalPath = $"{imagePath}/pets/{petImage.Id}.{extension}";
             }
 
             ad.Pet = pet;

@@ -8,7 +8,7 @@
 
     public interface IAdvertisementService
     {
-        Task CreateAsync(CreateAdvertisementInputModel input, string userId);
+        Task CreateAsync(CreateAdvertisementInputModel input, string userId, string imagePath);
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
 
