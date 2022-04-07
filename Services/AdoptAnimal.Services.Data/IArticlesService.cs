@@ -9,6 +9,8 @@
     {
         Task CreateAsync(CreateArticleInputModel input);
 
-        GetAllArticlesInputModel GetAllArticles();
+        IEnumerable<T> GetAllArticles<T>(int page, int itemsPerPage = 6);
+
+        int GetArticlesCount();
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace AdoptAnimal.Web.ViewModels.Articles
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CreateArticleInputModel
@@ -13,5 +14,7 @@
         [MinLength(30)]
         [MaxLength(500)]
         public string Content { get; set; }
+
+        public string ArticleImageSorce { get; set; }
     }
 }

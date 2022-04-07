@@ -6,6 +6,7 @@
 
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
+    using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Articles;
 
     public class ArticlesService : IArticlesService
@@ -24,21 +25,28 @@
                 Title = input.Title,
                 Content = input.Content,
             };
+            article.ArticleImages.Add(new ArticleImage
+            {
+                Source = input.ArticleImageSorce,
+            });
+
             await this.articlesRepository.AddAsync(article);
             await this.articlesRepository.SaveChangesAsync();
         }
 
-        public GetAllArticlesInputModel GetAllArticles()
+        public IEnumerable<T> GetAllArticles<T>(int page, int itemsPerPage = 6)
         {
-            var data = new GetAllArticlesInputModel
-            {
-                Articles = this.articlesRepository.AllAsNoTracking().Select(a => new GetArticleInputModel
-                {
-                    Title = a.Title,
-                    Content = a.Content,
-                }),
-            };
-            return data;
+            var articles = this.articlesRepository.AllAsNoTracking()
+                .OrderByDescending(a => a.CreatedOn)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+            return articles;
+        }
+
+        public int GetArticlesCount()
+        {
+            return this.articlesRepository.AllAsNoTracking().Count();
         }
     }
 }

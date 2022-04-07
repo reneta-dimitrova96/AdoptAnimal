@@ -33,9 +33,16 @@
             return this.Redirect("/");
         }
 
-        public IActionResult GetAllArticles()
+        public IActionResult All(int id)
         {
-            var viewModel = this.articlesService.GetAllArticles();
+            const int ItemsPerPage = 6;
+            var viewModel = new GetAllArticlesViewModel
+            {
+                Articles = this.articlesService.GetAllArticles<GetArticleViewModel>(id, ItemsPerPage),
+                PageNumber = id,
+                EntityCount = this.articlesService.GetArticlesCount(),
+                ItemsPerPage = ItemsPerPage,
+            };
             return this.View(viewModel);
         }
     }

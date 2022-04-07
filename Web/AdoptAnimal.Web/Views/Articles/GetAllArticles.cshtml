@@ -1,5 +1,5 @@
 ﻿@using AdoptAnimal.Common
-@model AdoptAnimal.Web.ViewModels.Articles.GetAllArticlesInputModel
+@model AdoptAnimal.Web.ViewModels.Articles.GetAllArticlesViewModel
 @{
     this.ViewData["Title"] = "Get all articles";
 }
@@ -8,7 +8,6 @@
     @foreach (var article in Model.Articles)
    {
        <h3>@article.Title</h3>
-       <p>@article.Content</p>
        <br />
    }
 </div>
