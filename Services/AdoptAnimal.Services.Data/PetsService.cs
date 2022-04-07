@@ -63,24 +63,6 @@
             return enumElements;
         }
 
-        public GetAllPetsInputModel GetAllPets()
-        {
-            var data = new GetAllPetsInputModel
-            {
-                Pets = this.petsRepository.AllAsNoTracking().Select(p => new GetPetInputModel
-                {
-                    Name = p.Name,
-                    Age = p.Age,
-                    Weight = p.Weight,
-                    Breed = p.Breed,
-                    IsAdopted = p.IsAdopted,
-                    AdvertisementId = p.AdvertisementId != null ? p.AdvertisementId : null,
-                    CategoryId = p.CategoryId,
-                }),
-            };
-            return data;
-        }
-
         public IEnumerable<KeyValuePair<string, string>> GetAllPetsAsKeyValuePairs()
         {
             return this.petsRepository.AllAsNoTracking().Select(p => new

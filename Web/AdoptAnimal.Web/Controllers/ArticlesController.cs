@@ -33,7 +33,7 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 6;
             var viewModel = new GetAllArticlesViewModel

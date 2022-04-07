@@ -15,7 +15,7 @@
                 <p class="card-text">@ad.Address</p>
                 <h4 class="card-text">@ad.Pet.CategoryName</h4>
                 <p class="card-text">AddedOn: @ad.CreatedOn.ToString("dd/mm/yy")</p>
-                <a href="#" class="btn btn-primary">Details</a>
+                <a asp-action="ById" asp-route-id="@ad.Id" class="btn btn-primary">Details</a>
             </div>
         </div>
     }

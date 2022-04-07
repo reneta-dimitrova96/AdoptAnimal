@@ -42,13 +42,7 @@
             return this.Redirect($"/Advertisements/Create/{petId}");
         }
 
-        public IActionResult GetAllPets()
-        {
-            var viewModel = this.petsService.GetAllPets();
-            return this.View(viewModel);
-        }
-
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 9;
             var viewModel = new PetsListViewModel

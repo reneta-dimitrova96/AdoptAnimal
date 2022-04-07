@@ -80,7 +80,7 @@
             return this.Redirect("/");
         }
 
-        public IActionResult All(int id)
+        public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 12;
             var viewModel = new AdvertisementsListViewModel
@@ -93,9 +93,10 @@
             return this.View(viewModel);
         }
 
-        public IActionResult ById()
+        public IActionResult ById(int id)
         {
-            return this.View();
+            var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);
+            return this.View(advertisement);
         }
     }
 }

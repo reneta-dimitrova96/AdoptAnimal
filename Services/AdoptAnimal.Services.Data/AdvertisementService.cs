@@ -92,32 +92,13 @@
             return this.adsRepository.AllAsNoTracking().Count();
         }
 
-        /*
-        public AdvertisementsListViewModel GetAllAdvertisements()
+        public T GetById<T>(int id)
         {
-            var data = new AdvertisementsListViewModel
-            {
-                Advertisements = this.adsRepository.AllAsNoTracking().Select(a => new AdvertisementInListViewModel
-                {
-                    Id = a.Id,
-                    Title = a.Title,
-                    Description = a.Description,
-                    Address = a.Address,
-                    Pet = new PetInListShortViewModel
-                    {
-                        PetId = a.Pet.Id,
-                        CategoryName = a.Pet.Category.Name,
-                        PetImages = a.Pet.PetImages.Select(pi => new PetImageViewModel
-                        {
-                            Id = pi.Id,
-                            Extension = pi.Extension,
-                            Label = pi.Label,
-                        }).ToList(),
-                    },
-                }),
-            };
-            return data;
+            var advertisement = this.adsRepository.AllAsNoTracking()
+                .Where(a => a.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+            return advertisement;
         }
-        */
     }
 }
