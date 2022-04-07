@@ -76,6 +76,7 @@
                 input.Pet.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
                 return this.View(input);
             }
+
             return this.Redirect("/");
         }
 
@@ -86,9 +87,8 @@
             {
                 Advertisements = this.adsService.GetAll<AdvertisementInListViewModel>(id, ItemsPerPage),
                 PageNumber = id,
-                AdvertisementsCount = this.adsService.GetCount(),
+                EntityCount = this.adsService.GetAdsCount(),
                 ItemsPerPage = ItemsPerPage,
-
             };
             return this.View(viewModel);
         }

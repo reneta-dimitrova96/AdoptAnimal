@@ -8,6 +8,7 @@
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Data.Models.Enums;
+    using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Pets;
 
     public class PetsService : IPetsService
@@ -87,6 +88,21 @@
                 p.Id,
                 p.Name,
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
+        }
+
+        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 9)
+        {
+            var pets = this.petsRepository.AllAsNoTracking()
+                .OrderByDescending(p => p.CreatedOn)
+                .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
+                .To<T>()
+                .ToList();
+            return pets;
+        }
+
+        public int GetPetsCount()
+        {
+            return this.petsRepository.AllAsNoTracking().Count();
         }
     }
 }

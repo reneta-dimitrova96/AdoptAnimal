@@ -87,7 +87,7 @@
             return ads;
         }
 
-        public int GetCount()
+        public int GetAdsCount()
         {
             return this.adsRepository.AllAsNoTracking().Count();
         }

@@ -16,9 +16,9 @@
 
         public int NextPageNumber => this.PageNumber + 1;
 
-        public int PagesCount => (int)Math.Ceiling((double)this.AdvertisementsCount / this.ItemsPerPage);
+        public int PagesCount => (int)Math.Ceiling((double)this.EntityCount / this.ItemsPerPage);
 
-        public int AdvertisementsCount { get; set; }
+        public int EntityCount { get; set; }
 
         public int ItemsPerPage { get; set; }
     }

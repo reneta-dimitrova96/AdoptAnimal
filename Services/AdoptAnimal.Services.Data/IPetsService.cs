@@ -16,5 +16,9 @@
         IEnumerable<KeyValuePair<string, string>> GetAllPetsAsKeyValuePairs();
 
         GetAllPetsInputModel GetAllPets();
+
+        IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 9);
+
+        int GetPetsCount();
     }
 }
