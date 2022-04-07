@@ -8,10 +8,13 @@
     @foreach (var ad in this.Model.Advertisements)
     {
         <div class="card col-md-3" style="width: 18rem;">
-            <img src=@ad.Pet.ImageUrl class="card-img-top img-responsive" alt="..." width="100">
+            <img class="card-img-top img-responsive" src=@ad.Pet.ImageUrl alt="card image cap">
             <div class="card-body">
                 <h5 class="card-title">@ad.Title</h5>
-                <p class="card-text">@ad.Description</p>
+                <p class="card-text">@ad.Description.Substring(0, 20)...</p>
+                <p class="card-text">@ad.Address</p>
+                <h4 class="card-text">@ad.Pet.CategoryName</h4>
+                <p class="card-text">AddedOn: @ad.CreatedOn.ToString("dd/mm/yy")</p>
                 <a href="#" class="btn btn-primary">Details</a>
             </div>
         </div>

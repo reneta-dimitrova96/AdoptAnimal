@@ -13,9 +13,9 @@
     public class PetsService : IPetsService
     {
         private readonly IDeletableEntityRepository<Pet> petsRepository;
-        private readonly IDeletableEntityRepository<PetImage> petImagesRepository;
+        private readonly IRepository<PetImage> petImagesRepository;
 
-        public PetsService(IDeletableEntityRepository<Pet> petsRepository, IDeletableEntityRepository<PetImage> petImagesRepository)
+        public PetsService(IDeletableEntityRepository<Pet> petsRepository, IRepository<PetImage> petImagesRepository)
         {
             this.petsRepository = petsRepository;
             this.petImagesRepository = petImagesRepository;

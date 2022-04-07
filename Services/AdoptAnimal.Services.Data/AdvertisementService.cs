@@ -18,12 +18,12 @@
     {
         private readonly IDeletableEntityRepository<Advertisement> adsRepository;
         private readonly IDeletableEntityRepository<Pet> petsRepository;
-        private readonly IDeletableEntityRepository<PetImage> petImagesRepository;
+        private readonly IRepository<PetImage> petImagesRepository;
 
         public AdvertisementService(
             IDeletableEntityRepository<Advertisement> adsRepository,
             IDeletableEntityRepository<Pet> petsRepository,
-            IDeletableEntityRepository<PetImage> petImagesRepository)
+            IRepository<PetImage> petImagesRepository)
         {
             this.adsRepository = adsRepository;
             this.petsRepository = petsRepository;
@@ -45,7 +45,7 @@
             var allowedExtension = new[] { "jpg", "png" };
             foreach (var image in input.Pet.Images)
             {
-                var extension = Path.GetExtension(image.FileName);
+                var extension = Path.GetExtension(image.FileName).TrimStart('.');
                 if (!allowedExtension.Any(x => extension.EndsWith(extension)))
                 {
                     throw new Exception($"Invalid image extension {extension}!");

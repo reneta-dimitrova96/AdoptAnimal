@@ -65,7 +65,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             try
             {
-                await this.adsService.CreateAsync(input, user.Id, $"{this.environment.ContentRootPath}/images");
+                await this.adsService.CreateAsync(input, user.Id, $"{this.environment.WebRootPath}/images");
             }
             catch (Exception error)
             {

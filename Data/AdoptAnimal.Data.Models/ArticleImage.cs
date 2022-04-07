@@ -1,11 +1,19 @@
 ﻿namespace AdoptAnimal.Data.Models
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     using AdoptAnimal.Data.Common.Models;
 
-    public class ArticleImage : BaseDeletableModel<string>
+    public class ArticleImage
     {
+        public ArticleImage()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
+        public string Id { get; set; }
+
         [Required]
         [MinLength(3)]
         public string Extension { get; set; }

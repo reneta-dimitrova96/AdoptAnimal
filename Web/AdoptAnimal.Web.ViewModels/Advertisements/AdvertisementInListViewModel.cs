@@ -19,7 +19,7 @@
 
         public string Address { get; set; }
 
-        public string AuthorId { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public PetInListShortViewModel Pet { get; set; }
 

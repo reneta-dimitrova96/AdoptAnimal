@@ -17,8 +17,11 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Pet, PetInListShortViewModel>()
-                .ForMember(p => p.ImageUrl,
-                opt => opt.MapFrom(p => p.PetImages.FirstOrDefault().ImageUrl ?? "images/advertisements" + p.PetImages.FirstOrDefault().Id + "." + p.PetImages.FirstOrDefault().Extension));
+                .ForMember(
+                    p => p.ImageUrl, opt => opt.MapFrom(p =>
+                    p.PetImages.FirstOrDefault().ImageUrl != null ?
+                    p.PetImages.FirstOrDefault().ImageUrl :
+                    "/images/pets/" + p.PetImages.FirstOrDefault().Id + "." + p.PetImages.FirstOrDefault().Extension));
         }
     }
 }
