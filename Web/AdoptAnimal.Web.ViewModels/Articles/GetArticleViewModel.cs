@@ -9,6 +9,8 @@
 
     public class GetArticleViewModel : IMapFrom<Article>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string Title { get; set; }
 
         public DateTime CreatedOn { get; set; }
@@ -20,8 +22,8 @@
             configuration.CreateMap<Article, GetArticleViewModel>()
                 .ForMember(
                     a => a.Source, opt => opt.MapFrom(a =>
-                    a.ArticleImages.FirstOrDefault().Source != null ?
-                    a.ArticleImages.FirstOrDefault().Source :
+                    a.ArticleImage.Source != null ?
+                    a.ArticleImage.Source :
                     string.Empty));
         }
     }

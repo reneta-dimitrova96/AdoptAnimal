@@ -45,5 +45,11 @@
             };
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var advertisement = this.articlesService.GetById<SingleArticleViewModel>(id);
+            return this.View(advertisement);
+        }
     }
 }

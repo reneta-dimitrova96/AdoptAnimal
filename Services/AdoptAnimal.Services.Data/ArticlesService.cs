@@ -25,10 +25,10 @@
                 Title = input.Title,
                 Content = input.Content,
             };
-            article.ArticleImages.Add(new ArticleImage
+            article.ArticleImage = new ArticleImage
             {
                 Source = input.ArticleImageSorce,
-            });
+            };
 
             await this.articlesRepository.AddAsync(article);
             await this.articlesRepository.SaveChangesAsync();
@@ -47,6 +47,15 @@
         public int GetArticlesCount()
         {
             return this.articlesRepository.AllAsNoTracking().Count();
+        }
+
+        public T GetById<T>(int id)
+        {
+            var article = this.articlesRepository.AllAsNoTracking()
+                .Where(a => a.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+            return article;
         }
     }
 }

@@ -1,0 +1,27 @@
+﻿@model AdoptAnimal.Web.ViewModels.Articles.SingleArticleViewModel
+@{
+    this.ViewData["Title"] = "ById";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">@Model.Title</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">@Model.CreatedOn by @Model.AuthorUserName</div>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4"><img class="img-fluid rounded" src=@Model.ArticleImage.Source alt="..."></figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p class="fs-5 mb-4">@Model.Content</p>
+                </section>
+            </article>
+        </div>
+    </div>
+</div>

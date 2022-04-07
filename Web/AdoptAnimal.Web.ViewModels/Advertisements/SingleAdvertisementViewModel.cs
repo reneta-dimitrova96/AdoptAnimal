@@ -7,7 +7,6 @@
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Comments;
     using AdoptAnimal.Web.ViewModels.Pets;
-    using AdoptAnimal.Web.ViewModels.Statistics;
     using AutoMapper;
 
     public class SingleAdvertisementViewModel : IMapFrom<Advertisement>, IHaveCustomMappings

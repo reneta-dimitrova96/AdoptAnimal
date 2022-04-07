@@ -7,11 +7,6 @@
 
     public class Article : BaseDeletableModel<int>
     {
-        public Article()
-        {
-            this.ArticleImages = new HashSet<ArticleImage>();
-        }
-
         [Required]
         [MinLength(10)]
         [MaxLength(30)]
@@ -26,6 +21,6 @@
 
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual ICollection<ArticleImage> ArticleImages { get; set; }
+        public virtual ArticleImage ArticleImage { get; set; }
     }
 }

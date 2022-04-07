@@ -73,6 +73,11 @@
                 .WithOne(p => p.Advertisement)
                 .HasForeignKey<Pet>(p => p.AdvertisementId);
 
+            builder.Entity<Article>()
+                .HasOne(a => a.ArticleImage)
+                .WithOne(ai => ai.Article)
+                .HasForeignKey<ArticleImage>(ai => ai.ArticleId);
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 
