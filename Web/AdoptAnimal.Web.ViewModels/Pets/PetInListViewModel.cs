@@ -19,7 +19,7 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Pet, PetInListShortViewModel>()
+            configuration.CreateMap<Pet, PetInListViewModel>()
                 .ForMember(
                     p => p.ImageUrl, opt => opt.MapFrom(p =>
                     p.PetImages.FirstOrDefault().ImageUrl != null ?

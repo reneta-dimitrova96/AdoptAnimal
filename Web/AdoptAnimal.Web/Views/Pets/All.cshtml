@@ -1,5 +1,22 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using AdoptAnimal.Common
+@model AdoptAnimal.Web.ViewModels.Pets.PetsListViewModel
 @{
+    this.ViewData["Title"] = "Get all advertisements";
 }
+
+<div class="row">
+    @foreach (var pet in this.Model.Pets)
+    {
+        <div class="media">
+            <img class="mr-3 img-responsive" src=@pet.ImageUrl alt=@pet.Name width="250" height="150">
+            <div class="media-body">
+                <h5 class="mt-0">@pet.Name</h5>
+                <p>@pet.CategoryName</p>
+                <p>AddedOn: @pet.CreatedOn.ToString("dd/mm/yy")</p>
+                <button type="button" class="btn btn-info">Info</button>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<partial name="_PagingPartial" model="@Model" />
