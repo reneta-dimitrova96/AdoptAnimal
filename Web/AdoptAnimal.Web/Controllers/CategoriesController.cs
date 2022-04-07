@@ -1,9 +1,10 @@
 ﻿namespace AdoptAnimal.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Categories;
     using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class CategoriesController : Controller
     {
@@ -33,9 +34,12 @@
             return this.Redirect("/");
         }
 
-        public IActionResult GetAllCategories()
+        public IActionResult All()
         {
-            var viewModel = categoriesService.GetAllCategories();
+            var viewModel = new GetAllCategoriesViewModel
+            {
+                Categories = this.categoriesService.GetAllCategories<GetGategoryViewModel>(),
+            };
             return this.View(viewModel);
         }
     }

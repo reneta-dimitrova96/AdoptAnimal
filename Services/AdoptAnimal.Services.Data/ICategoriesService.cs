@@ -11,6 +11,6 @@
 
         Task CreateAsync(CreateCategoryInputModel input);
 
-        GetAllCategoriesInputModel GetAllCategories();
+        IEnumerable<T> GetAllCategories<T>();
     }
 }

@@ -5,8 +5,10 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
+    using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Categories;
     using AdoptAnimal.Web.ViewModels.SubCategories;
 
@@ -42,21 +44,31 @@
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
-        public GetAllCategoriesInputModel GetAllCategories()
+        public IEnumerable<T> GetAllCategories<T>()
         {
-            var data = new GetAllCategoriesInputModel
+            var categories = this.categoriesRepository.AllAsNoTracking()
+                .OrderByDescending(c => c.Id)
+                .To<T>()
+                .ToList();
+            return categories;
+        }
+
+
+        /*public GetAllCategoriesViewModel GetAllCategories()
+        {
+            var data = new GetAllCategoriesViewModel
             {
-                Categories = this.categoriesRepository.AllAsNoTracking().Select(c => new GetGategoryInputModel
+                Categories = this.categoriesRepository.AllAsNoTracking().Select(c => new GetGategoryViewModel
                 {
                     Name = c.Name,
                     CountOfPets = c.Pets.Count,
-                    SubCategories = this.subCategoriesRepository.AllAsNoTracking().Where(sc => sc.CategoryId == c.Id).Select(sc => new GetSubGategoryInputModel
+                    SubCategories = this.subCategoriesRepository.AllAsNoTracking().Where(sc => sc.CategoryId == c.Id).Select(sc => new GetSubGategoryViewModel
                     {
                         Name = sc.Name,
                     }).ToList(),
                 }).ToList(),
             };
             return data;
-        }
+        }*/
     }
 }

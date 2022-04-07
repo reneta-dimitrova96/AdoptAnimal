@@ -1,0 +1,23 @@
+﻿@using AdoptAnimal.Common
+@model AdoptAnimal.Web.ViewModels.Categories.GetAllCategoriesViewModel
+@{
+    this.ViewData["Title"] = "Get all categories";
+}
+
+<div class="row">
+    @foreach (var category in this.Model.Categories)
+    {
+        <div class="card col-md-3" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">@category.Name</h5>
+                <span class="badge badge-secondary">Pets count @category.CountOfPets</span>
+                @foreach(var subCategory in category.SubCategories)
+                {
+                    <h6 class="card-title">@subCategory.Name</h6>
+                }
+                <button type="button" class="btn btn-primary">Pets</button>
+            </div>
+            <img class="card-img-top img-responsive" src=@category.ImageUrl alt="card image cap">
+        </div>
+    }
+</div>
