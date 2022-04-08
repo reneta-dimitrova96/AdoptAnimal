@@ -7,13 +7,14 @@
 <div class="row">
     @foreach (var pet in this.Model.Pets)
     {
-        <div class="media">
-            <img class="mr-3 img-responsive" src=@pet.ImageUrl alt=@pet.Name width="250" height="150">
-            <div class="media-body">
-                <h5 class="mt-0">@pet.Name</h5>
-                <p>@pet.CategoryName</p>
-                <p>AddedOn: @pet.CreatedOn.ToString("dd/mm/yy")</p>
-                <button type="button" class="btn btn-info">Info</button>
+        <div class="p-1 media border-2 shadow-lg bg-white col-md-4">
+            <div class="p-1 media border-2 shadow-lg bg-white col-md-12">
+                <img class="align-self-center mr-2 img-responsive" src=@pet.ImageUrl alt=@pet.Name width="250" height="150">
+                <div class="media-body">
+                    <h5 class="text-center p-2">@pet.Name</h5>
+                    <p class="text-center p-1 mt-3 font-weight-bolder ">@pet.CategoryName</p>
+                    <a asp-action="ById" asp-route-id="@pet.Id" class="btn btn-info text-center p-1 mt-3 ml-3">More Info</a>
+                </div>
             </div>
         </div>
     }

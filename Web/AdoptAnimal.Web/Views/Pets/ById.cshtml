@@ -1,0 +1,31 @@
+﻿@model AdoptAnimal.Web.ViewModels.Pets.PetDetailsViewModel
+@{
+    this.ViewData["Title"] = "ById";
+}
+<div class="container">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+                <div class="details col-md-6">
+                    <h3 class="product-title">@Model.Name</h3>
+                    <p class="product-description">Age:@Model.Age</p>
+                    <p class="product-description">Gender:@Model.Gender</p>
+                    <p class="product-description">Weight:@Model.Weight</p>
+                    <p class="product-description">Breed:@Model.Breed</p>
+                    <p class="product-description">IsDewormed:@Model.IsDewormed</p>
+                    <p class="product-description">IsAdopted:@Model.IsAdopted</p>
+                    <p class="product-description">Category:@Model.CategoryName</p>
+                </div>
+                 <div class="preview col-md-6">
+                    <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1"><img src=@Model.PetImages.FirstOrDefault().ImageUrl width="500" height="300"/></div>
+                        @foreach (var petImage in Model.PetImages)
+                        {
+                            <div class="tab-pane" id="pic-2"><img src=@petImage.ImageUrl /></div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

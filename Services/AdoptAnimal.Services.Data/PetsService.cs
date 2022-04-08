@@ -86,5 +86,14 @@
         {
             return this.petsRepository.AllAsNoTracking().Count();
         }
+
+        public T GetById<T>(int id)
+        {
+            var pet = this.petsRepository.AllAsNoTracking()
+                .Where(a => a.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+            return pet;
+        }
     }
 }

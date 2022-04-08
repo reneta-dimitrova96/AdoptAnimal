@@ -54,5 +54,11 @@
             };
             return this.View(viewModel);
         }
+
+        public IActionResult ById(int id)
+        {
+            var pet = this.petsService.GetById<PetDetailsViewModel>(id);
+            return this.View(pet);
+        }
     }
 }

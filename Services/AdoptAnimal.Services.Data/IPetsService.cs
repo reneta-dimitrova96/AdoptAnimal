@@ -18,5 +18,7 @@
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 9);
 
         int GetPetsCount();
+
+        T GetById<T>(int id);
     }
 }
