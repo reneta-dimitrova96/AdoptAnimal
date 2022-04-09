@@ -7,6 +7,7 @@
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Comments;
     using AdoptAnimal.Web.ViewModels.Pets;
+    using AdoptAnimal.Web.ViewModels.Statistics;
     using AutoMapper;
 
     public class SingleAdvertisementViewModel : IMapFrom<Advertisement>, IHaveCustomMappings
@@ -25,7 +26,7 @@
 
         public PetDetailsViewModel Pet { get; set; }
 
-        /*public StatisticViewModel Statistic { get; set; }*/
+        public StatisticViewModel Statistic { get; set; }
 
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
@@ -39,9 +40,9 @@
                 .ForMember(a => a.Pet, opt =>
                 opt.MapFrom(a => a.Pet));
 
-            /*configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
+            configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
                 .ForMember(a => a.Statistic, opt =>
-                opt.MapFrom(a => a.Statistic));*/
+                opt.MapFrom(a => a.Statistic));
 
             configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
                 .ForMember(a => a.Comments, opt =>

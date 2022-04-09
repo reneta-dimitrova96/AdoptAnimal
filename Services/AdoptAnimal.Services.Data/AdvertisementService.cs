@@ -51,15 +51,17 @@
                     throw new Exception($"Invalid image extension {extension}!");
                 }
 
-                pet.PetImages.Add(new PetImage
+                var petImage = new PetImage
                 {
                     AuthorId = userId,
                     Extension = extension,
                     Label = input.Title,
-                });
+                };
+
+                pet.PetImages.Add(petImage);
 
                 Directory.CreateDirectory(Path.GetDirectoryName($"{imagePath}/pets/"));
-                var physicalPath = $"{imagePath}/pets/{pet.PetImages.FirstOrDefault().Id}.{extension}";
+                var physicalPath = $"{imagePath}/pets/{petImage.Id}.{extension}";
                 using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
                 await image.CopyToAsync(fileStream);
             }
