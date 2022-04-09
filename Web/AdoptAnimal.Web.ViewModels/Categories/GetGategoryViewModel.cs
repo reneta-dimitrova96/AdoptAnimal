@@ -10,6 +10,8 @@
 
     public class GetGategoryViewModel : IMapFrom<Category>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int CountOfPets { get; set; }

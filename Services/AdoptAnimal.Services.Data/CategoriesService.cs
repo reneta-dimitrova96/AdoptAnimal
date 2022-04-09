@@ -53,22 +53,13 @@
             return categories;
         }
 
-
-        /*public GetAllCategoriesViewModel GetAllCategories()
+        public T GetById<T>(int id)
         {
-            var data = new GetAllCategoriesViewModel
-            {
-                Categories = this.categoriesRepository.AllAsNoTracking().Select(c => new GetGategoryViewModel
-                {
-                    Name = c.Name,
-                    CountOfPets = c.Pets.Count,
-                    SubCategories = this.subCategoriesRepository.AllAsNoTracking().Where(sc => sc.CategoryId == c.Id).Select(sc => new GetSubGategoryViewModel
-                    {
-                        Name = sc.Name,
-                    }).ToList(),
-                }).ToList(),
-            };
-            return data;
-        }*/
+            var category = this.categoriesRepository.AllAsNoTracking()
+                .Where(c => c.Id == id)
+                .To<T>()
+                .FirstOrDefault();
+            return category;
+        }
     }
 }

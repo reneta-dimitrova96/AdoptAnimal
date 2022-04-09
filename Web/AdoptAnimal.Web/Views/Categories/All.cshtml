@@ -15,7 +15,7 @@
                 {
                     <h6 class="card-title">@subCategory.Name</h6>
                 }
-                <button type="button" class="btn btn-primary">Pets</button>
+                <a asp-action="ById" asp-route-id="@category.Id" class="btn btn-primary">Pets</a>
             </div>
             <img class="card-img-top img-responsive" src=@category.ImageUrl alt="card image cap">
         </div>

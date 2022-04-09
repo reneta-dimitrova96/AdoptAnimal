@@ -4,6 +4,7 @@
 
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Categories;
+    using AdoptAnimal.Web.ViewModels.Pets;
     using Microsoft.AspNetCore.Mvc;
 
     public class CategoriesController : Controller
@@ -41,6 +42,12 @@
                 Categories = this.categoriesService.GetAllCategories<GetGategoryViewModel>(),
             };
             return this.View(viewModel);
+        }
+
+        public IActionResult ById(int id)
+        {
+            var category = this.categoriesService.GetById<CategoryPetsViewModel>(id);
+            return this.View(category);
         }
     }
 }
