@@ -2,24 +2,33 @@
 @{
     this.ViewData["Title"] = "ById";
 }
-<div class="row">
-    <div class="col-lg-4 col-md-12 mb-lg-0 mt-0 shadow-1-strong rounded cardm">
-        <h5 class="mb-1">@Model.Name</h5>
-        <p class="mb-0">Age :@Model.Age</p>
-        <p class="mb-0">Gender: @Model.Gender</p>
-        <p class="mb-0">Weight: @Model.Weight</p>
-        <p class="mb-0">Breed: @Model.Breed</p>
-        <p class="mb-0">IsDewormed: @Model.IsDewormed</p>
-        <p class="mb-0">IsAdopted: @Model.IsAdopted</p>
-    </div>
-    @foreach (var petImage in Model.PetImages)
-    {
-        <div class="col-lg-4 col-md-12 pb-1 mb-lg-0 mb-2">
-            <div class="bg-image hover-overlay ripple shadow-1-strong rounded"
-             data-ripple-color="light">
-                <img src=@petImage.ImageUrl
-                 class="w-100 shadow-1-strong rounded" />
-            </div>
+<div class="d-flex justify-content-sm-around">
+    <div class="col-lg-3 col-md-12 mt-0 mb-2 rounded">
+        <div class="cardm rounded mt-0">
+            <h5 class="mb-1">@Model.Name</h5>
+            <p class="mb-0">Age :@Model.Age</p>
+            <p class="mb-0">Gender: @Model.Gender</p>
+            <p class="mb-0">Weight: @Model.Weight</p>
+            <p class="mb-0">Breed: @Model.Breed</p>
+            <p class="mb-0">IsDewormed: @Model.IsDewormed</p>
+            <p class="mb-0">IsAdopted: @Model.IsAdopted</p>
+            <a asp-controller="Advertisements" asp-action="ById" asp-route-id="@Model.AdvertisementId" class="btn btn-info text-center p-1 mt-1 ml-0">To advertisement</a>
         </div>
-    }
+    </div>
+    <div class="col-lg-9 col-md-12 mt-0 mb-2 shadow-1-strong rounded">
+        <div class="row">
+            @foreach (var petImage in Model.PetImages)
+            {
+
+                <div class="col-lg-6 col-md-12 pb-1 mb-2">
+                    <div class="bg-image hover-overlay ripple rounded border-2 shadow-lg bg-white"
+                     data-ripple-color="light">
+                        <img src=@petImage.ImageUrl
+                         class="w-100 rounded border-2 shadow-lg bg-white" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
+

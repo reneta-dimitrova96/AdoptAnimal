@@ -14,7 +14,7 @@
 
         public string Name { get; set; }
 
-        public int CountOfPets { get; set; }
+        public int PetsCount { get; set; }
 
         public string ImageUrl { get; set; }
 
@@ -27,7 +27,7 @@
                opt.MapFrom(c => c.SubCategories));
 
             configuration.CreateMap<Category, GetGategoryViewModel>()
-               .ForMember(c => c.CountOfPets, opt =>
+               .ForMember(c => c.PetsCount, opt =>
                opt.MapFrom(c => c.Pets.Count()));
 
             configuration.CreateMap<Category, GetGategoryViewModel>()
