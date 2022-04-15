@@ -45,13 +45,12 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="Create">Create Article</a>
                             </li>
+                        }
+                        @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Create">Create Category</a>
+                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Categories" asp-action="Index">Admin Categories</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="SubCategories" asp-action="Create">Create SubCategory</a>
-                            </li>
-
                         }
                     </ul>
                 </div>

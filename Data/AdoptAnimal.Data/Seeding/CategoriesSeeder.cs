@@ -18,6 +18,9 @@
             await dbContext.Categories.AddAsync(new Category { Name = "Кучета" });
             await dbContext.Categories.AddAsync(new Category { Name = "Котки" });
             await dbContext.Categories.AddAsync(new Category { Name = "Гризачи" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Птици" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Рибки" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Костенурки" });
 
             await dbContext.SaveChangesAsync();
         }

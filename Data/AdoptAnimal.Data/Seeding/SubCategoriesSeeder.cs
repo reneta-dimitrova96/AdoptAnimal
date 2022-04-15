@@ -6,7 +6,7 @@
 
     using AdoptAnimal.Data.Models;
 
-    internal class SubCategoriesSeeder : ISeeder
+    public class SubCategoriesSeeder : ISeeder
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -15,18 +15,33 @@
                 return;
             }
 
-            var arrayOfCategories = dbContext.Categories.Where(c => c.Name == "Гризачи").ToArray();
-            if (arrayOfCategories.Length > 0)
+            var rodentCategory = dbContext.Categories.Where(c => c.Name == "Гризачи").ToArray();
+            if (rodentCategory.Length > 0)
             {
                 await dbContext.SubCategories.AddAsync(new SubCategory
                 {
                     Name = "Зайци",
-                    CategoryId = arrayOfCategories[0].Id,
+                    CategoryId = rodentCategory[0].Id,
                 });
                 await dbContext.SubCategories.AddAsync(new SubCategory
                 {
                     Name = "Хамстери",
-                    CategoryId = arrayOfCategories[0].Id,
+                    CategoryId = rodentCategory[0].Id,
+                });
+            }
+
+            var birdsCategory = dbContext.Categories.Where(c => c.Name == "Птици").ToArray();
+            if (birdsCategory.Length > 0)
+            {
+                await dbContext.SubCategories.AddAsync(new SubCategory
+                {
+                    Name = "Канарчета",
+                    CategoryId = birdsCategory[0].Id,
+                });
+                await dbContext.SubCategories.AddAsync(new SubCategory
+                {
+                    Name = "Папагали",
+                    CategoryId = birdsCategory[0].Id,
                 });
             }
 
