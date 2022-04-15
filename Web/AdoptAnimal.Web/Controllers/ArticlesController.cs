@@ -2,6 +2,7 @@
 {
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Articles;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
 
@@ -20,6 +21,7 @@
             return this.View(viewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateArticleInputModel input)
         {
