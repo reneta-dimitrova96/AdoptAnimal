@@ -22,7 +22,10 @@
         // GET: Administration/Categories
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.categoriesRepository.AllWithDeleted().ToListAsync());
+            return this.View(await this.categoriesRepository
+                .AllWithDeleted()
+                .Include(c => c.SubCategories)
+                .ToListAsync());
         }
 
         // GET: Administration/Categories/Details/5
@@ -30,11 +33,12 @@
         {
             if (id == null)
             {
-                return NotFound();
+                return this.NotFound();
             }
 
             var category = await this.categoriesRepository.All()
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(c => c.SubCategories)
+                .FirstOrDefaultAsync(c => c.Id == id);
             if (category == null)
             {
                 return this.NotFound();
