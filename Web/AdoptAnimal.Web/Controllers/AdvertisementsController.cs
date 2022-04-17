@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Ads;
@@ -113,6 +114,28 @@
             await this.adsService.UpdateAsync(id, input);
 
             return this.RedirectToAction(nameof(this.ById), new { id });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AdsByUserId(int id = 1)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            const int ItemsPerPage = 12;
+            var viewModel = new AdvertisementsListViewModel
+            {
+                Advertisements = this.adsService.GetByUserId<AdvertisementInListViewModel>(user.Id),
+                PageNumber = id,
+                EntityCount = this.adsService.GetAdsCount(),
+                ItemsPerPage = ItemsPerPage,
+            };
+            return this.View(viewModel);
+        }
+
+        [Authorize]
+        public IActionResult ByUserIdByAdId(int id)
+        {
+            var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);
+            return this.View(advertisement);
         }
 
         public IActionResult ById(int id)

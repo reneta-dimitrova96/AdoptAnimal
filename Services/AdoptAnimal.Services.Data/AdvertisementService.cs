@@ -112,5 +112,14 @@
             advertisement.Address = input.Address;
             await this.adsRepository.SaveChangesAsync();
         }
+
+        public IEnumerable<T> GetByUserId<T>(string userId)
+        {
+            var userAdvertisements = this.adsRepository.AllAsNoTracking()
+                .Where(a => a.AuthorId == userId)
+                .To<T>()
+                .ToList();
+            return userAdvertisements;
+        }
     }
 }

@@ -17,5 +17,7 @@
         T GetById<T>(int id);
 
         Task UpdateAsync(int id, EditAdvertisementInputModel input);
+
+        IEnumerable<T> GetByUserId<T>(string userId);
     }
 }
