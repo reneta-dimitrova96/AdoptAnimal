@@ -102,5 +102,15 @@
                 .FirstOrDefault();
             return advertisement;
         }
+
+        public async Task UpdateAsync(int id, EditAdvertisementInputModel input)
+        {
+            var advertisement = this.adsRepository.All().FirstOrDefault(a => a.Id == id);
+            advertisement.Title = input.Title;
+            advertisement.Description = input.Description;
+            advertisement.PhoneNumber = input.PhoneNumber;
+            advertisement.Address = input.Address;
+            await this.adsRepository.SaveChangesAsync();
+        }
     }
 }

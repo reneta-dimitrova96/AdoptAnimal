@@ -15,5 +15,7 @@
         int GetAdsCount();
 
         T GetById<T>(int id);
+
+        Task UpdateAsync(int id, EditAdvertisementInputModel input);
     }
 }

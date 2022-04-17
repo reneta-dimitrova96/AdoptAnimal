@@ -93,6 +93,28 @@
             return this.View(viewModel);
         }
 
+        public IActionResult Edit(int id)
+        {
+            var inputModel = this.adsService.GetById<EditAdvertisementInputModel>(id);
+            inputModel.Id = id;
+            return this.View(inputModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Edit(int id, EditAdvertisementInputModel input)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                input.Id = id;
+                return this.View();
+            }
+
+            await this.adsService.UpdateAsync(id, input);
+
+            return this.RedirectToAction(nameof(this.ById), new { id });
+        }
+
         public IActionResult ById(int id)
         {
             var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);

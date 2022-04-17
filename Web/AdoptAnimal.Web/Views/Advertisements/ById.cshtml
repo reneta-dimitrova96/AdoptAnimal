@@ -37,6 +37,7 @@ src=@Model.Pet.PetImages.FirstOrDefault().ImageUrl alt=@Model.Pet.Name style="wi
                     <p class="product-description p-1 mb-0">Name: @Model.Pet.Name Age:@Model.Pet.Age Gender:@Model.Pet.Gender Weight:@Model.Pet.Weight Breed:@Model.Pet.Breed IsDewormed:@Model.Pet.IsDewormed IsAdopted:@Model.Pet.IsAdopted</p>
                     <p class="product-description p-1 mb-0">Tel:@Model.PhoneNumber Added By:@Model.AuthorUserName</p>
                     <p class="product-description p-1 mb-0">Adresa:@Model.Address</p>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-0">Edit</a>
                 </div>
             </div>
         </div>
