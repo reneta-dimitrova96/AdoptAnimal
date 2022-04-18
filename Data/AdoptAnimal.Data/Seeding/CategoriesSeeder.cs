@@ -22,6 +22,7 @@
             await dbContext.Categories.AddAsync(new Category { Name = "Папагали" });
             await dbContext.Categories.AddAsync(new Category { Name = "Рибки" });
             await dbContext.Categories.AddAsync(new Category { Name = "Костенурки" });
+            await dbContext.Categories.AddAsync(new Category { Name = "Други" });
 
             await dbContext.SaveChangesAsync();
         }

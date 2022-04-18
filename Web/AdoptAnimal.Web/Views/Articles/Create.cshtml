@@ -2,27 +2,31 @@
 @{
     this.ViewData["Title"] = "Add new article";
 }
-<h1 class="text-center">@this.ViewData["Title"]</h1>
+<h3 class="text-center">@this.ViewData["Title"]</h3>
 
-<form method="post" class="text-center">
+<form method="post">
     <div asp-validation-summary="All"></div>
-    <div>
+    <div class="form-group">
         <label asp-for="Title">Title:</label>
-        <input asp-for="Title" />
-        <span asp-validation-for="Title"></span>
+        <input asp-for="Title" class="form-control"></input>
+        <span asp-validation-for="Title" class="text-danger"></span>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Content">Content:</label>
-        <input asp-for="Content" />
-        <span asp-validation-for="Content"></span>
+        <textarea asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
     </div>
-    <label for="basic-url">Image URL</label>
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-        </div>
-        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" asp-for="ArticleImageSorce">
+    <div class="form-group">
+         <label asp-for="ArticleImageSorce">Image URL</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                </div>
+             <span asp-validation-for="ArticleImageSorce" class="text-danger"></span>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" asp-for="ArticleImageSorce">
+            </div>
     </div>
     <input type="submit" />
-
 </form>
+
+
