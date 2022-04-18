@@ -72,6 +72,26 @@ namespace AdoptAnimal.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Statistics",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdvertisementsCount = table.Column<int>(type: "int", nullable: false),
+                    PetsCount = table.Column<int>(type: "int", nullable: false),
+                    ArticlesCounts = table.Column<int>(type: "int", nullable: false),
+                    UsersCounts = table.Column<int>(type: "int", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Statistics", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -99,9 +119,9 @@ namespace AdoptAnimal.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -230,7 +250,7 @@ namespace AdoptAnimal.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubCategories",
+                name: "Subcategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -244,9 +264,9 @@ namespace AdoptAnimal.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubCategories", x => x.Id);
+                    table.PrimaryKey("PK_Subcategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubCategories_Categories_CategoryId",
+                        name: "FK_Subcategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -285,6 +305,25 @@ namespace AdoptAnimal.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ArticleImages",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Source = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArticleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArticleImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ArticleImages_Articles_ArticleId",
+                        column: x => x.ArticleId,
+                        principalTable: "Articles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Pets",
                 columns: table => new
                 {
@@ -299,6 +338,7 @@ namespace AdoptAnimal.Data.Migrations
                     IsAdopted = table.Column<bool>(type: "bit", nullable: false),
                     AdvertisementId = table.Column<int>(type: "int", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
+                    SubcategoryId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -319,53 +359,10 @@ namespace AdoptAnimal.Data.Migrations
                         principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Statistics",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CountOfViews = table.Column<int>(type: "int", nullable: false),
-                    CountOfComments = table.Column<int>(type: "int", nullable: false),
-                    AdvertisementId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Statistics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Statistics_Advertisements_AdvertisementId",
-                        column: x => x.AdvertisementId,
-                        principalTable: "Advertisements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArticleImages",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArticleId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArticleImages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ArticleImages_Articles_ArticleId",
-                        column: x => x.ArticleId,
-                        principalTable: "Articles",
+                        name: "FK_Pets_Subcategories_SubcategoryId",
+                        column: x => x.SubcategoryId,
+                        principalTable: "Subcategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -376,14 +373,10 @@ namespace AdoptAnimal.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Label = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Label = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AuthorId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    PetId = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    PetId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -415,12 +408,8 @@ namespace AdoptAnimal.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ArticleImages_ArticleId",
                 table: "ArticleImages",
-                column: "ArticleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArticleImages_IsDeleted",
-                table: "ArticleImages",
-                column: "IsDeleted");
+                column: "ArticleId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Articles_AuthorId",
@@ -507,11 +496,6 @@ namespace AdoptAnimal.Data.Migrations
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PetImages_IsDeleted",
-                table: "PetImages",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PetImages_PetId",
                 table: "PetImages",
                 column: "PetId");
@@ -533,10 +517,9 @@ namespace AdoptAnimal.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Statistics_AdvertisementId",
-                table: "Statistics",
-                column: "AdvertisementId",
-                unique: true);
+                name: "IX_Pets_SubcategoryId",
+                table: "Pets",
+                column: "SubcategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Statistics_IsDeleted",
@@ -544,13 +527,13 @@ namespace AdoptAnimal.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_CategoryId",
-                table: "SubCategories",
+                name: "IX_Subcategories_CategoryId",
+                table: "Subcategories",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_IsDeleted",
-                table: "SubCategories",
+                name: "IX_Subcategories_IsDeleted",
+                table: "Subcategories",
                 column: "IsDeleted");
         }
 
@@ -584,9 +567,6 @@ namespace AdoptAnimal.Data.Migrations
                 name: "Statistics");
 
             migrationBuilder.DropTable(
-                name: "SubCategories");
-
-            migrationBuilder.DropTable(
                 name: "Articles");
 
             migrationBuilder.DropTable(
@@ -599,10 +579,13 @@ namespace AdoptAnimal.Data.Migrations
                 name: "Advertisements");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Subcategories");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
         }
     }
 }

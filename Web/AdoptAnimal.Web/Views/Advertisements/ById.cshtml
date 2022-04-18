@@ -28,15 +28,6 @@
                 <div class="details col-md-6">
                     <h3 class="product-title text-center pt-2 p-1 mb-0">@Model.Title</h3>
                     <p class="product-description font-italic p-1 mb-0">Added on @Model.CreatedOn.ToString("hh:mm dd/MM/yy") by @Model.AuthorUserName</p>
-                    <div class="rating">
-                        <span class="review-no">
-                            Views:
-                            @if (Model.Statistic != null)
-                            {
-                                @Model.Statistic.CountOfViews
-                            }
-                        </span>
-                    </div>
                     <p class="product-description p-1 mb-0">@Model.Description</p>
                     <p class="product-description p-1 mb-0">Name: @Model.Pet.Name Age:@Model.Pet.Age Gender:@Model.Pet.Gender Weight:@Model.Pet.Weight Breed:@Model.Pet.Breed IsDewormed:@Model.Pet.IsDewormed IsAdopted:@Model.Pet.IsAdopted</p>
                     <p class="product-description p-1 mb-0">Tel:@Model.PhoneNumber Added By:@Model.AuthorUserName</p>

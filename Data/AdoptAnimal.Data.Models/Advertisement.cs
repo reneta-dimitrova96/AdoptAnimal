@@ -19,7 +19,7 @@
         public string Title { get; set; }
 
         [Required]
-        [MinLength(50)]
+        [MinLength(20)]
         [MaxLength(300)]
         public string Description { get; set; }
 
@@ -32,16 +32,14 @@
 
         [Required]
         [MinLength(5)]
-        [MaxLength(50)]
+        [MaxLength(30)]
         public string Address { get; set; }
 
         public string AuthorId { get; set; }
 
-        public virtual Pet Pet { get; set; }
-
         public virtual ApplicationUser Author { get; set; }
 
-        public virtual Statistic Statistic { get; set; }
+        public virtual Pet Pet { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

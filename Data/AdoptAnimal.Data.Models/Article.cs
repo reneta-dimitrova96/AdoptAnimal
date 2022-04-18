@@ -8,12 +8,12 @@
     public class Article : BaseDeletableModel<int>
     {
         [Required]
-        [MinLength(10)]
+        [MinLength(5)]
         [MaxLength(30)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(30)]
+        [MinLength(20)]
         [MaxLength(500)]
         public string Content { get; set; }
 

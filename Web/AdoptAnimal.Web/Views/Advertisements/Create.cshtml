@@ -5,79 +5,79 @@
     var enumElements = this.Model.Pet.IsDewormed.Select(e => new SelectListItem(e.Value, e.Value));
     var categoryItems = this.Model.Pet.CategoriesItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
-<h1 class="text-center">@this.ViewData["Title"]</h1>
+<h3 class="text-center">@this.ViewData["Title"]</h3>
 
-<form method="post" class="text-center" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
     <div asp-validation-summary="All"></div>
-    <div>
-        <label asp-for="Title">Title:</label>
-        <input asp-for="Title"/>
-        <span asp-validation-for="Title" class="text-danger"></span>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label asp-for="PhoneNumber">Phone Number:</label>
+            <input asp-for="PhoneNumber" class="form-control" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+        </div>
     </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Description">Description:</label>
-        <input asp-for="Description"/>
+        <textarea asp-for="Description" class="form-control"></textarea>
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
-    <div>
-        <label asp-for="PhoneNumber">PhoneNumber:</label>
-        <input asp-for="PhoneNumber"/>
-        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-    </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Address">Address:</label>
-        <input asp-for="Address"/>
+        <input asp-for="Address" class="form-control" />
         <span asp-validation-for="Address" class="text-danger"></span>
     </div>
-    <h3>Add New Pet</h3>
-    <div asp-validation-summary="All"></div>
-    <div>
-        <label asp-for="Pet.Name">Name:</label>
-        <input asp-for="Pet.Name"/>
-        <span asp-validation-for="Pet.Name" class="text-danger"></span>
+    <h5>Pet information</h5>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label asp-for="Pet.Name">Name:</label>
+            <input asp-for="Pet.Name" class="form-control" />
+            <span asp-validation-for="Pet.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Pet.Age">Age:</label>
+            <input asp-for="Pet.Age" class="form-control" />
+            <span asp-validation-for="Pet.Age"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="Pet.Weight">Weight:</label>
+            <input asp-for="Pet.Weight" class="form-control" />
+            <span asp-validation-for="Pet.Weight" class="text-danger"></span>
+        </div>
     </div>
-    <div>
-        <label asp-for="Pet.Age">Age:</label>
-        <input asp-for="Pet.Age" />
-        <span asp-validation-for="Pet.Age"></span>
-    </div>
-    <div>
-        <label asp-for="Pet.Weight">Weight:</label>
-        <input asp-for="Pet.Weight"/>
-        <span asp-validation-for="Pet.Weight" class="text-danger"></span>
-    </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Pet.Breed">Breed:</label>
-        <input asp-for="Pet.Breed"/>
+        <input asp-for="Pet.Breed" class="form-control" />
         <span asp-validation-for="Pet.Breed" class="text-danger"></span>
     </div>
-    <div>
-        <label asp-for="Pet.GenderTypes">Gender:</label>
-        <select asp-for="Pet.GenderTypes"asp-items="genderTypes"></select>
-        <span asp-validation-for="Pet.GenderTypes" class="text-danger"></span>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label asp-for="Pet.GenderTypes">Gender:</label>
+            <select asp-for="Pet.GenderTypes" asp-items="genderTypes" class="form-control">
+            </select>
+            <span asp-validation-for="Pet.GenderTypes" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Pet.IsDewormed">IsDewormed:</label>
+            <select asp-for="Pet.IsDewormed" asp-items="enumElements" class="form-control"></select>
+            <span asp-validation-for="Pet.IsDewormed" class="text-danger"></span>
+        </div>
     </div>
-    <div>
-        <label asp-for="Pet.IsDewormed">IsDewormed:</label>
-        <select asp-for="Pet.IsDewormed" asp-items="enumElements"></select>
-        <span asp-validation-for="Pet.IsDewormed" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Pet.IsAdopted">IsAdopted:</label>
-        <input asp-for="Pet.IsAdopted"/>
-        <span asp-validation-for="Pet.IsAdopted" class="text-danger"></span>
-    </div>
-    <div>
+    <div class="form-group">
         <label asp-for="Pet.CategoryId">Category:</label>
-        <select asp-for="Pet.CategoryId" asp-items="categoryItems"></select>
+        <select asp-for="Pet.CategoryId" asp-items="categoryItems" class="form-control"></select>
         <span asp-validation-for="Pet.CategoryId" class="text-danger"></span>
     </div>
-    <div >
+    <div class="form-group">
         <label asp-for="Pet.Images">Images:</label>
-        <input asp-for="Pet.Images"/>
+        <input asp-for="Pet.Images" class="form-control" />
         <span asp-validation-for="Pet.Images" class="text-danger"></span>
     </div>
-
     <input type="submit" />
-
 </form>
 

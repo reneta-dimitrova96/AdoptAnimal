@@ -28,8 +28,8 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
@@ -396,7 +396,6 @@ namespace AdoptAnimal.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Label")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -419,13 +418,10 @@ namespace AdoptAnimal.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdvertisementId")
+                    b.Property<int>("AdvertisementsCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CountOfComments")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CountOfViews")
+                    b.Property<int>("ArticlesCounts")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -440,50 +436,17 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.Property<int>("PetsCount")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AdvertisementId")
-                        .IsUnique();
+                    b.Property<int>("UsersCounts")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Statistics");
-                });
-
-            modelBuilder.Entity("AdoptAnimal.Data.Models.SubCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("IsDeleted");
-
-                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -672,28 +635,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.Navigation("Pet");
                 });
 
-            modelBuilder.Entity("AdoptAnimal.Data.Models.Statistic", b =>
-                {
-                    b.HasOne("AdoptAnimal.Data.Models.Advertisement", "Advertisement")
-                        .WithOne("Statistic")
-                        .HasForeignKey("AdoptAnimal.Data.Models.Statistic", "AdvertisementId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Advertisement");
-                });
-
-            modelBuilder.Entity("AdoptAnimal.Data.Models.SubCategory", b =>
-                {
-                    b.HasOne("AdoptAnimal.Data.Models.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("AdoptAnimal.Data.Models.ApplicationRole", null)
@@ -750,8 +691,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Pet");
-
-                    b.Navigation("Statistic");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.ApplicationUser", b =>
@@ -771,8 +710,6 @@ namespace AdoptAnimal.Data.Migrations
             modelBuilder.Entity("AdoptAnimal.Data.Models.Category", b =>
                 {
                     b.Navigation("Pets");
-
-                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.Pet", b =>

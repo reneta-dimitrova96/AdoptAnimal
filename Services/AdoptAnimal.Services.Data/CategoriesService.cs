@@ -10,19 +10,15 @@
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Categories;
-    using AdoptAnimal.Web.ViewModels.SubCategories;
 
     public class CategoriesService : ICategoriesService
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
-        private readonly IDeletableEntityRepository<SubCategory> subCategoriesRepository;
 
         public CategoriesService(
-            IDeletableEntityRepository<Category> categoriesRepository,
-            IDeletableEntityRepository<SubCategory> subCategoriesRepository)
+            IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
-            this.subCategoriesRepository = subCategoriesRepository;
         }
 
         public async Task CreateAsync(CreateCategoryInputModel input)

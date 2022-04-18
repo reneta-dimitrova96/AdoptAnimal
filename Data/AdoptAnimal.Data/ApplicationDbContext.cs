@@ -38,8 +38,6 @@
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<SubCategory> SubCategories { get; set; }
-
         public DbSet<Statistic> Statistics { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
@@ -63,11 +61,6 @@
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Advertisement>()
-                .HasOne(a => a.Statistic)
-                .WithOne(s => s.Advertisement)
-                .HasForeignKey<Statistic>(s => s.AdvertisementId);
-
             builder.Entity<Advertisement>()
                 .HasOne(a => a.Pet)
                 .WithOne(p => p.Advertisement)

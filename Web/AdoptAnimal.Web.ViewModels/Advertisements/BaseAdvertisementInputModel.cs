@@ -10,7 +10,7 @@
         public string Title { get; set; }
 
         [Required]
-        [MinLength(50)]
+        [MinLength(20)]
         [MaxLength(300)]
         public string Description { get; set; }
 
@@ -23,7 +23,7 @@
 
         [Required]
         [MinLength(5)]
-        [MaxLength(50)]
+        [MaxLength(30)]
         public string Address { get; set; }
     }
 }

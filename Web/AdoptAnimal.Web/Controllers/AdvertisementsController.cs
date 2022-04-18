@@ -25,7 +25,6 @@
         public AdvertisementsController(
             IAdvertisementService adsService,
             IPetsService petsService,
-            ICommentsService commentsService,
             ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
             IWebHostEnvironment environment)

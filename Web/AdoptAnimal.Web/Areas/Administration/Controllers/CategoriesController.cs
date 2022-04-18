@@ -24,7 +24,6 @@
         {
             return this.View(await this.categoriesRepository
                 .AllWithDeleted()
-                .Include(c => c.SubCategories)
                 .ToListAsync());
         }
 
@@ -37,7 +36,6 @@
             }
 
             var category = await this.categoriesRepository.All()
-                .Include(c => c.SubCategories)
                 .FirstOrDefaultAsync(c => c.Id == id);
             if (category == null)
             {

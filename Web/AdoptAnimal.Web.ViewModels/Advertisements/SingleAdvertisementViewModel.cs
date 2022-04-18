@@ -28,8 +28,6 @@
 
         public PetDetailsViewModel Pet { get; set; }
 
-        public StatisticViewModel Statistic { get; set; }
-
         public IEnumerable<CommentViewModel> Comments { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
@@ -41,10 +39,6 @@
             configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
                 .ForMember(a => a.Pet, opt =>
                 opt.MapFrom(a => a.Pet));
-
-            configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
-                .ForMember(a => a.Statistic, opt =>
-                opt.MapFrom(a => a.Statistic));
 
             configuration.CreateMap<Advertisement, SingleAdvertisementViewModel>()
                 .ForMember(a => a.Comments, opt =>

@@ -10,7 +10,6 @@
         public Category()
         {
             this.Pets = new HashSet<Pet>();
-            this.SubCategories = new HashSet<SubCategory>();
         }
 
         [Required]
@@ -19,7 +18,5 @@
         public string Name { get; set; }
 
         public virtual ICollection<Pet> Pets { get; set; }
-
-        public virtual ICollection<SubCategory> SubCategories { get; set; }
     }
 }

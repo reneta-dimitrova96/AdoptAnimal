@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdoptAnimal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220407180905_Change relation between Article and ArticleImage to one to one")]
-    partial class ChangerelationbetweenArticleandArticleImagetoonetoone
+    [Migration("20220418124038_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,8 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
@@ -44,8 +44,8 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -367,6 +367,9 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SubcategoryId")
+                        .HasColumnType("int");
+
                     b.Property<double?>("Weight")
                         .HasColumnType("float");
 
@@ -378,6 +381,8 @@ namespace AdoptAnimal.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("IsDeleted");
+
+                    b.HasIndex("SubcategoryId");
 
                     b.ToTable("Pets");
                 });
@@ -398,7 +403,6 @@ namespace AdoptAnimal.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Label")
-                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -421,13 +425,10 @@ namespace AdoptAnimal.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AdvertisementId")
+                    b.Property<int>("AdvertisementsCount")
                         .HasColumnType("int");
 
-                    b.Property<int>("CountOfComments")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CountOfViews")
+                    b.Property<int>("ArticlesCounts")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
@@ -442,17 +443,20 @@ namespace AdoptAnimal.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.Property<int>("PetsCount")
+                        .HasColumnType("int");
 
-                    b.HasIndex("AdvertisementId")
-                        .IsUnique();
+                    b.Property<int>("UsersCounts")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Statistics");
                 });
 
-            modelBuilder.Entity("AdoptAnimal.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("AdoptAnimal.Data.Models.Subcategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -485,7 +489,7 @@ namespace AdoptAnimal.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.ToTable("SubCategories");
+                    b.ToTable("Subcategories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -652,9 +656,15 @@ namespace AdoptAnimal.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("AdoptAnimal.Data.Models.Subcategory", "Subcategory")
+                        .WithMany("Pets")
+                        .HasForeignKey("SubcategoryId");
+
                     b.Navigation("Advertisement");
 
                     b.Navigation("Category");
+
+                    b.Navigation("Subcategory");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.PetImage", b =>
@@ -674,18 +684,7 @@ namespace AdoptAnimal.Data.Migrations
                     b.Navigation("Pet");
                 });
 
-            modelBuilder.Entity("AdoptAnimal.Data.Models.Statistic", b =>
-                {
-                    b.HasOne("AdoptAnimal.Data.Models.Advertisement", "Advertisement")
-                        .WithOne("Statistic")
-                        .HasForeignKey("AdoptAnimal.Data.Models.Statistic", "AdvertisementId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Advertisement");
-                });
-
-            modelBuilder.Entity("AdoptAnimal.Data.Models.SubCategory", b =>
+            modelBuilder.Entity("AdoptAnimal.Data.Models.Subcategory", b =>
                 {
                     b.HasOne("AdoptAnimal.Data.Models.Category", "Category")
                         .WithMany("SubCategories")
@@ -752,8 +751,6 @@ namespace AdoptAnimal.Data.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Pet");
-
-                    b.Navigation("Statistic");
                 });
 
             modelBuilder.Entity("AdoptAnimal.Data.Models.ApplicationUser", b =>
@@ -780,6 +777,11 @@ namespace AdoptAnimal.Data.Migrations
             modelBuilder.Entity("AdoptAnimal.Data.Models.Pet", b =>
                 {
                     b.Navigation("PetImages");
+                });
+
+            modelBuilder.Entity("AdoptAnimal.Data.Models.Subcategory", b =>
+                {
+                    b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618
         }

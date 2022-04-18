@@ -4,12 +4,12 @@
 
     public class Statistic : BaseDeletableModel<int>
     {
-        public int CountOfViews { get; set; }
+        public int AdvertisementsCount { get; set; }
 
-        public int CountOfComments { get; set; }
+        public int PetsCount { get; set; }
 
-        public int AdvertisementId { get; set; }
+        public int ArticlesCounts { get; set; }
 
-        public virtual Advertisement Advertisement { get; set; }
+        public int UsersCounts { get; set; }
     }
 }

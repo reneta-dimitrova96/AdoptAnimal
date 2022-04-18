@@ -5,7 +5,6 @@
 
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Mapping;
-    using AdoptAnimal.Web.ViewModels.SubCategories;
     using AutoMapper;
 
     public class GetGategoryViewModel : IMapFrom<Category>, IHaveCustomMappings
@@ -18,14 +17,8 @@
 
         public string ImageUrl { get; set; }
 
-        public IEnumerable<GetSubGategoryViewModel> SubCategories { get; set; }
-
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Category, GetGategoryViewModel>()
-               .ForMember(c => c.SubCategories, opt =>
-               opt.MapFrom(c => c.SubCategories));
-
             configuration.CreateMap<Category, GetGategoryViewModel>()
                .ForMember(c => c.PetsCount, opt =>
                opt.MapFrom(c => c.Pets.Count()));

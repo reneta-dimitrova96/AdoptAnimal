@@ -9,14 +9,6 @@
    {
        <h3>@category.Name</h3>
        <p>Count of pets: @category.PetsCount</p>
-        @if(category.SubCategories.Count() > 0)
-        {
-             <p>SubCategories:</p>
-            @foreach(var subcategory in category.SubCategories)
-            {
-                <h5>@subcategory.Name</h5>
-            }
-        }
        <br />
    }
 </div>
