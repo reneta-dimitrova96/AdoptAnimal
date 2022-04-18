@@ -1,5 +1,7 @@
 ﻿namespace AdoptAnimal.Web.ViewModels.Comments
 {
+    using System;
+
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Mapping;
     using AutoMapper;
@@ -9,6 +11,8 @@
         public string Content { get; set; }
 
         public string AuthorUserName { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

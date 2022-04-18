@@ -7,6 +7,7 @@
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
+    using AdoptAnimal.Web.ViewModels.Comments;
     using AdoptAnimal.Web.ViewModels.Pets;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
@@ -24,6 +25,7 @@
         public AdvertisementsController(
             IAdvertisementService adsService,
             IPetsService petsService,
+            ICommentsService commentsService,
             ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
             IWebHostEnvironment environment)

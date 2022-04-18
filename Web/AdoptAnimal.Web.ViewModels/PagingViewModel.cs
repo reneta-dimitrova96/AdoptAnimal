@@ -1,8 +1,6 @@
 ﻿namespace AdoptAnimal.Web.ViewModels
 {
     using System;
-    using System.Collections.Generic;
-    using System.Text;
 
     public class PagingViewModel
     {

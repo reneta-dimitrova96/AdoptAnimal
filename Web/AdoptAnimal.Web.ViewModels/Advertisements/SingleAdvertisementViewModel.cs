@@ -10,7 +10,7 @@
     using AdoptAnimal.Web.ViewModels.Statistics;
     using AutoMapper;
 
-    public class SingleAdvertisementViewModel : IMapFrom<Advertisement>, IHaveCustomMappings
+    public class SingleAdvertisementViewModel : CreateCommentInputModel, IMapFrom<Advertisement>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
