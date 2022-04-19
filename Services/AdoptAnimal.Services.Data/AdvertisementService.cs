@@ -122,5 +122,15 @@
                 .ToList();
             return userAdvertisements;
         }
+
+        public IEnumerable<T> GetRecentAdvertisements<T>()
+        {
+            var recentAds = this.adsRepository.AllAsNoTracking()
+                .OrderByDescending(a => a.CreatedOn)
+                .Take(6)
+                .To<T>()
+                .ToList();
+            return recentAds;
+        }
     }
 }

@@ -4,12 +4,84 @@
     this.ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to @GlobalConstants.SystemName!</h1>
-    <ul>
-        <li>Pets: @Model.PetsCount</li>
-        <li>Ads: @Model.AdsCount</li>
-        <li>Categories: @Model.CategoriesCount</li>
-        <li>Articles: @Model.ArticlesCount</li>
-    </ul>
+<div class="container">
+    <header style="background-color: #D3D3D3">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center justify-content-center">
+                <div class="col-lg-8 col-xl-7 col-xxl-6">
+                    <div class="my-5 text-center text-xl-start">
+                        <h1 class="display-5 fw-bolder text-dark mb-2">Welcome to @GlobalConstants.SystemName!</h1>
+                        <p class="lead fw-normal text-dark-50 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit!</p>
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-center">
+                            <a class="btn btn-info btn-lg px-4 mr-3" href="#!">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="https://cdn.pixabay.com/photo/2016/01/01/02/01/animal-welfare-1116205_960_720.jpg" alt="Adopt me!" /></div>
+            </div>
+        </div>
+    </header>
+    <div class="row ml-0 mr-0 mt-4">
+        <div class="card col-md-3 p-1 mt-2 shadow-lg bg-white" style="height: 185px;">
+            <div class="card col-md-12 p-1 shadow-lg bg-white">
+                <div class="card-body p-1 text-center">
+                    <h4 class="mt-4" style="color: #9370db">@Model.AdoptAnimalsCount <br /> Adopted Animals</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-balloon-heart" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="m8 2.42-.717-.737c-1.13-1.161-3.243-.777-4.01.72-.35.685-.451 1.707.236 3.062C4.16 6.753 5.52 8.32 8 10.042c2.479-1.723 3.839-3.29 4.491-4.577.687-1.355.587-2.377.236-3.061-.767-1.498-2.88-1.882-4.01-.721L8 2.42Zm-.49 8.5c-10.78-7.44-3-13.155.359-10.063.045.041.089.084.132.129.043-.045.087-.088.132-.129 3.36-3.092 11.137 2.624.357 10.063l.235.468a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.235-.468ZM6.013 2.06c-.649-.18-1.483.083-1.85.798-.131.258-.245.689-.08 1.335.063.244.414.198.487-.043.21-.697.627-1.447 1.359-1.692.217-.073.304-.337.084-.398Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-3 p-1 mt-2 shadow-lg bg-white" style="height: 185px;">
+            <div class="card col-md-12 p-1 shadow-lg bg-white">
+                <div class="card-body p-1 text-center">
+                    <h4 class="mt-4">@Model.AdsCount <br /> Advertisements</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                        <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-3 p-1 mt-2 shadow-lg bg-white" style="height: 185px;">
+            <div class="card col-md-12 p-1 shadow-lg bg-white">
+                <div class="card-body p-1 text-center">
+                    <h4 class="mt-4">@Model.CategoriesCount <br /> Categories</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list-ol" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z" />
+                        <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-3 p-1 mt-2 shadow-lg bg-white" style="height: 185px;">
+            <div class="card col-md-12 p-1 shadow-lg bg-white">
+                <div class="card-body p-1 text-center">
+                    <h4 class="mt-4">@Model.UsersCount <br /> Users</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                        <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row ml-0 mr-0 mt-4">
+        @foreach (var ad in this.Model.RecentAdvertisements)
+        {
+            <div class="card col-md-3 p-1 mt-2 shadow-lg bg-white">
+                <div class="card col-md-12 p-1 shadow-lg bg-white">
+                    <img class="card-img-top img-responsive" src=@ad.Pet.ImageUrl alt=@ad.Pet.Name style="width:100%; height:50%">
+                    <div class="card-body p-1">
+                        <h5 class="card-title text-center p-1 mb-0">@ad.Title</h5>
+                        <p class="card-text mb-0">@ad.Description.Substring(0, 20)...</p>
+                        <p class="card-text mb-1 text-center font-italic">@ad.CreatedOn.ToString("dd/MM/yy") @ad.Address</p>
+                        <a asp-action="ById" asp-route-id="@ad.Id" class="btn btn-primary ml-5 mb-0">Details</a>
+                        <a asp-controller="Categories" asp-action="ById" asp-route-id="@ad.Pet.CategoryId" class="btn btn-primary ml-2 mb-0">@ad.Pet.CategoryName</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>

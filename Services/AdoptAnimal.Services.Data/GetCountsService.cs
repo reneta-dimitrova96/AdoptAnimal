@@ -10,29 +10,31 @@
     {
         private readonly IDeletableEntityRepository<Category> categoriesRepository;
         private readonly IDeletableEntityRepository<Advertisement> adsRepository;
-        private readonly IDeletableEntityRepository<Article> articlesRepository;
         private readonly IDeletableEntityRepository<Pet> petsRepository;
+        private readonly IDeletableEntityRepository<ApplicationUser> usersRepository;
 
         public GetCountsService(
             IDeletableEntityRepository<Category> categoriesRepository,
             IDeletableEntityRepository<Advertisement> adsRepository,
-            IDeletableEntityRepository<Article> articlesRepository,
-            IDeletableEntityRepository<Pet> petsRepository)
+            IDeletableEntityRepository<Pet> petsRepository,
+            IDeletableEntityRepository<ApplicationUser> usersRepository)
         {
             this.categoriesRepository = categoriesRepository;
-            this.articlesRepository = articlesRepository;
+            this.petsRepository = petsRepository;
             this.adsRepository = adsRepository;
-            this.petsRepository = petsRepository; 
+            this.usersRepository = usersRepository;
         }
 
         public IndexViewModel GetCounts()
         {
             var data = new IndexViewModel
             {
-                CategoriesCount = this.categoriesRepository.All().Count(),
-                AdsCount = this.adsRepository.All().Count(),
-                PetsCount = this.petsRepository.All().Count(),
-                ArticlesCount = this.articlesRepository.All().Count(),
+                CategoriesCount = this.categoriesRepository.AllAsNoTracking().Count(),
+                AdsCount = this.adsRepository.AllAsNoTracking().Count(),
+                UsersCount = this.usersRepository.AllAsNoTracking().Count(),
+                AdoptAnimalsCount = this.petsRepository.AllAsNoTracking()
+                .Where(p => p.IsAdopted == true)
+                .Count(),
             };
             return data;
         }

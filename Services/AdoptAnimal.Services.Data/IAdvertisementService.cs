@@ -12,6 +12,8 @@
 
         IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12);
 
+        IEnumerable<T> GetRecentAdvertisements<T>();
+
         int GetAdsCount();
 
         T GetById<T>(int id);
