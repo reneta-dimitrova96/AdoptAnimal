@@ -11,7 +11,10 @@
                     <h2 class="fw-bolder mb-1">@Model.Title</h2>
                     <div class="font-italic text-muted fst-italic mb-2">Added on @Model.CreatedOn.ToString("hh:MM dd/mm/yy") by @Model.AuthorUserName</div>
                 </header>
-                <figure class="mb-4"><img class="img-fluid rounded" src=@Model.ArticleImage.Source alt="..."></figure>
+                @if(Model.ArticleImage != null)
+                {
+                    <figure class="mb-4"><img class="img-fluid rounded" src=@Model.ArticleImage.Source alt="..."></figure>
+                }
                 <section class="mb-5">
                     <p class="fs-5 mb-4">@Model.Content</p>
                 </section>

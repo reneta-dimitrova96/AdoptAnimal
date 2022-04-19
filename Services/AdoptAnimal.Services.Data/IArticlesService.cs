@@ -7,7 +7,7 @@
 
     public interface IArticlesService
     {
-        Task CreateAsync(CreateArticleInputModel input);
+        Task CreateAsync(CreateArticleInputModel input, string userId);
 
         IEnumerable<T> GetAllArticles<T>(int page, int itemsPerPage = 6);
 

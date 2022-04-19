@@ -6,28 +6,35 @@
     using AdoptAnimal.Data;
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
 
     [Area("Administration")]
-    public class CategoriesController : AdministrationController
+    public class ArticlesController : Controller
     {
-        private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IDeletableEntityRepository<Article> articlesRepository;
+        private readonly UserManager<ApplicationUser> userManager;
 
-        public CategoriesController(IDeletableEntityRepository<Category> categoriesRepository)
+        public ArticlesController(
+            IDeletableEntityRepository<Article> articlesRepository,
+            UserManager<ApplicationUser> userManager)
         {
-           this.categoriesRepository = categoriesRepository;
+            this.articlesRepository = articlesRepository;
+            this.userManager = userManager;
         }
 
-        // GET: Administration/Categories
+        // GET: Administration/Articles
         public async Task<IActionResult> Index()
         {
-            return this.View(await this.categoriesRepository
+            return this.View(await this.articlesRepository
                 .AllWithDeleted()
+                .Include(a => a.Author)
                 .ToListAsync());
         }
 
-        // GET: Administration/Categories/Details/5
+        // GET: Administration/Articles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,40 +42,43 @@
                 return this.NotFound();
             }
 
-            var category = await this.categoriesRepository.All()
-                .FirstOrDefaultAsync(c => c.Id == id);
-            if (category == null)
+            var article = await this.articlesRepository.All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+            if (article == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(article);
         }
 
-        // GET: Administration/Categories/Create
+        // GET: Administration/Articles/Create
         public IActionResult Create()
         {
             return this.View();
         }
 
-        // POST: Administration/Categories/Create
+        // POST: Administration/Articles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        public async Task<IActionResult> Create([Bind("Title,Content,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Article article)
         {
+            var user = await this.userManager.GetUserAsync(this.User);
+            article.Author = user;
+
             if (this.ModelState.IsValid)
             {
-                await this.categoriesRepository.AddAsync(category);
-                await this.categoriesRepository.SaveChangesAsync();
+                await this.articlesRepository.AddAsync(article);
+                await this.articlesRepository.SaveChangesAsync();
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(category);
+            return this.View(article);
         }
 
-        // GET: Administration/Categories/Edit/5
+        // GET: Administration/Articles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -76,23 +86,23 @@
                 return this.NotFound();
             }
 
-            var category = this.categoriesRepository.All().FirstOrDefault(c => c.Id == id);
-            if (category == null)
+            var article = this.articlesRepository.All().FirstOrDefault(a => a.Id == id);
+            if (article == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(article);
         }
 
-        // POST: Administration/Categories/Edit/5
+        // POST: Administration/Articles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Content,AuthorId,IsDeleted,DeletedOn,Id,CreatedOn,ModifiedOn")] Article article)
         {
-            if (id != category.Id)
+            if (id != article.Id)
             {
                 return this.NotFound();
             }
@@ -101,12 +111,12 @@
             {
                 try
                 {
-                   this.categoriesRepository.Update(category);
-                   await this.categoriesRepository.SaveChangesAsync();
+                    this.articlesRepository.Update(article);
+                    await this.articlesRepository.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!this.CategoryExists(category.Id))
+                    if (!this.ArticleExists(article.Id))
                     {
                         return this.NotFound();
                     }
@@ -119,10 +129,10 @@
                 return this.RedirectToAction(nameof(this.Index));
             }
 
-            return this.View(category);
+            return this.View(article);
         }
 
-        // GET: Administration/Categories/Delete/5
+        // GET: Administration/Articles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,31 +140,31 @@
                 return this.NotFound();
             }
 
-            var category = await this.categoriesRepository.All()
-                .FirstOrDefaultAsync(c => c.Id == id);
-            if (category == null)
+            var article = await this.articlesRepository.All()
+                .FirstOrDefaultAsync(a => a.Id == id);
+            if (article == null)
             {
                 return this.NotFound();
             }
 
-            return this.View(category);
+            return this.View(article);
         }
 
-        // POST: Administration/Categories/Delete/5
+        // POST: Administration/Articles/Delete/5
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = this.categoriesRepository.All().FirstOrDefault(c => c.Id == id);
-            this.categoriesRepository.Delete(category);
-            await this.categoriesRepository.SaveChangesAsync();
+            var article = this.articlesRepository.All().FirstOrDefault(a => a.Id == id);
+            this.articlesRepository.Delete(article);
+            await this.articlesRepository.SaveChangesAsync();
             return this.RedirectToAction(nameof(this.Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool ArticleExists(int id)
         {
-            return this.categoriesRepository.All().Any(c => c.Id == id);
+            return this.articlesRepository.All().Any(a => a.Id == id);
         }
     }
 }

@@ -18,12 +18,13 @@
             this.articlesRepository = articlesRepository;
         }
 
-        public async Task CreateAsync(CreateArticleInputModel input)
+        public async Task CreateAsync(CreateArticleInputModel input, string userId)
         {
             var article = new Article
             {
                 Title = input.Title,
                 Content = input.Content,
+                AuthorId = userId,
             };
             article.ArticleImage = new ArticleImage
             {

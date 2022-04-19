@@ -12,56 +12,71 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@GlobalConstants.SystemName</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarSupportedContent">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <ul class="navbar-nav flex-grow-1" style="font-weight:600; font-size:17px">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Advertisements
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Advertisements" asp-action="All">All Advertisements</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Advertisements" asp-action="Create">Create Ad</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Advertisements" asp-action="AdsByUserId">My ads</a>
+                                }
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Articles
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @if (this.User.Identity.IsAuthenticated)
+                                {
+                                    <a class="dropdown-item" asp-area="" asp-controller="Articles" asp-action="All">All articles</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Articles" asp-action="Create">Create Article</a>
+                                }
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Advertisements" asp-action="All">Advertisements</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Pets" asp-action="All">Pets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pets" asp-action="All">Pets</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Categories" asp-action="All">Categories</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="All">Categories</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="All">Articles</a>
-                        </li>
-                        @if (this.User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Advertisements" asp-action="Create">Create Ad</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="Create">Create Article</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Advertisements" asp-action="AdsByUserId">My ads</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Comments" asp-action="Create">Create comment</a>
-                            </li>
-                        }
                         @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Administration" asp-controller="Categories" asp-action="Index">Admin Categories</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    @if (this.User.Identity.IsAuthenticated)
+                                    {
+                                        <a class="dropdown-item" asp-area="Administration" asp-controller="Categories" asp-action="Index">Categories</a>
+                                        <a class="dropdown-item" asp-area="Administration" asp-controller="Articles" asp-action="Index">Articles</a>
+                                    }
+                                </div>
                             </li>
                         }
                     </ul>
                 </div>
             </div>
         </nav>
+
     </header>
 
     <div class="container">

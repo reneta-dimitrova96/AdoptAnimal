@@ -1,10 +1,10 @@
-﻿@model IEnumerable<AdoptAnimal.Data.Models.Category>
+﻿@model IEnumerable<AdoptAnimal.Data.Models.Article>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h3 class="mt-2">Categories</h3>
+<h3 class="mt-2">Articles</h3>
 
 <p>
     <a asp-action="Create" class="btn btn-info">Create New</a>
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedOn)
@@ -35,7 +35,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreatedOn)
@@ -52,11 +52,10 @@
                 <td>
                     @if (!item.IsDeleted)
                     {
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info mt-1">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning mt-1">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger mt-1">Delete</a>
                     }
-
                 </td>
             </tr>
         }
