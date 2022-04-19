@@ -1,0 +1,20 @@
+﻿@using AdoptAnimal.Common
+@model AdoptAnimal.Web.ViewModels.SearchAdvertisements.SearchIndexViewModel
+@{
+    this.ViewData["Title"] = "Search advertisements by category";
+}
+
+<h4 class="text-center mt-2">@ViewData["Title"]</h4>
+<form asp-action="List" method="get" class="mt-2">
+    <div class="row">
+        @foreach (var category in Model.Categories)
+        {
+            <div class="radio col-2 text-center mt-2">
+                <label><input id="category_@category.Id" type="radio" name="CategoryId" value=@category.Id class="form-control">@category.Name</label>
+            </div>
+        }
+    </div>
+    <div class="text-center">
+        <button class="btn btn-info">Search</button>
+    </div>
+</form>

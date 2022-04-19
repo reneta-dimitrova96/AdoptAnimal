@@ -132,5 +132,15 @@
                 .ToList();
             return recentAds;
         }
+
+        public IEnumerable<T> GetByCategory<T>(int categoryId)
+        {
+            var advertisements = this.adsRepository.All()
+                .Where(a => a.Pet.CategoryId == categoryId)
+                .OrderByDescending(a => a.CreatedOn)
+                .To<T>()
+                .ToList();
+            return advertisements;
+        }
     }
 }

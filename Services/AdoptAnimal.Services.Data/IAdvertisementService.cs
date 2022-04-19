@@ -14,6 +14,8 @@
 
         IEnumerable<T> GetRecentAdvertisements<T>();
 
+        IEnumerable<T> GetByCategory<T>(int categoryId);
+
         int GetAdsCount();
 
         T GetById<T>(int id);
