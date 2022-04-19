@@ -1,6 +1,7 @@
 ﻿namespace AdoptAnimal.Web.Controllers
 {
     using System.Threading.Tasks;
+
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Articles;

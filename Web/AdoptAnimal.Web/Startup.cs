@@ -11,6 +11,7 @@
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Services.Messaging;
+    using AdoptAnimal.Web.Areas.Administration.Services;
     using AdoptAnimal.Web.ViewModels;
 
     using Microsoft.AspNetCore.Builder;
@@ -70,6 +71,7 @@
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IArticlesService, ArticlesService>();
             services.AddTransient<ICommentsService, CommentsService>();
+            services.AddTransient<IStatisticsService, StatisticsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
