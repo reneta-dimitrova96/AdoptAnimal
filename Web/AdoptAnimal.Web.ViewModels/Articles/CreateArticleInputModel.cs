@@ -6,15 +6,17 @@
     public class CreateArticleInputModel
     {
         [Required]
-        [MinLength(10)]
+        [MinLength(5)]
         [MaxLength(30)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(30)]
+        [MinLength(20)]
         [MaxLength(500)]
         public string Content { get; set; }
 
-        public string ArticleImageSorce { get; set; }
+        public string Source { get; set; }
+
+        public string ImageUrl { get; set; }
     }
 }

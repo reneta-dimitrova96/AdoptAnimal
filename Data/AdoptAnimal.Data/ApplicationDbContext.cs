@@ -32,8 +32,6 @@
 
         public DbSet<Comment> Comments { get; set; }
 
-        public DbSet<ArticleImage> ArticleImages { get; set; }
-
         public DbSet<Article> Articles { get; set; }
 
         public DbSet<Category> Categories { get; set; }
@@ -65,11 +63,6 @@
                 .HasOne(a => a.Pet)
                 .WithOne(p => p.Advertisement)
                 .HasForeignKey<Pet>(p => p.AdvertisementId);
-
-            builder.Entity<Article>()
-                .HasOne(a => a.ArticleImage)
-                .WithOne(ai => ai.Article)
-                .HasForeignKey<ArticleImage>(ai => ai.ArticleId);
 
             builder.Entity<Pet>()
                 .Property(p => p.IsAdopted)

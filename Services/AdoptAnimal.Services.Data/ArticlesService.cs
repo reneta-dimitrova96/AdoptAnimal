@@ -25,10 +25,8 @@
                 Title = input.Title,
                 Content = input.Content,
                 AuthorId = userId,
-            };
-            article.ArticleImage = new ArticleImage
-            {
-                Source = input.ArticleImageSorce,
+                Source = input.Source,
+                ImageUrl = input.ImageUrl,
             };
 
             await this.articlesRepository.AddAsync(article);

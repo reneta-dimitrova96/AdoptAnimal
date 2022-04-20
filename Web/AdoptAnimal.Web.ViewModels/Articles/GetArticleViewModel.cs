@@ -7,7 +7,7 @@
     using AdoptAnimal.Services.Mapping;
     using AutoMapper;
 
-    public class GetArticleViewModel : IMapFrom<Article>, IHaveCustomMappings
+    public class GetArticleViewModel : IMapFrom<Article>
     {
         public int Id { get; set; }
 
@@ -17,14 +17,6 @@
 
         public string Source { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<Article, GetArticleViewModel>()
-                .ForMember(
-                    a => a.Source, opt => opt.MapFrom(a =>
-                    a.ArticleImage.Source != null ?
-                    a.ArticleImage.Source :
-                    string.Empty));
-        }
+        public string ImageUrl { get; set; }
     }
 }

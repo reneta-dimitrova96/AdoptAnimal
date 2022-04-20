@@ -17,13 +17,18 @@
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
     <div class="form-group">
-         <label asp-for="ArticleImageSorce">Image URL</label>
+        <label asp-for="Source">Source:</label>
+        <textarea asp-for="Source" class="form-control"></textarea>
+        <span asp-validation-for="Source" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+         <label asp-for="ImageUrl">Image URL</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
                 </div>
-             <span asp-validation-for="ArticleImageSorce" class="text-danger"></span>
-            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" asp-for="ArticleImageSorce">
+             <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" asp-for="ImageUrl">
             </div>
     </div>
     <input type="submit" />

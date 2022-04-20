@@ -55,7 +55,6 @@
                 {
                     AuthorId = userId,
                     Extension = extension,
-                    Label = input.Title,
                 };
 
                 pet.PetImages.Add(petImage);
