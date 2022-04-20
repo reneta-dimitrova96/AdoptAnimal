@@ -7,11 +7,11 @@
 
     public class SearchAdvertisementsController : Controller
     {
-        private readonly IAdvertisementService adsService;
+        private readonly IAdvertisementsService adsService;
         private readonly ICategoriesService categoriesService;
 
         public SearchAdvertisementsController(
-            IAdvertisementService adsService,
+            IAdvertisementsService adsService,
             ICategoriesService categoriesService)
         {
             this.adsService = adsService;

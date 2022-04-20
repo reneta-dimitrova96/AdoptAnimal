@@ -41,15 +41,15 @@
 
             await this.articlesService.CreateAsync(input, user.Id);
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 6;
-            var viewModel = new GetAllArticlesViewModel
+            var viewModel = new ArticlesListViewModel
             {
-                Articles = this.articlesService.GetAllArticles<GetArticleViewModel>(id, ItemsPerPage),
+                Articles = this.articlesService.GetAllArticles<ArticleInListViewModel>(id, ItemsPerPage),
                 PageNumber = id,
                 EntityCount = this.articlesService.GetArticlesCount(),
                 ItemsPerPage = ItemsPerPage,

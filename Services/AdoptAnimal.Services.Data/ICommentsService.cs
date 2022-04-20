@@ -9,8 +9,8 @@
     {
         Task CreateAsync(CreateCommentInputModel input, string userId);
 
-        IEnumerable<T> GetAllCommentsByAdId<T>(int advertisementId);
-
         int GetCommentsCount();
+
+        IEnumerable<T> GetAllCommentsByAdId<T>(int advertisementId);
     }
 }

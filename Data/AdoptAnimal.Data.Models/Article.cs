@@ -19,6 +19,7 @@
 
         public string Source { get; set; }
 
+        [Url]
         public string ImageUrl { get; set; }
 
         public string AuthorId { get; set; }

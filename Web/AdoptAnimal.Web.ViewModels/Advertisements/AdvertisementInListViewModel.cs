@@ -1,9 +1,6 @@
 ﻿namespace AdoptAnimal.Web.ViewModels.Advertisements
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
 
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Services.Mapping;

@@ -1,7 +1,5 @@
 ﻿namespace AdoptAnimal.Web.Controllers
 {
-    using System.Threading.Tasks;
-
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Categories;
     using AdoptAnimal.Web.ViewModels.Pets;
@@ -16,30 +14,11 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult Create()
-        {
-            var viewModel = new CreateCategoryInputModel();
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateCategoryInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.View(input);
-            }
-
-            await this.categoriesService.CreateAsync(input);
-
-            return this.Redirect("/");
-        }
-
         public IActionResult All()
         {
-            var viewModel = new GetAllCategoriesViewModel
+            var viewModel = new CategoriesListViewModel
             {
-                Categories = this.categoriesService.GetAllCategories<GetGategoryViewModel>(),
+                Categories = this.categoriesService.GetAllCategories<CategoryInListViewModel>(),
             };
             return this.View(viewModel);
         }

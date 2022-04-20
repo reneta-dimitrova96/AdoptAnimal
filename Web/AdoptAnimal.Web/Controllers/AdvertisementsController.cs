@@ -7,7 +7,6 @@
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
-    using AdoptAnimal.Web.ViewModels.Comments;
     using AdoptAnimal.Web.ViewModels.Pets;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Hosting;
@@ -16,14 +15,14 @@
 
     public class AdvertisementsController : Controller
     {
-        private readonly IAdvertisementService adsService;
+        private readonly IAdvertisementsService adsService;
         private readonly IPetsService petsService;
         private readonly ICategoriesService categoriesService;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IWebHostEnvironment environment;
 
         public AdvertisementsController(
-            IAdvertisementService adsService,
+            IAdvertisementsService adsService,
             IPetsService petsService,
             ICategoriesService categoriesService,
             UserManager<ApplicationUser> userManager,
@@ -79,7 +78,7 @@
                 return this.View(input);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All));
         }
 
         public IActionResult All(int id = 1)
@@ -87,7 +86,7 @@
             const int ItemsPerPage = 12;
             var viewModel = new AdvertisementsListViewModel
             {
-                Advertisements = this.adsService.GetAll<AdvertisementInListViewModel>(id, ItemsPerPage),
+                Advertisements = this.adsService.GetAllAdvertisements<AdvertisementInListViewModel>(id, ItemsPerPage),
                 PageNumber = id,
                 EntityCount = this.adsService.GetAdsCount(),
                 ItemsPerPage = ItemsPerPage,

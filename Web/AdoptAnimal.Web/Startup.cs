@@ -66,7 +66,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<IGetCountsService, GetCountsService>();
-            services.AddTransient<IAdvertisementService, AdvertisementService>();
+            services.AddTransient<IAdvertisementsService, AdvertisementsService>();
             services.AddTransient<IPetsService, PetsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IArticlesService, ArticlesService>();

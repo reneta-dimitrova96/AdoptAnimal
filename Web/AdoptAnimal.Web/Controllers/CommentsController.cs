@@ -43,14 +43,14 @@
             var user = await this.userManager.GetUserAsync(this.User);
             await this.commentsService.CreateAsync(input, user.Id);
 
-            return this.Redirect("/");
+            return this.RedirectToAction(nameof(this.All), new { input.AdvertisementId });
         }
 
         public IActionResult All(int advertisementId)
         {
             var viewModel = new CommentsListViewModel
             {
-                Comments = this.commentsService.GetAllCommentsByAdId<CommentViewModel>(advertisementId),
+                Comments = this.commentsService.GetAllCommentsByAdId<CommentInListViewModel>(advertisementId),
             };
             return this.View(viewModel);
         }

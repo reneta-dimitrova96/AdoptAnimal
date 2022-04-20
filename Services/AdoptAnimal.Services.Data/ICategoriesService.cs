@@ -1,18 +1,13 @@
 ﻿namespace AdoptAnimal.Services.Data
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
-
-    using AdoptAnimal.Web.ViewModels.Categories;
 
     public interface ICategoriesService
     {
+        T GetById<T>(int id);
+
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
 
-        Task CreateAsync(CreateCategoryInputModel input);
-
         IEnumerable<T> GetAllCategories<T>();
-
-        T GetById<T>(int id);
     }
 }

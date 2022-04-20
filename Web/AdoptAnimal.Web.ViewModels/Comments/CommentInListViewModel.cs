@@ -6,7 +6,7 @@
     using AdoptAnimal.Services.Mapping;
     using AutoMapper;
 
-    public class CommentViewModel : IMapFrom<Comment>, IHaveCustomMappings
+    public class CommentInListViewModel : IMapFrom<Comment>, IHaveCustomMappings
     {
         public string Content { get; set; }
 
@@ -16,7 +16,7 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Comment, CommentViewModel>()
+            configuration.CreateMap<Comment, CommentInListViewModel>()
                 .ForMember(c => c.AuthorUserName, opt =>
                 opt.MapFrom(c => c.Author.UserName));
         }

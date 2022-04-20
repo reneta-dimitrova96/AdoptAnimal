@@ -4,6 +4,6 @@
 
     public class CommentsListViewModel
     {
-        public IEnumerable<CommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentInListViewModel> Comments { get; set; }
     }
 }

@@ -7,8 +7,6 @@
 
     public interface IPetsService
     {
-        Task<int> CreateAsync(CreatePetInputModel input);
-
         IEnumerable<KeyValuePair<int, string>> GetAllGenderTypes();
 
         IEnumerable<KeyValuePair<int, string>> GetAllIsDewormedEnumNames();

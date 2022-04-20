@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     using AdoptAnimal.Data.Common.Repositories;
@@ -12,23 +11,18 @@
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
-    using AdoptAnimal.Web.ViewModels.Pets;
-    using Microsoft.EntityFrameworkCore;
 
-    public class AdvertisementService : IAdvertisementService
+    public class AdvertisementsService : IAdvertisementsService
     {
         private readonly IDeletableEntityRepository<Advertisement> adsRepository;
         private readonly IDeletableEntityRepository<Pet> petsRepository;
-        private readonly IRepository<PetImage> petImagesRepository;
 
-        public AdvertisementService(
+        public AdvertisementsService(
             IDeletableEntityRepository<Advertisement> adsRepository,
-            IDeletableEntityRepository<Pet> petsRepository,
-            IRepository<PetImage> petImagesRepository)
+            IDeletableEntityRepository<Pet> petsRepository)
         {
             this.adsRepository = adsRepository;
             this.petsRepository = petsRepository;
-            this.petImagesRepository = petImagesRepository;
         }
 
         public async Task CreateAsync(CreateAdvertisementInputModel input, string userId, string imagePath)
@@ -78,9 +72,10 @@
             await this.adsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 12)
+        public IEnumerable<T> GetAllAdvertisements<T>(int page, int itemsPerPage = 12)
         {
             var ads = this.adsRepository.AllAsNoTracking()
+                .Where(a => a.Pet.IsAdopted != true)
                 .OrderByDescending(a => a.Id)
                 .Skip((page - 1) * itemsPerPage).Take(itemsPerPage)
                 .To<T>()
@@ -129,6 +124,7 @@
         public IEnumerable<T> GetRecentAdvertisements<T>()
         {
             var recentAds = this.adsRepository.AllAsNoTracking()
+                .Where(a => a.Pet.IsAdopted != true)
                 .OrderByDescending(a => a.CreatedOn)
                 .Take(6)
                 .To<T>()

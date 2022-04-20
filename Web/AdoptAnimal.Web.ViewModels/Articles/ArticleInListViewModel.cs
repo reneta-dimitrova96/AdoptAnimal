@@ -7,7 +7,7 @@
     using AdoptAnimal.Services.Mapping;
     using AutoMapper;
 
-    public class GetArticleViewModel : IMapFrom<Article>
+    public class ArticleInListViewModel : IMapFrom<Article>
     {
         public int Id { get; set; }
 

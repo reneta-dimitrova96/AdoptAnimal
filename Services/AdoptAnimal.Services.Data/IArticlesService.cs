@@ -9,10 +9,10 @@
     {
         Task CreateAsync(CreateArticleInputModel input, string userId);
 
-        IEnumerable<T> GetAllArticles<T>(int page, int itemsPerPage = 6);
-
         int GetArticlesCount();
 
         T GetById<T>(int id);
+
+        IEnumerable<T> GetAllArticles<T>(int page, int itemsPerPage = 6);
     }
 }

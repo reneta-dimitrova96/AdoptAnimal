@@ -3,39 +3,19 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using AdoptAnimal.Data.Common.Repositories;
     using AdoptAnimal.Data.Models;
     using AdoptAnimal.Data.Models.Enums;
     using AdoptAnimal.Services.Mapping;
-    using AdoptAnimal.Web.ViewModels.Pets;
 
     public class PetsService : IPetsService
     {
         private readonly IDeletableEntityRepository<Pet> petsRepository;
-        private readonly IRepository<PetImage> petImagesRepository;
 
-        public PetsService(IDeletableEntityRepository<Pet> petsRepository, IRepository<PetImage> petImagesRepository)
+        public PetsService(IDeletableEntityRepository<Pet> petsRepository)
         {
             this.petsRepository = petsRepository;
-            this.petImagesRepository = petImagesRepository;
-        }
-
-        public async Task<int> CreateAsync(CreatePetInputModel input)
-        {
-            var pet = new Pet
-            {
-                Name = input.Name,
-                Age = input.Age,
-                Weight = input.Weight,
-                Breed = input.Breed,
-                CategoryId = input.CategoryId,
-            };
-
-            await this.petsRepository.AddAsync(pet);
-            await this.petsRepository.SaveChangesAsync();
-            return pet.Id;
         }
 
         public IEnumerable<KeyValuePair<int, string>> GetAllGenderTypes()
@@ -89,7 +69,7 @@
         public T GetById<T>(int id)
         {
             var pet = this.petsRepository.AllAsNoTracking()
-                .Where(a => a.Id == id)
+                .Where(p => p.Id == id)
                 .To<T>()
                 .FirstOrDefault();
             return pet;

@@ -7,7 +7,7 @@
     using AdoptAnimal.Services.Mapping;
     using AutoMapper;
 
-    public class GetGategoryViewModel : IMapFrom<Category>, IHaveCustomMappings
+    public class CategoryInListViewModel : IMapFrom<Category>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -19,11 +19,11 @@
 
         public void CreateMappings(IProfileExpression configuration)
         {
-            configuration.CreateMap<Category, GetGategoryViewModel>()
+            configuration.CreateMap<Category, CategoryInListViewModel>()
                .ForMember(c => c.PetsCount, opt =>
                opt.MapFrom(c => c.Pets.Count()));
 
-            configuration.CreateMap<Category, GetGategoryViewModel>()
+            configuration.CreateMap<Category, CategoryInListViewModel>()
                .ForMember(c => c.ImageUrl, opt =>
                opt.MapFrom(c => c.Pets.FirstOrDefault().PetImages.FirstOrDefault().ImageUrl != null ?
                                 c.Pets.FirstOrDefault().PetImages.FirstOrDefault().ImageUrl :

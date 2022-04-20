@@ -6,9 +6,9 @@
 
     public class Statistic : BaseDeletableModel<int>
     {
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         public int AdvertisementsCount { get; set; }
 

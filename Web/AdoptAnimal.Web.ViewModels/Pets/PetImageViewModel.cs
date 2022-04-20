@@ -12,8 +12,6 @@
 
         public string ImageUrl { get; set; }
 
-        public string Label { get; set; }
-
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<PetImage, PetImageViewModel>()

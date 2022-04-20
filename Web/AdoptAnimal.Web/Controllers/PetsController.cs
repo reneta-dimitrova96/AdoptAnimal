@@ -17,31 +17,6 @@
             this.categoriesService = categoriesService;
         }
 
-        public IActionResult Create()
-        {
-            var viewModel = new CreatePetInputModel();
-            viewModel.GenderTypes = this.petsService.GetAllGenderTypes();
-            viewModel.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
-            viewModel.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
-            return this.View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(CreatePetInputModel input)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                input.GenderTypes = this.petsService.GetAllGenderTypes();
-                input.IsDewormed = this.petsService.GetAllIsDewormedEnumNames();
-                input.CategoriesItems = this.categoriesService.GetAllAsKeyValuePairs();
-                return this.View(input);
-            }
-
-            var petId = await this.petsService.CreateAsync(input);
-
-            return this.Redirect($"/Advertisements/Create/{petId}");
-        }
-
         public IActionResult All(int id = 1)
         {
             const int ItemsPerPage = 9;

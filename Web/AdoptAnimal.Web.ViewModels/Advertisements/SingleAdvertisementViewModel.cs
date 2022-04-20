@@ -7,10 +7,9 @@
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Comments;
     using AdoptAnimal.Web.ViewModels.Pets;
-    using AdoptAnimal.Web.ViewModels.Statistics;
     using AutoMapper;
 
-    public class SingleAdvertisementViewModel : CreateCommentInputModel, IMapFrom<Advertisement>, IHaveCustomMappings
+    public class SingleAdvertisementViewModel : IMapFrom<Advertisement>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -28,7 +27,7 @@
 
         public PetDetailsViewModel Pet { get; set; }
 
-        public IEnumerable<CommentViewModel> Comments { get; set; }
+        public IEnumerable<CommentInListViewModel> Comments { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

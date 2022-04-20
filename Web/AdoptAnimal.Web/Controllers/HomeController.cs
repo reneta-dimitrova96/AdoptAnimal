@@ -7,11 +7,11 @@
     public class HomeController : BaseController
     {
         private readonly IGetCountsService countsService;
-        private readonly IAdvertisementService adsService;
+        private readonly IAdvertisementsService adsService;
 
         public HomeController(
             IGetCountsService countsService,
-            IAdvertisementService adsService)
+            IAdvertisementsService adsService)
         {
             this.countsService = countsService;
             this.adsService = adsService;
@@ -22,11 +22,6 @@
             var viewModel = this.countsService.GetCounts();
             viewModel.RecentAdvertisements = this.adsService.GetRecentAdvertisements<AdvertisementInListViewModel>();
             return this.View(viewModel);
-        }
-
-        public IActionResult Privacy()
-        {
-            return this.View();
         }
     }
 }
