@@ -19,12 +19,13 @@
             this.commentsRepository = commentsRepository;
         }
 
-        public async Task CreateAsync(CreateCommentInputModel input)
+        public async Task CreateAsync(CreateCommentInputModel input, string userId)
         {
             var comment = new Comment
             {
                 Content = input.Content,
                 AdvertisementId = input.AdvertisementId,
+                AuthorId = userId,
             };
             await this.commentsRepository.AddAsync(comment);
             await this.commentsRepository.SaveChangesAsync();

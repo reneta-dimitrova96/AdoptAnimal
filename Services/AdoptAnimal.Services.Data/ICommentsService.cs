@@ -7,7 +7,7 @@
 
     public interface ICommentsService
     {
-        Task CreateAsync(CreateCommentInputModel input);
+        Task CreateAsync(CreateCommentInputModel input, string userId);
 
         IEnumerable<T> GetAllCommentsByAdId<T>(int advertisementId);
 

@@ -22,9 +22,12 @@
             this.userManager = userManager;
         }
 
-        public IActionResult Create()
+        public IActionResult Create(int advertisementId)
         {
-            var viewModel = new CreateCommentInputModel();
+            var viewModel = new CreateCommentInputModel
+            {
+                AdvertisementId = advertisementId,
+            };
             return this.View(viewModel);
         }
 
@@ -38,7 +41,7 @@
             }
 
             var user = await this.userManager.GetUserAsync(this.User);
-            await this.commentsService.CreateAsync(input);
+            await this.commentsService.CreateAsync(input, user.Id);
 
             return this.Redirect("/");
         }
