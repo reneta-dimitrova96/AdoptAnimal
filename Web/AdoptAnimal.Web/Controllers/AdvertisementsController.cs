@@ -142,7 +142,27 @@
         public IActionResult ById(int id)
         {
             var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);
-            return this.View(advertisement);
+            if (advertisement != null)
+            {
+                return this.View(advertisement);
+            }
+
+            return this.Redirect("/");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await this.userManager.GetUserAsync(this.User);
+            var isAuthorOfAd = this.adsService.IsAuthorOfAd(id, user.Id);
+            if (isAuthorOfAd)
+            {
+                await this.adsService.DeleteAsync(id);
+                return this.RedirectToAction(nameof(this.AdsByUserId));
+            }
+
+            return this.Redirect("/");
         }
     }
 }

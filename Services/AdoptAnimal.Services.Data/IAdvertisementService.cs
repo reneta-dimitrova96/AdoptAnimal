@@ -23,5 +23,9 @@
         Task UpdateAsync(int id, EditAdvertisementInputModel input);
 
         IEnumerable<T> GetByUserId<T>(string userId);
+
+        Task DeleteAsync(int id);
+
+        bool IsAuthorOfAd(int advertisementId, string userId);
     }
 }

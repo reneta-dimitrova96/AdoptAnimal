@@ -30,7 +30,6 @@
                 Age = input.Age,
                 Weight = input.Weight,
                 Breed = input.Breed,
-                IsAdopted = input.IsAdopted,
                 CategoryId = input.CategoryId,
             };
 

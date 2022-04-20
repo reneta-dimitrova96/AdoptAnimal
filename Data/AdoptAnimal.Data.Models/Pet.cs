@@ -25,7 +25,7 @@
 
         public IsDewormed IsDewormed { get; set; }
 
-        public bool IsAdopted { get; set; }
+        public bool? IsAdopted { get; set; }
 
         public int AdvertisementId { get; set; }
 

@@ -39,7 +39,6 @@
                 Age = input.Pet.Age,
                 Weight = input.Pet.Weight,
                 Breed = input.Pet.Breed,
-                IsAdopted = input.Pet.IsAdopted,
                 CategoryId = input.Pet.CategoryId,
             };
 
@@ -111,7 +110,12 @@
             advertisement.Description = input.Description;
             advertisement.PhoneNumber = input.PhoneNumber;
             advertisement.Address = input.Address;
+
+            var pet = this.petsRepository.All().FirstOrDefault(p => p.AdvertisementId == id);
+            pet.IsAdopted = input.PetIsAdopted;
+
             await this.adsRepository.SaveChangesAsync();
+            await this.petsRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetByUserId<T>(string userId)
@@ -141,6 +145,22 @@
                 .To<T>()
                 .ToList();
             return advertisements;
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var advertisement = this.adsRepository.All()
+                .FirstOrDefault(a => a.Id == id);
+            this.adsRepository.Delete(advertisement);
+            await this.adsRepository.SaveChangesAsync();
+        }
+
+        public bool IsAuthorOfAd(int advertisementId, string userId)
+        {
+            var advertisement = this.adsRepository.All()
+                .Where(a => a.Id == advertisementId && a.AuthorId == userId)
+                .FirstOrDefault();
+            return advertisement != null;
         }
     }
 }

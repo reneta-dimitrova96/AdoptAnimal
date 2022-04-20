@@ -71,6 +71,10 @@
                 .WithOne(ai => ai.Article)
                 .HasForeignKey<ArticleImage>(ai => ai.ArticleId);
 
+            builder.Entity<Pet>()
+                .Property(p => p.IsAdopted)
+                .HasDefaultValue(false);
+
             // Needed for Identity models configuration
             base.OnModelCreating(builder);
 

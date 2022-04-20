@@ -22,11 +22,7 @@
 
         public IEnumerable<KeyValuePair<int, string>> IsDewormed { get; set; }
 
-        public bool IsAdopted { get; set; }
-
         public int CategoryId { get; set; }
-
-        public int SubcategoryId { get; set; }
 
         public IEnumerable<IFormFile> Images { get; set; }
 
