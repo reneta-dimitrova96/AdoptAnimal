@@ -2,6 +2,7 @@
 {
     using AdoptAnimal.Services.Data;
     using AdoptAnimal.Web.ViewModels.Advertisements;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : BaseController
@@ -22,6 +23,17 @@
             var viewModel = this.countsService.GetCounts();
             viewModel.RecentAdvertisements = this.adsService.GetRecentAdvertisements<AdvertisementInListViewModel>();
             return this.View(viewModel);
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error(int? statusCode = null)
+        {
+            if (statusCode == StatusCodes.Status404NotFound)
+            {
+                return this.Redirect($"/Error/{StatusCodes.Status404NotFound}");
+            }
+
+            return this.Redirect($"/Error/{StatusCodes.Status500InternalServerError}");
         }
     }
 }

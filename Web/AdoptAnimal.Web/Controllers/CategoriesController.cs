@@ -31,7 +31,7 @@
                 return this.View(category);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("NotFoundError", "Error");
         }
     }
 }

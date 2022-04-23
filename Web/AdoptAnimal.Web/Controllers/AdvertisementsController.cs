@@ -146,7 +146,7 @@
                 return this.View(advertisement);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("NotFoundError", "Error");
         }
 
         [HttpPost]
@@ -161,7 +161,7 @@
                 return this.RedirectToAction(nameof(this.AdsByUserId));
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("NotFoundError", "Error");
         }
     }
 }

@@ -38,7 +38,7 @@
                 return this.View(pet);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("NotFoundError", "Error");
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model AdoptAnimal.Web.ViewModels.ErrorViewModel
+
+
+<div class="text-center m-5">
+    <h3 class="display-4">Ops!</h3>
+    <h3>Something went wrong! Sorry about that. Please try again later.</h3>
+    <div class="mt-1">
+        <div><strong>Status code:</strong> <code>@this.Model.StatusCode</code></div>
+        @if (this.Model.ShowRequestId)
+        {
+            <br />
+            <strong>Request ID:</strong> <code>@this.Model.RequestId</code>
+        }
+    </div>
+</div>

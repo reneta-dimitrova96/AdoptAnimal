@@ -65,7 +65,7 @@
                 return this.View(article);
             }
 
-            return this.Redirect("/");
+            return this.RedirectToAction("NotFoundError", "Error");
         }
     }
 }
