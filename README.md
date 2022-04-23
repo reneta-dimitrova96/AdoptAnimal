@@ -46,10 +46,10 @@ Pet Details:
 ![petdatails](https://user-images.githubusercontent.com/87023949/164947675-9e4e6fc6-5d5d-4963-941b-295db2d2c519.jpg)
 
 All Categories:
-![allcategories](https://user-images.githubusercontent.com/87023949/164947258-b046b807-b2c9-4d3b-bf9e-b99dd59a407a.jpg)
+![aa](https://user-images.githubusercontent.com/87023949/164947931-dcb64e5d-8838-427e-bce4-70fef5f8fe27.png)
 
 Search:
-![search](https://user-images.githubusercontent.com/87023949/164947278-75830d79-1a90-44fc-b637-0e86228cef95.jpg)
+![sss](https://user-images.githubusercontent.com/87023949/164947939-401ead19-e211-47df-912a-e0b273954e1c.jpg)
 
 
 Logged User Pages:
@@ -61,7 +61,7 @@ Add article:
 ![adArticle](https://user-images.githubusercontent.com/87023949/164947361-53e21b71-c73f-496a-a45b-554d79a438df.jpg)
 
 My advertisements:
-![myAds](https://user-images.githubusercontent.com/87023949/164947491-dc1bff98-ee80-4580-9560-f8b66a835bbc.jpg)
+![aaaaaa](https://user-images.githubusercontent.com/87023949/164947945-82252810-2037-4b92-a5fd-1079b3ea0691.jpg)
 
 My advertisement details:
 ![userAd](https://user-images.githubusercontent.com/87023949/164947770-6eca6f08-e089-473c-8b01-2b8fb0d17a33.jpg)
