@@ -7,8 +7,8 @@ Web Application for adopting animals using ASP.NET Core
 Using ASP.NET Core Template by : Nikolay Kostov
 
 Technologies and tools used:
-</br> .NET Core 5.0
-ASP.NET Core 5.0
+ - .NET Core 5.0
+ - ASP.NET Core 5.0
 Entity Framework Core 5.0
 Microsoft.AspNetCore.Mvc.Testing
 xUnit
