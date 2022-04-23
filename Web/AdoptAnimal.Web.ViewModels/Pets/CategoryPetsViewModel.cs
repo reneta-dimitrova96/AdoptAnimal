@@ -7,7 +7,7 @@
 
     public class CategoryPetsViewModel : IMapFrom<Category>
     {
-        public string CategoryName { get; set; }
+        public string Name { get; set; }
 
         public IEnumerable<PetInListViewModel> Pets { get; set; }
     }

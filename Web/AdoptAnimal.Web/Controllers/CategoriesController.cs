@@ -26,7 +26,12 @@
         public IActionResult ById(int id)
         {
             var category = this.categoriesService.GetById<CategoryPetsViewModel>(id);
-            return this.View(category);
+            if (category != null)
+            {
+                return this.View(category);
+            }
+
+            return this.Redirect("/");
         }
     }
 }

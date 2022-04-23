@@ -1,4 +1,4 @@
-﻿namespace AdoptAnimal.Services.Data
+﻿ namespace AdoptAnimal.Services.Data
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

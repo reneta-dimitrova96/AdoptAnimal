@@ -22,7 +22,7 @@
             const int ItemsPerPage = 9;
             var viewModel = new PetsListViewModel
             {
-                Pets = this.petsService.GetAll<PetInListViewModel>(id, ItemsPerPage),
+                Pets = this.petsService.GatAllPets<PetInListViewModel>(id, ItemsPerPage),
                 PageNumber = id,
                 EntityCount = this.petsService.GetPetsCount(),
                 ItemsPerPage = ItemsPerPage,
@@ -33,7 +33,12 @@
         public IActionResult ById(int id)
         {
             var pet = this.petsService.GetById<PetDetailsViewModel>(id);
-            return this.View(pet);
+            if (pet != null)
+            {
+                return this.View(pet);
+            }
+
+            return this.Redirect("/");
         }
     }
 }

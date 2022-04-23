@@ -59,8 +59,13 @@
 
         public IActionResult ById(int id)
         {
-            var advertisement = this.articlesService.GetById<SingleArticleViewModel>(id);
-            return this.View(advertisement);
+            var article = this.articlesService.GetById<SingleArticleViewModel>(id);
+            if (article != null)
+            {
+                return this.View(article);
+            }
+
+            return this.Redirect("/");
         }
     }
 }

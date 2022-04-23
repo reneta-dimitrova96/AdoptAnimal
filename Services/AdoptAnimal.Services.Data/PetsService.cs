@@ -51,7 +51,7 @@
             }).ToList().Select(x => new KeyValuePair<string, string>(x.Id.ToString(), x.Name));
         }
 
-        public IEnumerable<T> GetAll<T>(int page, int itemsPerPage = 9)
+        public IEnumerable<T> GatAllPets<T>(int page, int itemsPerPage = 9)
         {
             var pets = this.petsRepository.AllAsNoTracking()
                 .OrderByDescending(p => p.CreatedOn)

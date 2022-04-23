@@ -37,26 +37,30 @@
             };
 
             var allowedExtension = new[] { "jpg", "png" };
-            foreach (var image in input.Pet.Images)
+
+            if (input.Pet.Images != null)
             {
-                var extension = Path.GetExtension(image.FileName).TrimStart('.');
-                if (!allowedExtension.Any(x => extension.EndsWith(extension)))
+                foreach (var image in input.Pet.Images)
                 {
-                    throw new Exception($"Invalid image extension {extension}!");
+                    var extension = Path.GetExtension(image.FileName).TrimStart('.');
+                    if (!allowedExtension.Any(x => extension.EndsWith(extension)))
+                    {
+                        throw new Exception($"Invalid image extension {extension}!");
+                    }
+
+                    var petImage = new PetImage
+                    {
+                        AuthorId = userId,
+                        Extension = extension,
+                    };
+
+                    pet.PetImages.Add(petImage);
+
+                    Directory.CreateDirectory(Path.GetDirectoryName($"{imagePath}/pets/"));
+                    var physicalPath = $"{imagePath}/pets/{petImage.Id}.{extension}";
+                    using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                    await image.CopyToAsync(fileStream);
                 }
-
-                var petImage = new PetImage
-                {
-                    AuthorId = userId,
-                    Extension = extension,
-                };
-
-                pet.PetImages.Add(petImage);
-
-                Directory.CreateDirectory(Path.GetDirectoryName($"{imagePath}/pets/"));
-                var physicalPath = $"{imagePath}/pets/{petImage.Id}.{extension}";
-                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-                await image.CopyToAsync(fileStream);
             }
 
             var ad = new Advertisement

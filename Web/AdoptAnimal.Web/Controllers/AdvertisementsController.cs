@@ -108,7 +108,7 @@
             if (!this.ModelState.IsValid)
             {
                 input.Id = id;
-                return this.View();
+                return this.View(input);
             }
 
             await this.adsService.UpdateAsync(id, input);

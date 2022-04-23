@@ -13,7 +13,7 @@
     using AdoptAnimal.Services.Messaging;
     using AdoptAnimal.Web.Areas.Administration.Services;
     using AdoptAnimal.Web.ViewModels;
-
+    using AdoptAnimal.Web.ViewModels.Advertisements;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
