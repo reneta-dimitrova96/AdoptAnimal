@@ -20,10 +20,20 @@ Bootstrap
 HTML 5
 CSS
 
+Description and Futures:
+Users futures:
+	- register as regular user, log and logout.
+	- create advertisement
+ - create article
+ - add comment
+ - search by category name
+ 
+App Admin futures:
+	- add/update new categories, articles and statistics.
+ 
 Screen Shots:
 
 Anonymous user Pages:
-
 Home page:
 ![home](https://user-images.githubusercontent.com/87023949/164947124-3aed4fe4-b597-4db6-9d1f-08eee0163106.jpg)
 
@@ -68,5 +78,11 @@ My advertisement details:
 
 Create comment:
 ![createComment](https://user-images.githubusercontent.com/87023949/164947809-90e2fc8c-9516-4328-a3fa-03cc4f7cad61.jpg)
+
+
+Admin Pages:
+
+All Categories / Articles / Statistics 
+![admin](https://user-images.githubusercontent.com/87023949/164948087-4eb62833-44b5-4a93-8a4c-4199a426abc8.jpg)
 
 
