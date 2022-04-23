@@ -25,13 +25,7 @@ Screen Shots:
 Anonymous user:
 
 Home page:
-![image](https://user-images.githubusercontent.com/87023949/164947041-7ba94fb6-b378-4467-abbd-7041cc6780bd.png)
-
-All advertisements:
-![image](https://user-images.githubusercontent.com/87023949/164947055-9c01b13a-8011-4f32-b45a-ac4cc00b0b94.png)
-
-All articles:
-![image](https://user-images.githubusercontent.com/87023949/164947062-f98b3ca8-b042-4042-9d72-5665f132fd2d.png)
+![home](https://user-images.githubusercontent.com/87023949/164947124-3aed4fe4-b597-4db6-9d1f-08eee0163106.jpg)
 
 All Pets:
 ![image](https://user-images.githubusercontent.com/87023949/164947071-e71bc7e5-5c44-4032-9ac7-cf91f4a3f540.png)
