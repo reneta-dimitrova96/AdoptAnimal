@@ -43,7 +43,7 @@
             var user = await this.userManager.GetUserAsync(this.User);
             await this.commentsService.CreateAsync(input, user.Id);
 
-            return this.RedirectToAction(nameof(this.All), new { input.AdvertisementId });
+            return this.Redirect($"/Advertisements/ById/{input.AdvertisementId}");
         }
 
         public IActionResult All(int advertisementId)

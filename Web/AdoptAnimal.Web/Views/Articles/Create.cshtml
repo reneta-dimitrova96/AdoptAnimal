@@ -1,28 +1,28 @@
 ﻿@model AdoptAnimal.Web.ViewModels.Articles.CreateArticleInputModel
 @{
-    this.ViewData["Title"] = "Add new article";
+    this.ViewData["Title"] = "Добави статия";
 }
 <h3 class="text-center mt-2">@this.ViewData["Title"]</h3>
 
 <form method="post">
     <div asp-validation-summary="All"></div>
     <div class="form-group">
-        <label asp-for="Title">Title:</label>
+        <label asp-for="Title">Заглавие:</label>
         <input asp-for="Title" class="form-control" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Content">Content:</label>
+        <label asp-for="Content">Съдържание:</label>
         <textarea asp-for="Content" class="form-control"></textarea>
         <span asp-validation-for="Content" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Source">Source:</label>
+        <label asp-for="Source">Източник:</label>
         <textarea asp-for="Source" class="form-control"></textarea>
         <span asp-validation-for="Source" class="text-danger"></span>
     </div>
     <div class="form-group">
-         <label asp-for="ImageUrl">Image URL</label>
+         <label asp-for="ImageUrl">URL на картинка</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
@@ -31,7 +31,7 @@
             <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" asp-for="ImageUrl">
             </div>
     </div>
-    <input type="submit" />
+    <input type="submit" class="btn btn-primary mt-2 mb-2" style="background-color: #9370db; border: none" value="Запази статията"/>
 </form>
 
 

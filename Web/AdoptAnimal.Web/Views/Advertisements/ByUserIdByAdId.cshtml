@@ -12,25 +12,30 @@
                         <div class="tab-pane active" id="pic-1"><img data-enlargeable class="image-li" src=@Model.Pet.PetImages.FirstOrDefault().ImageUrl alt=@Model.Pet.Name /></div>
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        <li class="active mt-2"><a data-target="#pic-1" data-toggle="tab"><img data-enlargeable class="image-li" 
-src=@Model.Pet.PetImages.FirstOrDefault().ImageUrl alt=@Model.Pet.Name style="width:160px; height:80px"/></a></li>
+                        <li class="active mt-2">
+                            <a data-target="#pic-1" data-toggle="tab">
+                                <img data-enlargeable class="image-li"
+                                     src=@Model.Pet.PetImages.FirstOrDefault().ImageUrl alt=@Model.Pet.Name style="width:160px; height:80px" />
+                            </a>
+                        </li>
                         @foreach (var petImage in Model.Pet.PetImages)
                         {
-                            <li class="mt-2"><a data-target="#pic-2" data-toggle="tab"><img data-enlargeable class="image-li" src=@petImage.ImageUrl alt=@Model.Pet.Name style="width:160px; height:80px"/></a></li>
+                            <li class="mt-2"><a data-target="#pic-2" data-toggle="tab"><img data-enlargeable class="image-li" src=@petImage.ImageUrl alt=@Model.Pet.Name style="width:160px; height:80px" /></a></li>
                         }
                     </ul>
 
                 </div>
                 <div class="details col-md-6">
                     <h3 class="product-title text-center pt-2 p-1 mb-0">@Model.Title</h3>
-                    <p class="product-description font-italic p-1 mb-0">Added on @Model.CreatedOn.ToString("hh:MM dd/mm/yy")</p>
+                    <p class="product-description font-italic p-1 mb-0">Добавена на @Model.CreatedOn.ToString("hh:mm dd/MM/yy")</p>
                     <p class="product-description p-1 mb-0">@Model.Description</p>
-                    <p class="product-description p-1 mb-0">Name: @Model.Pet.Name Age:@Model.Pet.Age Gender:@Model.Pet.Gender Weight:@Model.Pet.Weight Breed:@Model.Pet.Breed IsDewormed:@Model.Pet.IsDewormed IsAdopted:@Model.Pet.IsAdopted</p>
-                    <p class="product-description p-1 mb-0">Tel:@Model.PhoneNumber Added By:@Model.AuthorUserName</p>
-                    <p class="product-description p-1 mb-0">Adresa:@Model.Address</p>
-                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-0">Edit</a>
+                    <p class="product-description p-1 mb-0">Информация за животното:</p>
+                    <p class="product-description p-1 mb-0">Име: @Model.Pet.Name Години: @Model.Pet.Age Пол: @Model.Pet.Gender Тегло: @Model.Pet.Weight Порода: @Model.Pet.Breed Обезпаразитено: @Model.Pet.IsDewormed</p>
+                    <p class="product-description p-1 mb-0">Телефон за връзка:@Model.PhoneNumber</p>
+                    <p class="product-description p-1 mb-0">Адрес:@Model.Address</p>
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-0">Редактирай</a>
                     <form asp-action="Delete" asp-route-id="@Model.Id">
-                        <button class="btn btn-danger mb-0 mt-2">Delete</button>
+                        <button class="btn btn-danger mb-0 mt-2">Изтрий</button>
                     </form>
                 </div>
             </div>

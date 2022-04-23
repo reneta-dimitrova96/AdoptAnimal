@@ -35,6 +35,7 @@
         {
             var comments = this.commentsRepository.AllAsNoTracking()
                 .Where(c => c.AdvertisementId == advertisementId)
+                .OrderByDescending(c => c.CreatedOn)
                 .To<T>()
                 .ToList();
             return comments;
