@@ -7,7 +7,7 @@ Web Application for adopting animals using ASP.NET Core
 Using ASP.NET Core Template by : Nikolay Kostov
 
 Technologies and tools used:
-.NET Core 5.0
+</br> .NET Core 5.0
 ASP.NET Core 5.0
 Entity Framework Core 5.0
 Microsoft.AspNetCore.Mvc.Testing
@@ -22,11 +22,9 @@ CSS
 
 Description and Futures:
 Users futures:
-	- register as regular user, log and logout.
-	- create advertisement
- - create article
- - add comment
- - search by category name
+- register as regular user, log and logout.
+- create advertisement, article, comment
+- search by category name
  
 App Admin futures:
 	- add/update new categories, articles and statistics.
