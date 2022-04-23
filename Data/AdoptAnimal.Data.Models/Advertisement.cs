@@ -15,12 +15,12 @@
 
         [Required]
         [MinLength(5)]
-        [MaxLength(30)]
+        [MaxLength(80)]
         public string Title { get; set; }
 
         [Required]
         [MinLength(20)]
-        [MaxLength(300)]
+        [MaxLength(800)]
         public string Description { get; set; }
 
         [Required]
@@ -32,7 +32,7 @@
 
         [Required]
         [MinLength(5)]
-        [MaxLength(30)]
+        [MaxLength(50)]
         public string Address { get; set; }
 
         public string AuthorId { get; set; }

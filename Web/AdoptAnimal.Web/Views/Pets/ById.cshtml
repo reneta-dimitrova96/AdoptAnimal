@@ -2,17 +2,39 @@
 @{
     this.ViewData["Title"] = "ById";
 }
-<div class="d-flex justify-content-sm-around">
+<div class="d-flex justify-content-sm-around mt-2">
     <div class="col-lg-3 col-md-12 mt-0 mb-2 rounded">
         <div class="cardm rounded mt-0">
             <h5 class="mb-1">@Model.Name</h5>
-            <p class="mb-0">Age :@Model.Age</p>
-            <p class="mb-0">Gender: @Model.Gender</p>
-            <p class="mb-0">Weight: @Model.Weight</p>
-            <p class="mb-0">Breed: @Model.Breed</p>
-            <p class="mb-0">IsDewormed: @Model.IsDewormed</p>
-            <p class="mb-0">IsAdopted: @Model.IsAdopted</p>
-            <a asp-controller="Advertisements" asp-action="ById" asp-route-id="@Model.AdvertisementId" class="btn btn-info text-center p-1 mt-1 ml-0">Към обявата</a>
+            <p class="mb-0">Години :@Model.Age</p>
+            @if(Model.Gender == "Female")
+            {
+                <p class="mb-0">Пол: Женски</p>
+            }else if(Model.Gender == "Male")
+            {
+                <p class="mb-0">Пол: Мъжки</p>
+            }
+            <p class="mb-0">Тегло: @Model.Weight</p>
+            <p class="mb-0">Порода: @Model.Breed</p>
+            @if(Model.IsDewormed == "Yes")
+            {
+                <p class="mb-0">Обезпаразитено: Да</p>
+            }else if(Model.IsDewormed == "No")
+            {
+                <p class="mb-0">Обезпаразитено: Не</p>
+            }
+            else
+            {
+                <p class="mb-0">Обезпаразитено: Няма информация</p>
+            }
+            @if(Model.IsAdopted)
+            {
+                <p class="mb-0">Осиновено: Да</p>
+            }else
+            {
+                <p class="mb-0">Осиновено: Не</p>
+            }
+            <a asp-controller="Advertisements" asp-action="ById" asp-route-id="@Model.AdvertisementId" class="btn btn-info text-center p-1 mt-2 ml-0">Към обявата</a>
         </div>
     </div>
     <div class="col-lg-9 col-md-12 mt-0 mb-2 shadow-1-strong rounded">

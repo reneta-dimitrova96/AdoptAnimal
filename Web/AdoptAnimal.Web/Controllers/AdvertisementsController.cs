@@ -141,6 +141,7 @@
                 {
                     advertisement.IsAuthor = true;
                 }
+
                 return this.View(advertisement);
             }
 

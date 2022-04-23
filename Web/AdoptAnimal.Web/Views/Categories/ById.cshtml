@@ -4,7 +4,7 @@
     this.ViewData["Title"] = "Get all pets";
 }
 
-<h5>@Model.Name</h5>
+<h4 class="text-center mt-2">@Model.Name</h4>
 
 <div class="row">
     @foreach (var pet in this.Model.Pets)
@@ -15,7 +15,7 @@
                 <div class="media-body">
                     <h5 class="text-center p-2">@pet.Name</h5>
                     <p class="text-center p-1 mt-3 font-weight-bolder ">@pet.CategoryName</p>
-                    <a asp-controller="Pets" asp-action="ById" asp-route-id="@pet.Id" class="btn btn-info text-center p-1 mt-3 ml-3">More Info</a>
+                    <a asp-controller="Pets" asp-action="ById" asp-route-id="@pet.Id" class="btn btn-info text-center p-1 mt-3 ml-3">Детайли</a>
                 </div>
             </div>
         </div>

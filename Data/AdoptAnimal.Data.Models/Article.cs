@@ -9,12 +9,12 @@
     {
         [Required]
         [MinLength(5)]
-        [MaxLength(30)]
+        [MaxLength(80)]
         public string Title { get; set; }
 
         [Required]
         [MinLength(20)]
-        [MaxLength(500)]
+        [MaxLength(800)]
         public string Content { get; set; }
 
         public string Source { get; set; }

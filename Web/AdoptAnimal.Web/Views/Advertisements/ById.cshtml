@@ -51,8 +51,8 @@
                     }else{
                         <p class="product-description p-1 mb-0">Няма информация за обезпаразитяване</p>
                     }
-                    <p class="product-description p-1 mt-3 mb-0">Телефон за връзка:@Model.PhoneNumber</p>
-                    <p class="product-description p-1 mb-0">Адрес:@Model.Address</p>
+                    <p class="product-description p-1 mt-3 mb-0">Телефон за връзка: @Model.PhoneNumber</p>
+                    <p class="product-description p-1 mb-0">Адрес: @Model.Address</p>
                     @if (Model.IsAuthor != null && Model.IsAuthor == true)
                     {
                         <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-0">Редактирай</a>

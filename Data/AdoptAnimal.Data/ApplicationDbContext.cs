@@ -37,6 +37,7 @@
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Statistic> Statistics { get; set; }
+        public object ApplicationUsers { get; internal set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
