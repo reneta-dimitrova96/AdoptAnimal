@@ -31,6 +31,7 @@ App Admin futures:
 Screen Shots:
 
 Anonymous user Pages:
+
 Home page:
 ![home](https://user-images.githubusercontent.com/87023949/164947124-3aed4fe4-b597-4db6-9d1f-08eee0163106.jpg)
 
