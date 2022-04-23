@@ -25,6 +25,8 @@
 
         public string AuthorUserName { get; set; }
 
+        public bool? IsAuthor { get; set; }
+
         public PetDetailsViewModel Pet { get; set; }
 
         public IEnumerable<CommentInListViewModel> Comments { get; set; }

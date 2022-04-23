@@ -12,7 +12,7 @@
                 <img class="card-img-top img-responsive" src=@ad.Pet.ImageUrl alt=@ad.Pet.Name style="width:100%; height:50%">
                 <div class="card-body p-1">
                     <h5 class="card-title text-center p-1 mb-0">@ad.Title </h5>
-                    <a asp-action="ByUserIdByAdId" asp-route-id="@ad.Id" class="btn btn-info ml-5 mb-0" style="border: none" text-center">Детайли</a>
+                    <a asp-action="ById" asp-route-id="@ad.Id" class="btn btn-info ml-5 mb-0" style="border: none" text-center">Детайли</a>
                     <a asp-controller="Categories" asp-action="ById" asp-route-id="@ad.Pet.CategoryId" class="btn btn-primary ml-1 mb-0" style="background-color: #9370db; border: none">@ad.Pet.CategoryName</a>
                 </div>
             </div>

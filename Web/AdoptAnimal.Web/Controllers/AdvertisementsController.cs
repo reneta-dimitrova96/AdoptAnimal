@@ -117,13 +117,13 @@
         }
 
         [Authorize]
-        public async Task<IActionResult> AdsByUserId(int id = 1)
+        public IActionResult AdsByUserId(int id = 1)
         {
-            var user = await this.userManager.GetUserAsync(this.User);
+            var user = this.userManager.GetUserAsync(this.User);
             const int ItemsPerPage = 12;
             var viewModel = new AdvertisementsListViewModel
             {
-                Advertisements = this.adsService.GetByUserId<AdvertisementInListViewModel>(user.Id),
+                Advertisements = this.adsService.GetByUserId<AdvertisementInListViewModel>(user.Result.Id),
                 PageNumber = id,
                 EntityCount = this.adsService.GetAdsCount(),
                 ItemsPerPage = ItemsPerPage,
@@ -131,18 +131,16 @@
             return this.View(viewModel);
         }
 
-        [Authorize]
-        public IActionResult ByUserIdByAdId(int id)
-        {
-            var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);
-            return this.View(advertisement);
-        }
-
         public IActionResult ById(int id)
         {
             var advertisement = this.adsService.GetById<SingleAdvertisementViewModel>(id);
             if (advertisement != null)
             {
+                var user = this.userManager.GetUserAsync(this.User);
+                if (advertisement.AuthorUserName == user.Result.UserName)
+                {
+                    advertisement.IsAuthor = true;
+                }
                 return this.View(advertisement);
             }
 

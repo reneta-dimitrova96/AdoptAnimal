@@ -34,9 +34,32 @@
                     <p class="product-description font-italic p-1 mb-0">Добавена на @Model.CreatedOn.ToString("hh:mm dd/MM/yy") от @Model.AuthorUserName</p>
                     <p class="product-description p-1 mb-0">@Model.Description</p>
                     <p class="product-description p-1 mb-0">Информация за животното:</p>
-                    <p class="product-description p-1 mb-0">Име: @Model.Pet.Name Години: @Model.Pet.Age Пол: @Model.Pet.Gender Тегло: @Model.Pet.Weight Порода: @Model.Pet.Breed Обезпаразитено: @Model.Pet.IsDewormed</p>
-                    <p class="product-description p-1 mb-0">Телефон за връзка:@Model.PhoneNumber</p>
+                    <p class="product-description p-1 mb-0">Име: @Model.Pet.Name Години: @Model.Pet.Age Тегло: @Model.Pet.Weight Порода: @Model.Pet.Breed</p>
+                    @if(Model.Pet.Gender == "1")
+                    {
+                        <p class="product-description p-1 mb-0">Мъжко</p>
+                    }else
+                    {
+                        <p class="product-description p-1 mb-0">Женско</p>
+                    }
+                    @if(Model.Pet.IsDewormed == "1")
+                    {
+                        <p class="product-description p-1 mb-0">Обезпаразитено</p>
+                    }else if(Model.Pet.IsDewormed == "2")
+                    {
+                        <p class="product-description p-1 mb-0">Необезпаразитено</p>
+                    }else{
+                        <p class="product-description p-1 mb-0">Няма информация за обезпаразитяване</p>
+                    }
+                    <p class="product-description p-1 mt-3 mb-0">Телефон за връзка:@Model.PhoneNumber</p>
                     <p class="product-description p-1 mb-0">Адрес:@Model.Address</p>
+                    @if (Model.IsAuthor != null && Model.IsAuthor == true)
+                    {
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info mb-0">Редактирай</a>
+                        <form asp-action="Delete" asp-route-id="@Model.Id">
+                            <button class="btn btn-danger mb-0 mt-2">Изтрий</button>
+                        </form>
+                    }
                 </div>
             </div>
         </div>
