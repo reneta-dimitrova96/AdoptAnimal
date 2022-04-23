@@ -289,7 +289,7 @@
         }
 
         [Fact]
-        public void ByIdShouldRedirectIdAdIsNull()
+        public void ByIdShouldRedirectIfAdIsNull()
         {
             this.mockAdsService.Setup(a => a.GetById<SingleAdvertisementViewModel>(1))
                                .Returns(value: null)
@@ -303,7 +303,7 @@
                 this.mockWebHostEnvironment.Object);
 
             var result = controller.ById(1);
-            Assert.IsType<RedirectResult>(result);
+            Assert.IsType<RedirectToActionResult>(result);
         }
 
         [Fact]
@@ -331,7 +331,7 @@
         }
 
         [Fact]
-        public async Task DeleteShouldRedirectToHomePageIdUserIsNotAuthorOfAd()
+        public async Task DeleteShouldRedirectToNotFoundErrorPageIdUserIsNotAuthorOfAd()
         {
             var appUser = new ApplicationUser
             {
@@ -354,7 +354,7 @@
                 this.mockWebHostEnvironment.Object);
 
             var result = await controller.Delete(1);
-            Assert.IsType<RedirectResult>(result);
+            Assert.IsType<RedirectToActionResult>(result);
         }
 
         [Fact]
@@ -386,7 +386,7 @@
             Assert.Equal("AdsByUserId", redirectToActionResult.ActionName);
         }
 
-        /*[Fact]
+        [Fact]
         public void AdsByUserIdShouldReturnCorrectView()
         {
             var appUser = new ApplicationUser
@@ -414,7 +414,7 @@
                 this.mockWebHostEnvironment.Object);
 
             var result = controller.AdsByUserId();
-            Assert.IsType<ActionResult>(result);
-        }*/
+            Assert.IsType<ViewResult>(result);
+        }
     }
 }

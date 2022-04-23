@@ -11,7 +11,6 @@
     using AdoptAnimal.Services.Mapping;
     using AdoptAnimal.Web.ViewModels.Ads;
     using AdoptAnimal.Web.ViewModels.Advertisements;
-    using Microsoft.EntityFrameworkCore;
 
     public class AdvertisementsService : IAdvertisementsService
     {

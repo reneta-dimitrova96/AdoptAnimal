@@ -13,8 +13,6 @@
     public class AdvertisementsServiceTests : BaseServiceTests
     {
         private const string TestImagePath = "Test.jpg";
-        private const string InvalidTestImagePath = "Test.docx";
-        private const string TestImageContentType = "image/jpg";
         private string userId;
         private int adId;
         private int categoryId;
@@ -50,40 +48,6 @@
             await this.Service.CreateAsync(inputModel, this.userId, TestImagePath);
             Assert.Equal(2, this.DbContext.Advertisements.Count());
         }
-
-        /*[Fact]
-        public async Task CreateAdAsyncWithImage()
-        {
-            using var stream = File.OpenRead("wwwroot/images");
-            var file = new FormFile(stream, 0, stream.Length, null, Path.GetFileName(stream.Name))
-            {
-                Headers = new HeaderDictionary(),
-                ContentType = TestImageContentType,
-            };
-
-            List<IFormFile> imgs = new List<IFormFile> { file };
-
-            var inputModel = new CreateAdvertisementInputModel
-            {
-                Title = "Test ad 2",
-                Description = "Test description is here 2...",
-                PhoneNumber = "0876780040",
-                Address = "Test address 2",
-                Pet = new CreatePetInputModel
-                {
-                    Name = "Test pet name 2",
-                    Age = 2,
-                    Weight = 2,
-                    Breed = "Test breed 2",
-                    CategoryId = 1,
-                    Images = imgs,
-                },
-            };
-
-            await this.Service.CreateAsync(inputModel, this.userId, TestImagePath);
-            var image = this.DbContext.PetImages.First(pi => pi.AuthorId == this.userId);
-            Assert.True(image != null);
-        }*/
 
         [Fact]
         public async Task UpdateAsyncUpdatesAdCorrectly()
@@ -154,18 +118,17 @@
         }
 
         [Fact]
+        public void GetRecentAdsShouldReturnCorrectResult()
+        {
+            var ads = this.Service.GetRecentAdvertisements<AdvertisementInListViewModel>();
+            Assert.Single(ads);
+        }
+
+        [Fact]
         public void GetAdsCount()
         {
             var adsCount = this.Service.GetAdsCount();
             Assert.Equal(1, adsCount);
-        }
-
-        [Fact]
-        public void GetByIdReturnsCorrectRecord()
-        {
-            var ad = this.DbContext.Advertisements.First().Id;
-            var ad2 = this.Service.GetById<SingleAdvertisementViewModel>(ad);
-            Assert.Equal("Test ad", ad2.Title);
         }
 
         [Fact]

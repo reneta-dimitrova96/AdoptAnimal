@@ -80,25 +80,6 @@
            .Build();
         }
 
-        /*
-        protected void RegisterMappings()
-        {
-            AutoMapperConfig.RegisterMappings(
-                typeof(EditAdvertisementInputModel).GetType().Assembly,
-                typeof(AdvertisementInListViewModel).GetType().Assembly,
-                typeof(SingleAdvertisementViewModel).GetType().Assembly,
-                typeof(SingleArticleViewModel).GetType().Assembly,
-                typeof(ArticleInListViewModel).GetType().Assembly,
-                typeof(CategoryInListViewModel).GetType().Assembly,
-                typeof(CommentInListViewModel).GetType().Assembly,
-                typeof(CategoryPetsViewModel).GetType().Assembly,
-                typeof(PetDetailsViewModel).GetType().Assembly,
-                typeof(PetImageViewModel).GetType().Assembly,
-                typeof(PetInListShortViewModel).GetType().Assembly,
-                typeof(PetInListViewModel).GetType().Assembly,
-                typeof(CategoryNameIdViewModel).GetType().Assembly);
-        }*/
-
         private void Seed()
         {
             var category = new Category

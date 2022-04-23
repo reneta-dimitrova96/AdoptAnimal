@@ -155,7 +155,7 @@
                 this.mockUserManager);
 
             var result = controller.ById(1);
-            Assert.IsType<RedirectResult>(result);
+            Assert.IsType<RedirectToActionResult>(result);
         }
     }
 }

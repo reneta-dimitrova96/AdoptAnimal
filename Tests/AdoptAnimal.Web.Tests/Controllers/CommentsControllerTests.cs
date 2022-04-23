@@ -85,9 +85,7 @@
 
             var result = await controller.Create(model);
 
-            var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
-            Assert.Null(redirectToActionResult.ControllerName);
-            Assert.Equal("All", redirectToActionResult.ActionName);
+            Assert.IsType<RedirectResult>(result);
         }
 
         [Fact]

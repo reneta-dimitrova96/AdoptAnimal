@@ -137,7 +137,7 @@
             if (advertisement != null)
             {
                 var user = this.userManager.GetUserAsync(this.User);
-                if (advertisement.AuthorUserName == user.Result.UserName)
+                if (user.Result != null && advertisement.AuthorUserName == user.Result.UserName)
                 {
                     advertisement.IsAuthor = true;
                 }

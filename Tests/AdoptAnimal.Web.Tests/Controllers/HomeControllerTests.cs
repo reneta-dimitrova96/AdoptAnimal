@@ -39,5 +39,18 @@
             var result = controller.Index();
             Assert.IsType<ViewResult>(result);
         }
+
+        [Fact]
+        public void ErrorShouldRedirectToErrorControllerWithActionName()
+        {
+            var controller = new HomeController(
+                this.mockGetCountsService.Object,
+                this.mockAdsService.Object);
+
+            var result = controller.Error(404);
+            Assert.IsType<RedirectResult>(result);
+            var resultWithoutArgs = controller.Error();
+            Assert.IsType<RedirectResult>(resultWithoutArgs);
+        }
     }
 }
