@@ -1,24 +1,23 @@
 # AdoptAnimal
 Web Application for adopting animals using ASP.NET Core
 
- - The purpose of the application is to enable the user to quickly and easily find their dream pet or give their own.
- - You can only view the content or create your own ads and articles.
+ - The purpose of the application is to enable the user to quickly and easily find your dream pet.
 
 Using ASP.NET Core Template by : Nikolay Kostov
 
 Technologies and tools used:
  - .NET Core 5.0
  - ASP.NET Core 5.0
-Entity Framework Core 5.0
-Microsoft.AspNetCore.Mvc.Testing
-xUnit
-Moq
-NSubstitute
-JavaScript
-jQuery
-Bootstrap
-HTML 5
-CSS
+ - Entity Framework Core 5.0
+ - Microsoft.AspNetCore.Mvc.Testing
+ - xUnit
+ - Moq
+ - NSubstitute
+ - JavaScript
+ - jQuery
+ - Bootstrap
+ - HTML 5
+ - CSS
 
 Description and Futures:
 Users futures:
@@ -27,8 +26,8 @@ Users futures:
 - search by category name
  
 App Admin futures:
-	- add/update new categories, articles and statistics.
- 
+- add/update/delete categories, articles and statistics.
+
 Screen Shots:
 
 Anonymous user Pages:
@@ -80,7 +79,7 @@ Create comment:
 
 Admin Pages:
 
-All Categories / Articles / Statistics 
+All Categories / Articles / Statistics - Create, Edit, Details, Delete
 ![admin](https://user-images.githubusercontent.com/87023949/164948087-4eb62833-44b5-4a93-8a4c-4199a426abc8.jpg)
 
 
