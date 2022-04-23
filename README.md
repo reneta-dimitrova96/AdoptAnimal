@@ -4,7 +4,7 @@ Web Application for adopting animals using ASP.NET Core
  - The purpose of the application is to enable the user to quickly and easily find their dream pet or give their own.
  - You can only view the content or create your own ads and articles.
 
-Using ASP.NET Core Template by : @Nikolay Kostov
+Using ASP.NET Core Template by : Nikolay Kostov
 
 Technologies and tools used:
 .NET Core 5.0
